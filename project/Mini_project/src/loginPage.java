@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
@@ -19,13 +20,15 @@ public class loginPage {
             }
         });
         LOGINButton.addActionListener(new ActionListener() {
+            private Component loginPage;
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 String user = username.getText();
                 String pass = new String(passwordField.getPassword());
 
                 if (user.isEmpty() || pass.isEmpty()) {
-                    //JOptionPane.showMessageDialog(loginpage, "Please enter a valid username/password");
+                    JOptionPane.showMessageDialog(loginPage, "Please enter a valid username/password");
                     return;
                 }
 
@@ -41,11 +44,11 @@ public class loginPage {
                     ResultSet rs = pst.executeQuery();
 
                     if (rs.next()) {
-                        JOptionPane.showMessageDialog(null, "Login successful!");
+                        //JOptionPane.showMessageDialog(null, "Login successful!");
                         conn.close();
 
                         // Open next page
-                        //new adminPage();
+                        new adminPage();
                     } else {
                         JOptionPane.showMessageDialog(null, "Invalid username or password.");
                     }
@@ -69,5 +72,8 @@ public class loginPage {
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+    }
+
+    public void showLoginFrame() {
     }
 }

@@ -110,7 +110,9 @@
               </grid>
             </constraints>
             <properties>
+              <font style="1"/>
               <horizontalAlignment value="0"/>
+              <text value=""/>
             </properties>
           </component>
           <component id="e1a1b" class="javax.swing.JButton" binding="LOGINButton" default-binding="true">
@@ -162,6 +164,7 @@
               </grid>
             </constraints>
             <properties>
+              <font style="1"/>
               <horizontalAlignment value="0"/>
             </properties>
           </component>
