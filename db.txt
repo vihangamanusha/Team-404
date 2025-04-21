@@ -1,0 +1,677 @@
+
+CREATE DATABASE Tecmis;
+
+////////////////////////////////////////////////////
+
+CREATE TABLE USER(
+    NIC INT AUTO_INCREMENT,
+    First_Name VARCHAR(50),
+    Last_Name VARCHAR(50),
+    Role VARCHAR(15),
+    Phone_Number INT(10),
+    Email VARCHAR(100),
+    Password VARCHAR(15),
+    PRIMARY KEY(NIC)
+    
+);
+
+INSERT INTO USER (First_Name, Last_Name, Role, Phone_Number, Email, Password)
+VALUES
+('Kumara', 'Perera', 'Lecture', 771234567, 'kumara@example.com', 'pass123'),
+('Fatheema', 'Nazeer', 'Lecture', 772345678, 'fatheema@example.com', 'pass123'),
+('Subramanium', 'Raman', 'Lecture', 773456789, 'subra@example.com', 'pass123'),
+('Mallika', 'Silva', 'Lecture', 774567890, 'mallika@example.com', 'pass123'),
+('Saman', 'Fernando', 'Lecture', 775678901, 'perera@example.com', 'pass123'),
+('Subash', 'Senanayake', 'Admin', 776789012, 'kumara.admin@example.com', 'admin123'),
+('Amal', 'Perera', 'T/O', 777890123, 'amal.to@example.com', 'to123'),
+('Nimali', 'Silva', 'T/O', 778901234, 'nimali@example.com', 'to123'),
+('Kamal', 'Rajapaksa', 'T/O', 779012345, 'kamal@example.com', 'to123'),
+('Dilani', 'Fernando', 'T/O', 770123456, 'dilani@example.com', 'to123'),
+('Nimesh', 'Rathnayaka', 'Student', 771112223, 'nuwan@student.com', 'stu123'),
+('Malith', 'Priyantha', 'Student', 772223334, 'priyantha@student.com', 'stu123'),
+('Nuwani', 'Chathurika', 'Student', 773334445, 'chathurika@student.com', 'stu123'),
+('Malidu', 'Dilshan', 'Student', 774445556, 'dilshan@student.com', 'stu123'),
+('Ravindu', 'Nadeesha', 'Student', 775556667, 'nadeesha@student.com', 'stu123'),
+('Dilan', 'Dinusha', 'Student', 776667778, 'dinusha@student.com', 'stu123'),
+('Raveesha', 'Kavindi', 'Student', 777778889, 'kavindi@student.com', 'stu123'),
+('Nuwani', 'Perera', 'Student', 778889990, 'csperera@student.com', 'stu123'),
+('Wageesha', 'Mahesha', 'Student', 779990001, 'mahesha@student.com', 'stu123'),
+('Pathum', 'Kasun', 'Student', 770001112, 'kasun@student.com', 'stu123'),
+('Sunethra', 'Priyadarshani', 'Student', 771112233, 'priya@student.com', 'stu123'),
+('Chameera', 'Chamika', 'Student', 772223344, 'chamika@student.com', 'stu123'),
+('Suweetha', 'Nethmi', 'Student', 773334455, 'nethmi@student.com', 'stu123'),
+('Nuwan', 'Tharindu', 'Student', 774445566, 'tharindu@student.com', 'stu123'),
+('Shanika', 'Madumali', 'Student', 775556677, 'shanika@student.com', 'stu123'),
+('Pawan', 'Thathsara', 'Student', 776667788, 'manishka@student.com', 'stu123'),
+('Wasantha', 'Kumara', 'Student', 777778899, 'sanjeewa@student.com', 'stu123'),
+('Pinimal', 'Premathilaka', 'Student', 778889900, 'pdshanika@student.com', 'stu123'),
+('Kasun', 'Rajitha', 'Student', 779900011, 'rajitha@student.com', 'stu123'),
+('Vihanga', 'Manusha', 'Student', 770011122, 'kavindu@student.com', 'stu123');
+
+
+//////////////////////////////////////////////////////////
+
+CREATE TABLE Lecturer (
+    NIC INT,
+    Lecturer_id CHAR(10),
+    PRIMARY KEY (Lecturer_id),
+    FOREIGN KEY (NIC) REFERENCES USER(NIC)
+);
+
+INSERT INTO Lecturer (NIC, Lecturer_id)
+VALUES
+    (1, 'L001'),
+    (2, 'L002'),
+    (3, 'L003'),
+    (4, 'L004'),
+    (5, 'L005');
+
+
+////////////////////////////////////////////////////////////
+
+CREATE TABLE Admin (
+    NIC INT,
+    Admin_id CHAR(10),
+    PRIMARY KEY (Admin_id),
+    FOREIGN KEY (NIC) REFERENCES USER(NIC)
+);
+
+INSERT INTO Admin (NIC, Admin_id)
+VALUES
+    (6, 'A001');
+
+
+/////////////////////////////////////////////////////////
+
+CREATE TABLE Technical_officer(
+     NIC INT,
+     TO_id CHAR(10),
+     PRIMARY KEY(TO_id),
+     FOREIGN KEY (NIC) REFERENCES USER(NIC)
+
+);
+
+INSERT INTO Technical_officer(NIC, TO_id)
+VALUES
+    (7, 'T001'),
+    (8, 'T002'),
+    (9, 'T003'),
+    (10,'T004');
+
+/////////////////////////////////////////////////////////
+
+CREATE TABLE Student(
+      NIC INT,
+      Student_id CHAR(10),
+      Timetable_id CHAR(10),
+      PRIMARY KEY(Student_id),
+      FOREIGN KEY (NIC) REFERENCES USER(NIC),
+      FOREIGN KEY (Timetable_id) REFERENCES Timetable(Timetable_id).
+);
+
+INSERT INTO Student (NIC, Student_id)
+VALUES
+    (11, 'S001'),
+    (12, 'S002'),
+    (13, 'S003'),
+    (14, 'S004'),
+    (15, 'S005'),
+    (16, 'S006'),
+    (17, 'S007'),
+    (18, 'S008'),
+    (19, 'S009'),
+    (20, 'S010'),
+    (21, 'S011'),
+    (22, 'S012'),
+    (23, 'S013'),
+    (24, 'S014'),
+    (25, 'S015'),
+    (26, 'S016'),
+    (27, 'S017'),
+    (28, 'S018'),
+    (29, 'S019'),
+    (30, 'S020');
+//////////////////////////////////////////////////////////
+CREATE TABLE Course_unit(
+    Lecturer_id CHAR(10),
+    Admin_id CHAR(10),
+    Course_code CHAR(10),
+    CourseName VARCHAR(100),
+    Course_type VARCHAR(20),
+    Theory_hours INT,
+    Practical_hours INT,
+    Credits INT,
+    FOREIGN KEY (Lecturer_id) REFERENCES Lecturer(Lecturer_id),
+    FOREIGN KEY (Admin_id) REFERENCES Admin(Admin_id),
+    PRIMARY KEY(Course_code)   
+);
+
+INSERT INTO Course_unit (Lecturer_id, Admin_id, Course_code, CourseName, Course_type, Theory_hours, Practical_hours, Credits)
+VALUES
+('L001','A001','ICT2113', 'Business Economics', '2T+1P', 2, 1, 3),
+('L002','A001','ICT2122', 'Data Structures and Algorithms', '2T', 2, 0, 2),
+('L003','A001','ICT2133', 'Object Oriented Programming', '2T+1P', 2, 1, 3),
+('L004','A001','ICT2142', 'Object Oriented Programming Practicum', '2P', 0, 2, 2),
+('L005','A001','ICT2152', 'Object Oriented Analysis and Design', '2T', 2, 0, 2);
+
+CREATE TABLE Marks(
+        Student_id CHAR(10),
+        Lecturer_id CHAR(10),
+        Course_code CHAR(10),
+        Medical_id CHAR(10),
+	Quiz1 FLOAT,
+	Quiz2 FLOAT,
+	Quiz3 FLOAT,
+        Quiz4 FLOAT,
+        Assessment_Mark FLOAT,
+	Mid_Practical FLOAT ,
+	Mid_Theory FLOAT ,
+	End_Practical FLOAT  ,
+	End_Theory FLOAT ,
+        PRIMARY KEY (Student_id,Course_code)
+        FOREIGN KEY (Student_id) REFERENCES  Student(Student_id),
+        FOREIGN KEY (Lecturer_id) REFERENCES Lecturer(Lecturer_id),
+        FOREIGN KEY (Course_code) REFERENCES Course_unit(Course_code),
+        FOREIGN KEY (Medical_id) REFERENCES Medical(Medical_id)
+
+);
+                                                                        
+
+INSERT INTO Marks VALUES 
+('S001', 'L001', 'ICT2113', NULL, 80.0, 90.0, 85.0, 75.0, 68.0, 65.0),
+('S001', 'L002', 'ICT2122', NULL, 80.0, 85.0, 90.0, 85.0, 75.0, 73.0, 30.0),
+('S001', 'L003', 'ICT2133', NULL, 80.0, 75.0, 90.0, 85.0, 25.0, 18.0, 20.0),
+('S001', 'L004', 'ICT2142', NULL, 80.0, 75.0, 90.0),
+('S001', 'L005', 'ICT2152', 'M001', 80.0, 75.0, 90.0, 85.0, 25.0, 18.0),
+                                                                                               
+
+('S002', 'L001', 'ICT2113', NULL, 75.0, 70.0, 80.0, 75.0, 24.0, 17.0),
+('S002', 'L002', 'ICT2122', NULL, 75.0, 70.0, 80.0, 75.0, 24.0, 17.0, 19.0),
+('S002', 'L003', 'ICT2133', NULL, 75.0, 70.0, 80.0, 27.0, 24.0, 15.0, 19.0),
+('S002', 'L004', 'ICT2142', NULL, 75.0, 70.0, 80.0),
+('S002', 'L005', 'ICT2152', NULL, 75.0, 70.0, 80.0, 75.0, 24.0, 17.0),
+
+
+('S003', 'L001', 'ICT2113', NULL, 90.0, 85.0, 80.0, 90.0, 26.0, 19.0),
+('S003', 'L002', 'ICT2122', NULL, 90.0, 85.0, 80.0, 90.0, 26.0, 19.0, 22.0),
+('S003', 'L003', 'ICT2133', NULL, 70.0, 85.0, 80.0, 29.0, 26.0, 19.0, 22.0),
+('S003', 'L004', 'ICT2142', NULL, 90.0, 85.0, 80.0),
+('S003', 'L005', 'ICT2152', NULL, 90.0, 85.0, 80.0, 90.0, 26.0, 19.0),
+
+
+('S004', 'L001', 'ICT2113', 'M002', 65.0, 70.0, 75.0, 70.0, 22.0, 16.0),
+('S004', 'L002', 'ICT2122', NULL, 65.0, 70.0, 75.0, 70.0, 22.0, 16.0, 18.0),
+('S004', 'L003', 'ICT2133', NULL, 65.0, 70.0, 75.0, 70.0, 22.0, 16.0, 18.0),
+('S004', 'L004', 'ICT2142', NULL, 65.0, 70.0, 75.0),
+('S004', 'L005', 'ICT2152', NULL, 65.0, 70.0, 75.0, 18.0, 22.0, 16.0),
+
+
+('S005', 'L001', 'ICT2113', NULL, 85.0, 90.0, 80.0, 85.0, 27.0, 20.0),
+('S005', 'L002', 'ICT2122', NULL, 85.0, 90.0, 80.0, 85.0, 27.0, 20.0, 21.0),
+('S005', 'L003', 'ICT2133', NULL, 85.0, 90.0, 80.0, 85.0, 27.0, 20.0, 21.0),
+('S005', 'L004', 'ICT2142', NULL, 85.0, 90.0, 80.0),
+('S005', 'L005', 'ICT2152', NULL, 85.0, 90.0, 80.0, 85.0, 27.0, 20.0),
+
+
+('S006', 'L001', 'ICT2113', NULL, 60.0, 65.0, 60.0,  25.0, 20.0, 15.0),
+('S006', 'L002', 'ICT2122', NULL, 60.0, 65.0, 60.0, 24.0, 20.0, 15.0, 17.0),
+('S006', 'L003', 'ICT2133', NULL, 60.0, 65.0, 60.0, 65.0, 20.0, 15.0, 17.0),
+('S006', 'L004', 'ICT2142', 'M003', 60.0, 65.0, 60.0),
+('S006', 'L005', 'ICT2152', NULL, 60.0, 65.0, 60.0, 25.0, 20.0, 15.0),
+                                                                                       
+
+('S007', 'L001', 'ICT2113', NULL, 23.0, 30.0, 30.0, 9.0, 28.0, 21.0),
+('S007', 'L002', 'ICT2122', NULL, 90.0, 85.0, 95.0, 90.0, 28.0, 21.0, 23.0),
+('S007', 'L003', 'ICT2133', NULL, 90.0, 85.0, 95.0, 90.0, 28.0, 21.0, 23.0),
+('S007', 'L004', 'ICT2142', NULL, 90.0, 85.0, 95.0),
+('S007', 'L005', 'ICT2152', NULL, 90.0, 85.0, 95.0, 28.0, 21.0, 23.0),
+
+
+('S008', 'L001', 'ICT2113', NULL, 70.0, 75.0, 80.0, 27.0, 23.0, 18.0),
+('S008', 'L002', 'ICT2122', NULL, 70.0, 75.0, 80.0, 26.0, 23.0, 18.0, 19.0),
+('S008', 'L003', 'ICT2133', NULL, 70.0, 75.0, 80.0, 75.0, 23.0, 18.0, 19.0),
+('S008', 'L004', 'ICT2142', NULL, 70.0, 75.0, 80.0),
+('S008', 'L005', 'ICT2152', NULL, 70.0, 75.0, 80.0, 75.0, 23.0, 18.0),
+                                                                                
+
+('S009', 'L001', 'ICT2113', NULL, 80.0, 80.0, 75.0, 80.0, 25.0, 19.0),
+('S009', 'L002', 'ICT2122', NULL, 80.0, 80.0, 75.0, 80.0, 25.0, 19.0, 20.0),
+('S009', 'L003', 'ICT2133', NULL, 80.0, 80.0, 75.0, 80.0, 25.0, 19.0, 20.0),
+('S009', 'L004', 'ICT2142', NULL, 80.0, 80.0, 75.0),
+('S009', 'L005', 'ICT2152', NULL, 80.0, 80.0, 75.0, 80.0, 25.0, 19.0),
+
+
+('S010', 'L001', 'ICT2113', NULL, 65.0, 60.0, 65.0, 60.0, 21.0, 14.0),
+('S010', 'L002', 'ICT2122', NULL, 65.0, 60.0, 65.0, 60.0, 21.0, 14.0, 16.0),
+('S010', 'L003', 'ICT2133', NULL, 65.0, 60.0, 65.0, 60.0, 21.0, 14.0, 16.0),
+('S010', 'L004', 'ICT2142', NULL, 65.0, 60.0, 65.0),
+('S010', 'L005', 'ICT2152', NULL, 65.0, 60.0, 65.0, 60.0, 21.0, 14.0),
+
+
+('S011', 'L001', 'ICT2113', NULL, 90.0, 90.0, 85.0, 95.0, 28.0, 22.0),
+('S011', 'L002', 'ICT2122', NULL, 90.0, 90.0, 85.0, 95.0, 28.0, 22.0, 24.0),
+('S011', 'L003', 'ICT2133', NULL, 90.0, 90.0, 85.0, 95.0, 28.0, 22.0, 24.0),
+('S011', 'L004', 'ICT2142', NULL, 90.0, 90.0, 85.0),
+('S011', 'L005', 'ICT2152', NULL, 90.0, 90.0, 85.0, 95.0, 28.0, 22.0),
+
+
+('S012', 'L001', 'ICT2113', NULL, 75.0, 70.0, 75.0, 80.0, 24.0, 17.0),
+('S012', 'L002', 'ICT2122', NULL, 75.0, 70.0, 70.0, 80.0, 24.0, 17.0, 19.0),
+('S012', 'L003', 'ICT2133', NULL, 75.0, 70.0, 72.0, 80.0, 24.0, 17.0, 19.0),
+('S012', 'L004', 'ICT2142', NULL, 75.0, 70.0, 75.0),
+('S012', 'L005', 'ICT2152', NULL, 75.0, 70.0, 75.0, 80.0, 24.0, 17.0),
+
+
+('S013', 'L001', 'ICT2113', NULL, 85.0, 80.0, 90.0, 85.0, 26.0, 20.0),
+('S013', 'L002', 'ICT2122', NULL, 85.0, 80.0, 90.0, 85.0, 26.0, 20.0, 22.0),
+('S013', 'L003', 'ICT2133', NULL, 85.0, 80.0, 90.0, 85.0, 26.0, 20.0, 22.0),
+('S013', 'L004', 'ICT2142', NULL, 85.0, 80.0, 90.0),
+('S013', 'L005', 'ICT2152', NULL, 85.0, 80.0, 90.0, 85.0, 40.0, 20.0),
+
+
+('S014', 'L001', 'ICT2113', 'M004', 60.0, 65.0, 75.0, 65.0, 22.0, 15.0),
+('S014', 'L002', 'ICT2122', NULL, 60.0, 65.0, 76.0, 65.0, 22.0, 15.0, 17.0),
+('S014', 'L003', 'ICT2133', NULL, 60.0, 65.0, 75.0, 65.0, 22.0, 35.0, 17.0),
+('S014', 'L004', 'ICT2142', NULL, 60.0, 65.0, 73.0),
+('S014', 'L005', 'ICT2152', NULL, 60.0, 65.0, 70.0, 65.0, 45.0, 35.0),
+
+
+('S015', 'L001', 'ICT2113', NULL, 95.0, 90.0, 95.0, 90.0, 29.0, 23.0),
+('S015', 'L002', 'ICT2122', NULL, 95.0, 90.0, 95.0, 90.0, 29.0, 43.0, 45.0),
+('S015', 'L003', 'ICT2133', NULL, 95.0, 90.0, 95.0, 90.0, 29.0, 63.0, 55.0),
+('S015', 'L004', 'ICT2142', NULL, 95.0, 90.0, 95.0),
+('S015', 'L005', 'ICT2152', NULL, 95.0, 90.0, 95.0, 90.0, 29.0, 23.0),
+
+('S016', 'L001', 'ICT2113', NULL, 70.0, 65.0, 75.0, 70.0, 23.0, 56.0),
+('S016', 'L002', 'ICT2122', NULL, 70.0, 65.0, 75.0, 70.0, 23.0, 36.0, 88.0),
+('S016', 'L003', 'ICT2133', NULL, 70.0, 65.0, 75.0, 70.0, 23.0, 26.0, 48.0),
+('S016', 'L004', 'ICT2142', NULL, 70.0, 65.0, 75.0),
+('S016', 'L005', 'ICT2152', NULL, 70.0, 65.0, 75.0, 70.0, 33.0, 54.0),
+
+
+('S017', 'L001', 'ICT2113', NULL, 80.0, 85.0, 80.0, 85.0, 26.0, 19.0),
+('S017', 'L002', 'ICT2122', NULL, 80.0, 85.0, 80.0, 85.0, 26.0, 19.0, 21.0),
+('S017', 'L003', 'ICT2133', NULL, 80.0, 85.0, 80.0, 85.0, 26.0, 19.0, 21.0),
+('S017', 'L004', 'ICT2142', NULL, 80.0, 85.0, 80.0),
+('S017', 'L005', 'ICT2152', NULL, 80.0, 85.0, 80.0, 85.0, 26.0, 19.0),
+
+
+('S018', 'L001', 'ICT2113', NULL, 65.0, 60.0, 65.5, 60.0, 21.0, 46.0),
+('S018', 'L002', 'ICT2122', NULL, 65.0, 60.0, 65.5, 60.0, 21.0, 44.0, 16.0),
+('S018', 'L003', 'ICT2133', NULL, 65.0, 60.0, 63.5, 60.0, 41.0, 76.0, 66.0),
+('S018', 'L004', 'ICT2142', NULL, 60.0, 60.0, 62.5),
+('S018', 'L005', 'ICT2152', NULL, 64.0 60.0, 61.5, 60.0, 78.0, 44.0),
+
+
+('S019', 'L001', 'ICT2113', NULL, 90.0, 95.0, 90.0, 95.0., 29.0, 22.0),
+('S019', 'L002', 'ICT2122', NULL, 90.0, 95.0, 90.0, 95.0, 29.0, 22.0, 24.0),
+('S019', 'L003', 'ICT2133', NULL, 90.0, 90.0, 90.0, 95.0, 59.0, 62.0, 44.0),
+('S019', 'L004', 'ICT2142', 'M005', 90.0, 95.0, 90.0),
+('S019', 'L005', 'ICT2152', NULL, 90.0, 95.0, 90.0, 95.0, 29.0, 42.0),
+
+
+('S020', 'L001', 'ICT2113', NULL, 75.0, 70.0, 75.0, 70.0, 24.0, 48.0);
+('S020', 'L002', 'ICT2122', NULL, 75.0, 70.0, 65.0, 30.0, 34.0, 58.0, 20.0);
+('S020', 'L003', 'ICT2133', NULL, 75.0, 70.0, 55.0, 40.0, 54.0, 78.0, 20.0);
+('S020', 'L004', 'ICT2142', NULL, 75.0, 70.0, 45.0);
+('S020', 'L005', 'ICT2152', NULL, 75.0, 70.0, 85.0, 60.0, 64.0, 68.0);
+//////////////////////////////////////////////////////////
+
+
+CREATE TABLE Course_unit(
+    Lecturer_id CHAR(10),
+    Admin_id CHAR(10),
+    Course_code CHAR(10),
+    CourseName VARCHAR(100),
+    Course_type VARCHAR(20),
+    Theory_hours INT,
+    Practical_hours INT,
+    Credits INT,
+    FOREIGN KEY (Lecturer_id) REFERENCES Lecturer(Lecturer_id),
+    FOREIGN KEY (Admin_id) REFERENCES Admin(Admin_id),
+    PRIMARY KEY(Course_code)   
+);
+
+INSERT INTO Course_unit (Lecturer_id, Admin_id, Course_code, CourseName, Course_type, Theory_hours, Practical_hours, Credits)
+VALUES
+('L001','A001','ICT2113', 'Business Economics', '2T+1P', 2, 1, 3),
+('L002','A001','ICT2122', 'Data Structures and Algorithms', '2T', 2, 0, 2),
+('L003','A001','ICT2133', 'Object Oriented Programming', '2T+1P', 2, 1, 3),
+('L004','A001','ICT2142', 'Object Oriented Programming Practicum', '2P', 0, 2, 2),
+('L005','A001','ICT2152', 'Object Oriented Analysis and Design', '2T', 2, 0, 2);
+
+
+///////////////////////////////////////////////////////////////////
+
+
+CREATE TABLE Student_course_unit(
+	Student_id CHAR(10),
+	Course_Code CHAR(10),
+        PRIMARY KEY(Student_id,Course_Code),
+        FOREIGN KEY (Student_id) REFERENCES Student(Student_id),
+        FOREIGN KEY (Course_code) REFERENCES Course_unit(Course_code)
+  
+);
+
+INSERT INTO Student_course_unit (Student_id, Course_Code)
+VALUES
+('S001', 'ICT2113'), ('S001', 'ICT2122'), ('S001', 'ICT2133'), ('S001', 'ICT2142'), ('S001', 'ICT2152'),
+('S002', 'ICT2113'), ('S002', 'ICT2122'), ('S002', 'ICT2133'), ('S002', 'ICT2142'), ('S002', 'ICT2152'),
+('S003', 'ICT2113'), ('S003', 'ICT2122'), ('S003', 'ICT2133'), ('S003', 'ICT2142'), ('S003', 'ICT2152'),
+('S004', 'ICT2113'), ('S004', 'ICT2122'), ('S004', 'ICT2133'), ('S004', 'ICT2142'), ('S004', 'ICT2152'),
+('S005', 'ICT2113'), ('S005', 'ICT2122'), ('S005', 'ICT2133'), ('S005', 'ICT2142'), ('S005', 'ICT2152'),
+('S006', 'ICT2113'), ('S006', 'ICT2122'), ('S006', 'ICT2133'), ('S006', 'ICT2142'), ('S006', 'ICT2152'),
+('S007', 'ICT2113'), ('S007', 'ICT2122'), ('S007', 'ICT2133'), ('S007', 'ICT2142'), ('S007', 'ICT2152'),
+('S008', 'ICT2113'), ('S008', 'ICT2122'), ('S008', 'ICT2133'), ('S008', 'ICT2142'), ('S008', 'ICT2152'),
+('S009', 'ICT2113'), ('S009', 'ICT2122'), ('S009', 'ICT2133'), ('S009', 'ICT2142'), ('S009', 'ICT2152'),
+('S010', 'ICT2113'), ('S010', 'ICT2122'), ('S010', 'ICT2133'), ('S010', 'ICT2142'), ('S010', 'ICT2152'),
+('S011', 'ICT2113'), ('S011', 'ICT2122'), ('S011', 'ICT2133'), ('S011', 'ICT2142'), ('S011', 'ICT2152'),
+('S012', 'ICT2113'), ('S012', 'ICT2122'), ('S012', 'ICT2133'), ('S012', 'ICT2142'), ('S012', 'ICT2152'),
+('S013', 'ICT2113'), ('S013', 'ICT2122'), ('S013', 'ICT2133'), ('S013', 'ICT2142'), ('S013', 'ICT2152'),
+('S014', 'ICT2113'), ('S014', 'ICT2122'), ('S014', 'ICT2133'), ('S014', 'ICT2142'), ('S014', 'ICT2152'),
+('S015', 'ICT2113'), ('S015', 'ICT2122'), ('S015', 'ICT2133'), ('S015', 'ICT2142'), ('S015', 'ICT2152'),
+('S016', 'ICT2113'), ('S016', 'ICT2122'), ('S016', 'ICT2133'), ('S016', 'ICT2142'), ('S016', 'ICT2152'),
+('S017', 'ICT2113'), ('S017', 'ICT2122'), ('S017', 'ICT2133'), ('S017', 'ICT2142'), ('S017', 'ICT2152'),
+('S018', 'ICT2113'), ('S018', 'ICT2122'), ('S018', 'ICT2133'), ('S018', 'ICT2142'), ('S018', 'ICT2152'),
+('S019', 'ICT2113'), ('S019', 'ICT2122'), ('S019', 'ICT2133'), ('S019', 'ICT2142'), ('S019', 'ICT2152'),
+('S020', 'ICT2113'), ('S020', 'ICT2122'), ('S020', 'ICT2133'), ('S020', 'ICT2142'), ('S020', 'ICT2152');
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+
+
+CREATE TABLE Attendance(
+    Course_code CHAR(10),
+    Session_Type VARCHAR(15),
+    Session_date VARCHAR(50),
+    Status VARCHAR(15),
+    Student_id CHAR(10),
+    TO_id CHAR(10),
+    Medical_id CHAR(10),
+    FOREIGN KEY (Course_code) REFERENCES Course_unit(Course_code),
+    FOREIGN KEY (Student_id) REFERENCES Student(Student_id),
+    FOREIGN KEY (TO_id) REFERENCES Technical_officer(TO_id),
+    FOREIGN KEY (Medical_id) REFERENCES Medical(Medical_id)
+
+
+);
+
+*********data tika danna
+////////////////////////////////////////////////////////////////////////////
+
+
+
+CREATE TABLE Marks(
+        Student_id CHAR(10),
+        Lecturer_id CHAR(10),
+        Course_code CHAR(10),
+        Medical_id CHAR(10),
+	Quiz1 FLOAT,
+	Quiz2 FLOAT,
+	Quiz3 FLOAT,
+        Quiz4 FLOAT,
+        Assessment_Mark FLOAT,
+	Mid_Practical FLOAT ,
+	Mid_Theory FLOAT ,
+	End_Practical FLOAT  ,
+	End_Theory FLOAT ,
+        PRIMARY KEY (Student_id,Course_code)
+        FOREIGN KEY (Student_id) REFERENCES  Student(Student_id),
+        FOREIGN KEY (Lecturer_id) REFERENCES Lecturer(Lecturer_id),
+        FOREIGN KEY (Course_code) REFERENCES Course_unit(Course_code),
+        FOREIGN KEY (Medical_id) REFERENCES Medical(Medical_id)
+
+);
+
+
+
+INSERT INTO Marks VALUES 
+('S001', 'L001', 'ICT2113', NULL, 80, 75, 90, 85, 75.0, 68.0, 20.0, 28.0, 30.0),
+('S001', 'L002', 'ICT2122', NULL, 8.0, 7.5, 9.0, 8.5, 25.0, 18.0, 20.0, 28.0, 30.0),
+('S001', 'L003', 'ICT2133', NULL, 8.0, 7.5, 9.0, 8.5, 25.0, 18.0, 20.0, 28.0, 30.0),
+('S001', 'L004', 'ICT2142', NULL, 8.0, 7.5, 9.0, 8.5, 25.0, 18.0, 20.0, 28.0, 30.0),
+('S001', 'L005', 'ICT2152', 'M001', 8.0, 7.5, 9.0, 8.5, 25.0, 18.0, 20.0, 28.0, 30.0),
+
+
+('S002', 'L001', 'ICT2113', NULL, 7.5, 7.0, 8.0, 7.5, 24.0, 17.0, 19.0, 27.0, 28.0),
+('S002', 'L002','ICT2122', NULL, 7.5, 7.0, 8.0, 7.5, 24.0, 17.0, 19.0, 27.0, 28.0),
+('S002', 'L003', 'ICT2133', NULL, 7.5, 7.0, 8.0, 7.5, 24.0, 17.0, 19.0, 27.0, 28.0),
+('S002', 'L004', 'ICT2142', NULL, 7.5, 7.0, 8.0, 7.5, 24.0, 17.0, 19.0, 27.0, 28.0),
+('S002', 'L005', 'ICT2152', NULL, 7.5, 7.0, 8.0, 7.5, 24.0, 17.0, 19.0, 27.0, 28.0),
+
+
+('S003', 'L001', 'ICT2113', NULL, 9.0, 8.5, 8.0, 9.0, 26.0, 19.0, 22.0, 29.0, 30.0),
+('S003', 'L002', 'ICT2122', NULL, 9.0, 8.5, 8.0, 9.0, 26.0, 19.0, 22.0, 29.0, 30.0),
+('S003', 'L003', 'ICT2133', NULL, 9.0, 8.5, 8.0, 9.0, 26.0, 19.0, 22.0, 29.0, 30.0),
+('S003', 'L004', 'ICT2142', NULL, 9.0, 8.5, 8.0, 9.0, 26.0, 19.0, 22.0, 29.0, 30.0),
+('S003', 'L005', 'ICT2152', NULL, 9.0, 8.5, 8.0, 9.0, 26.0, 19.0, 22.0, 29.0, 30.0),
+
+
+('S004', 'L001', 'ICT2113', 'M002', 6.5, 7.0, 7.5, 7.0, 22.0, 16.0, 18.0, 25.0, 26.0),
+('S004', 'L002', 'ICT2122', NULL, 6.5, 7.0, 7.5, 7.0, 22.0, 16.0, 18.0, 25.0, 26.0),
+('S004', 'L003', 'ICT2133', NULL, 6.5, 7.0, 7.5, 7.0, 22.0, 16.0, 18.0, 25.0, 26.0),
+('S004', 'L004', 'ICT2142', NULL, 6.5, 7.0, 7.5, 7.0, 22.0, 16.0, 18.0, 25.0, 26.0),
+('S004', 'L005', 'ICT2152', NULL, 6.5, 7.0, 7.5, 7.0, 22.0, 16.0, 18.0, 25.0, 26.0),
+
+
+('S005', 'L001', 'ICT2113', NULL, 8.5, 9.0, 8.0, 8.5, 27.0, 20.0, 21.0, 28.0, 29.0),
+('S005', 'L002', 'ICT2122', NULL, 8.5, 9.0, 8.0, 8.5, 27.0, 20.0, 21.0, 28.0, 29.0),
+('S005', 'L003', 'ICT2133', NULL, 8.5, 9.0, 8.0, 8.5, 27.0, 20.0, 21.0, 28.0, 29.0),
+('S005', 'L004', 'ICT2142', NULL, 8.5, 9.0, 8.0, 8.5, 27.0, 20.0, 21.0, 28.0, 29.0),
+('S005', 'L005', 'ICT2152', NULL, 8.5, 9.0, 8.0, 8.5, 27.0, 20.0, 21.0, 28.0, 29.0),
+
+
+('S006', 'L001', 'ICT2113', NULL, 6.0, 6.5, 6.0, 6.5, 20.0, 15.0, 17.0, 24.0, 25.0),
+('S006', 'L002', 'ICT2122', NULL, 6.0, 6.5, 6.0, 6.5, 20.0, 15.0, 17.0, 24.0, 25.0),
+('S006', 'L003', 'ICT2133', NULL, 6.0, 6.5, 6.0, 6.5, 20.0, 15.0, 17.0, 24.0, 25.0),
+('S006', 'L004', 'ICT2142', 'M003', 6.0, 6.5, 6.0, 6.5, 20.0, 15.0, 17.0, 24.0, 25.0),
+('S006', 'L005', 'ICT2152', NULL, 6.0, 6.5, 6.0, 6.5, 20.0, 15.0, 17.0, 24.0, 25.0),
+
+
+('S007', 'L001', 'ICT2113', NULL, 9.0, 8.5, 9.5, 9.0, 28.0, 21.0, 23.0, 30.0, 30.0),
+('S007', 'L002', 'ICT2122', NULL, 9.0, 8.5, 9.5, 9.0, 28.0, 21.0, 23.0, 30.0, 30.0),
+('S007', 'L003', 'ICT2133', NULL, 9.0, 8.5, 9.5, 9.0, 28.0, 21.0, 23.0, 30.0, 30.0),
+('S007', 'L004', 'ICT2142', NULL, 9.0, 8.5, 9.5, 9.0, 28.0, 21.0, 23.0, 30.0, 30.0),
+('S007', 'L005', 'ICT2152', NULL, 9.0, 8.5, 9.5, 9.0, 28.0, 21.0, 23.0, 30.0, 30.0),
+
+
+('S008', 'L001', 'ICT2113', NULL, 7.0, 7.5, 8.0, 7.5, 23.0, 18.0, 19.0, 26.0, 27.0),
+('S008', 'L002', 'ICT2122', NULL, 7.0, 7.5, 8.0, 7.5, 23.0, 18.0, 19.0, 26.0, 27.0),
+('S008', 'L003', 'ICT2133', NULL, 7.0, 7.5, 8.0, 7.5, 23.0, 18.0, 19.0, 26.0, 27.0),
+('S008', 'L004', 'ICT2142', NULL, 7.0, 7.5, 8.0, 7.5, 23.0, 18.0, 19.0, 26.0, 27.0),
+('S008', 'L005', 'ICT2152', NULL, 7.0, 7.5, 8.0, 7.5, 23.0, 18.0, 19.0, 26.0, 27.0),
+
+
+('S009', 'L001', 'ICT2113', NULL, 8.0, 8.0, 7.5, 8.0, 25.0, 19.0, 20.0, 27.0, 28.0),
+('S009', 'L002', 'ICT2122', NULL, 8.0, 8.0, 7.5, 8.0, 25.0, 19.0, 20.0, 27.0, 28.0),
+('S009', 'L003', 'ICT2133', NULL, 8.0, 8.0, 7.5, 8.0, 25.0, 19.0, 20.0, 27.0, 28.0),
+('S009', 'L004', 'ICT2142', NULL, 8.0, 8.0, 7.5, 8.0, 25.0, 19.0, 20.0, 27.0, 28.0),
+('S009', 'L005', 'ICT2152', NULL, 8.0, 8.0, 7.5, 8.0, 25.0, 19.0, 20.0, 27.0, 28.0),
+
+
+('S010', 'L001', 'ICT2113', NULL, 6.5, 6.0, 6.5, 6.0, 21.0, 14.0, 16.0, 23.0, 24.0),
+('S010', 'L002', 'ICT2122', NULL, 6.5, 6.0, 6.5, 6.0, 21.0, 14.0, 16.0, 23.0, 24.0),
+('S010', 'L003', 'ICT2133', NULL, 6.5, 6.0, 6.5, 6.0, 21.0, 14.0, 16.0, 23.0, 24.0),
+('S010', 'L004', 'ICT2142', NULL, 6.5, 6.0, 6.5, 6.0, 21.0, 14.0, 16.0, 23.0, 24.0),
+('S010', 'L005', 'ICT2152', NULL, 6.5, 6.0, 6.5, 6.0, 21.0, 14.0, 16.0, 23.0, 24.0),
+
+
+('S011', 'L001', 'ICT2113', NULL, 9.0, 9.0, 8.5, 9.5, 28.0, 22.0, 24.0, 30.0, 30.0),
+('S011', 'L002', 'ICT2122', NULL, 9.0, 9.0, 8.5, 9.5, 28.0, 22.0, 24.0, 30.0, 30.0),
+('S011', 'L003', 'ICT2133', NULL, 9.0, 9.0, 8.5, 9.5, 28.0, 22.0, 24.0, 30.0, 30.0),
+('S011', 'L004', 'ICT2142', NULL, 9.0, 9.0, 8.5, 9.5, 28.0, 22.0, 24.0, 30.0, 30.0),
+('S011', 'L005', 'ICT2152', NULL, 9.0, 9.0, 8.5, 9.5, 28.0, 22.0, 24.0, 30.0, 30.0),
+
+
+('S012', 'L001', 'ICT2113', NULL, 7.5, 7.0, 7.5, 8.0, 24.0, 17.0, 19.0, 26.0, 27.0),
+('S012', 'L002', 'ICT2122', NULL, 7.5, 7.0, 7.5, 8.0, 24.0, 17.0, 19.0, 26.0, 27.0),
+('S012', 'L003', 'ICT2133', NULL, 7.5, 7.0, 7.5, 8.0, 24.0, 17.0, 19.0, 26.0, 27.0),
+('S012', 'L004', 'ICT2142', NULL, 7.5, 7.0, 7.5, 8.0, 24.0, 17.0, 19.0, 26.0, 27.0),
+('S012', 'L005', 'ICT2152', NULL, 7.5, 7.0, 7.5, 8.0, 24.0, 17.0, 19.0, 26.0, 27.0),
+
+
+('S013', 'L001', 'ICT2113', NULL, 8.5, 8.0, 9.0, 8.5, 26.0, 20.0, 22.0, 29.0, 30.0),
+('S013', 'L002', 'ICT2122', NULL, 8.5, 8.0, 9.0, 8.5, 26.0, 20.0, 22.0, 29.0, 30.0),
+('S013', 'L003', 'ICT2133', NULL, 8.5, 8.0, 9.0, 8.5, 26.0, 20.0, 22.0, 29.0, 30.0),
+('S013', 'L004', 'ICT2142', NULL, 8.5, 8.0, 9.0, 8.5, 26.0, 20.0, 22.0, 29.0, 30.0),
+('S013', 'L005', 'ICT2152', NULL, 8.5, 8.0, 9.0, 8.5, 26.0, 20.0, 22.0, 29.0, 30.0),
+
+
+('S014', 'L001', 'ICT2113', 'M004', 6.0, 6.5, 7.0, 6.5, 22.0, 15.0, 17.0, 25.0, 26.0),
+('S014', 'L002', 'ICT2122', NULL, 6.0, 6.5, 7.0, 6.5, 22.0, 15.0, 17.0, 25.0, 26.0),
+('S014', 'L003', 'ICT2133', NULL, 6.0, 6.5, 7.0, 6.5, 22.0, 15.0, 17.0, 25.0, 26.0),
+('S014', 'L004', 'ICT2142', NULL, 6.0, 6.5, 7.0, 6.5, 22.0, 15.0, 17.0, 25.0, 26.0),
+('S014', 'L005', 'ICT2152', NULL, 6.0, 6.5, 7.0, 6.5, 22.0, 15.0, 17.0, 25.0, 26.0),
+
+('S015', 'L001', 'ICT2113', NULL, 9.5, 9.0, 9.5, 9.0, 29.0, 23.0, 25.0, 30.0, 30.0),
+('S015', 'L002', 'ICT2122', NULL, 9.5, 9.0, 9.5, 9.0, 29.0, 23.0, 25.0, 30.0, 30.0),
+('S015', 'L003', 'ICT2133', NULL, 9.5, 9.0, 9.5, 9.0, 29.0, 23.0, 25.0, 30.0, 30.0),
+('S015', 'L004', 'ICT2142', NULL, 9.5, 9.0, 9.5, 9.0, 29.0, 23.0, 25.0, 30.0, 30.0),
+('S015', 'L005', 'ICT2152', NULL, 9.5, 9.0, 9.5, 9.0, 29.0, 23.0, 25.0, 30.0, 30.0),
+
+('S016', 'L001', 'ICT2113', NULL, 7.0, 6.5, 7.5, 7.0, 23.0, 16.0, 18.0, 25.0, 26.0),
+('S016', 'L002', 'ICT2122', NULL, 7.0, 6.5, 7.5, 7.0, 23.0, 16.0, 18.0, 25.0, 26.0),
+('S016', 'L003', 'ICT2133', NULL, 7.0, 6.5, 7.5, 7.0, 23.0, 16.0, 18.0, 25.0, 26.0),
+('S016', 'L004', 'ICT2142', NULL, 7.0, 6.5, 7.5, 7.0, 23.0, 16.0, 18.0, 25.0, 26.0),
+('S016', 'L005', 'ICT2152', NULL, 7.0, 6.5, 7.5, 7.0, 23.0, 16.0, 18.0, 25.0, 26.0),
+
+('S017', 'L001', 'ICT2113', NULL, 8.0, 8.5, 8.0, 8.5, 26.0, 19.0, 21.0, 28.0, 29.0),
+('S017', 'L002', 'ICT2122', NULL, 8.0, 8.5, 8.0, 8.5, 26.0, 19.0, 21.0, 28.0, 29.0),
+('S017', 'L003', 'ICT2133', NULL, 8.0, 8.5, 8.0, 8.5, 26.0, 19.0, 21.0, 28.0, 29.0),
+('S017', 'L004', 'ICT2142', NULL, 8.0, 8.5, 8.0, 8.5, 26.0, 19.0, 21.0, 28.0, 29.0),
+('S017', 'L005', 'ICT2152', NULL, 8.0, 8.5, 8.0, 8.5, 26.0, 19.0, 21.0, 28.0, 29.0),
+
+
+('S018', 'L001', 'ICT2113', NULL, 6.5, 6.0, 6.5, 6.0, 21.0, 14.0, 16.0, 24.0, 25.0),
+('S018', 'L002', 'ICT2122', NULL, 6.5, 6.0, 6.5, 6.0, 21.0, 14.0, 16.0, 24.0, 25.0),
+('S018', 'L003', 'ICT2133', NULL, 6.5, 6.0, 6.5, 6.0, 21.0, 14.0, 16.0, 24.0, 25.0),
+('S018', 'L004', 'ICT2142', NULL, 6.5, 6.0, 6.5, 6.0, 21.0, 14.0, 16.0, 24.0, 25.0),
+('S018', 'L005', 'ICT2152', NULL, 6.5, 6.0, 6.5, 6.0, 21.0, 14.0, 16.0, 24.0, 25.0),
+
+
+('S019', 'L001', 'ICT2113', NULL, 9.0, 9.5, 9.0, 9.5, 29.0, 22.0, 24.0, 30.0, 30.0),
+('S019', 'L002', 'ICT2122', NULL, 9.0, 9.5, 9.0, 9.5, 29.0, 22.0, 24.0, 30.0, 30.0),
+('S019', 'L003', 'ICT2133', NULL, 9.0, 9.5, 9.0, 9.5, 29.0, 22.0, 24.0, 30.0, 30.0),
+('S019', 'L004', 'ICT2142', 'M005', 9.0, 9.5, 9.0, 9.5, 29.0, 22.0, 24.0, 30.0, 30.0),
+('S019', 'L005', 'ICT2152', NULL, 9.0, 9.5, 9.0, 9.5, 29.0, 22.0, 24.0, 30.0, 30.0),
+
+
+('S020', 'L001', 'ICT2113', NULL, 7.5, 7.0, 7.5, 7.0, 24.0, 18.0, 20.0, 26.0, 27.0),
+('S020', 'L002', 'ICT2122', NULL, 7.5, 7.0, 7.5, 7.0, 24.0, 18.0, 20.0, 26.0, 27.0),
+('S020', 'L003', 'ICT2133', NULL, 7.5, 7.0, 7.5, 7.0, 24.0, 18.0, 20.0, 26.0, 27.0),
+('S020', 'L004', 'ICT2142', NULL, 7.5, 7.0, 7.5, 7.0, 24.0, 18.0, 20.0, 26.0, 27.0),
+('S020', 'L005', 'ICT2152', NULL, 7.5, 7.0, 7.5, 7.0, 24.0, 18.0, 20.0, 26.0, 27.0);
+
+
+
+/////////////////////////////////////////////////////////////////////////
+
+
+CREATE TABLE Medical(
+    Medical_id CHAR(10),
+    Course_code CHAR(10),
+    Student_id CHAR(10),
+    TO_id CHAR(10),
+    Submission_date VARCHAR(15),
+    Status VARCHAR(15),
+    Start_date VARCHAR(15),
+    End_date VARCHAR(15),
+    Reason VARCHAR(100),
+    FOREIGN KEY (Course_code) REFERENCES Course_unit(Course_code),
+    FOREIGN KEY (Student_id) REFERENCES Student(Student_id),
+    FOREIGN KEY (TO_id) REFERENCES Technical_officer(TO_id)
+    
+
+);
+
+
+INSERT INTO Medical
+VALUES 
+    ('M001','ICT2152','S001','','2025.01.02','Approved','2025.01.01','2025.01.15','Viral Infections'),
+    ('M002','ICT2113','S004','','2025.02.07','Not-Approved','2025.02.04','2025.02.18',' road accidents'),
+    ('M003','ICT2142','S006','','2025.02.24','Approved','2025.02.20','2025.02.06','Depression'),
+    ('M004','ICT2113','S014','','2025.03.06','Approved','2025.03.01','2025.03.15','migraines'),
+    ('M005','ICT2142','S019','','2025.04.05','Not-Approved','2025.04.01','2025.04.14','Viral Infections');
+
+/////////////////////////////////////////////////////////////////////
+CREATE TABLE Lecturer_Medical(
+	Lecturer_id CHAR(10),
+	Medical_id CHAR(10),
+        PRIMARY KEY(Lecturer_id,Medical_id),
+        FOREIGN KEY (Lecturer_id) REFERENCES Lecturer(Lecturer_id),
+        FOREIGN KEY (Medical_id) REFERENCES Medical(Medical_id)
+  
+);
+
+//////////////////////////////////////////////////////////
+
+CREATE TABLE Timetable(
+	Timetable_id CHAR(10),
+        Admin_id CHAR(10),
+        Content LONGTEXT,
+        PRIMARY KEY(Timetable_id),
+        FOREIGN KEY (Admin_id) REFERENCES Admin(Admin_id)
+         
+);
+*********DATA danna
+
+////////////////////////////////////////////////////////////
+
+CREATE TABLE Timetable_TO_0fficer (
+	Timetable_id CHAR(10),
+	TO_id CHAR(10),
+        PRIMARY KEY(Timetable_id,TO_id),
+        FOREIGN KEY (Timetable_id) REFERENCES Timetable(Timetable_id),
+        FOREIGN KEY (TO_id) REFERENCES Technical_officer(TO_id)
+  
+);
+
+
+///////////////////////////////////////////////////
+
+CREATE TABLE Notice(
+	Notice_id CHAR(10),
+        Title VARCHAR(50),
+        Admin_id CHAR(10),
+        PRIMARY KEY(Notice_id),
+        FOREIGN KEY (Admin_id) REFERENCES Admin(Admin_id)
+         
+);
+
+****DATA DANNA
+
+
+/////////////////////////////////////////////////////////
+
+CREATE TABLE Notice_Lecturer(
+	Notice_id CHAR(10),
+	Lecturer_id CHAR(10),
+        PRIMARY KEY(Notice_id,Lecturer_id),
+        FOREIGN KEY (Notice_id) REFERENCES Notice(Notice_id),
+        FOREIGN KEY (Lecturer_id) REFERENCES Lecturer(Lecturer_id)
+          
+);
+
+///////////////////////////////////////////////////////////
+
+
+CREATE TABLE Notice_Student(
+	Notice_id CHAR(10),
+	Student_id CHAR(10),
+        PRIMARY KEY(Notice_id,Student_id),
+        FOREIGN KEY (Notice_id) REFERENCES Notice(Notice_id),
+        FOREIGN KEY (Student_id) REFERENCES Student(Student_id)
+          
+);
+
+//////////////////////////////////////////////////////
+
+CREATE TABLE Notice_TO_Officer(
+	Notice_id CHAR(10),
+	TO_id CHAR(10),
+        PRIMARY KEY(Notice_id,TO_id),
+        FOREIGN KEY (Notice_id) REFERENCES Notice(Notice_id),
+        FOREIGN KEY (TO_id) REFERENCES Technical_officer(TO_id)
+          
+);
