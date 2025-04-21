@@ -102,21 +102,16 @@
               <text value="PASSWORD :"/>
             </properties>
           </component>
-          <component id="88b09" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+          <component id="88b09" class="javax.swing.JTextField" binding="username">
             <constraints>
               <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <minimum-size width="250" height="25"/>
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
-          </component>
-          <component id="d861a" class="javax.swing.JTextField" binding="textField2" default-binding="true">
-            <constraints>
-              <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
-            </constraints>
-            <properties/>
+            <properties>
+              <horizontalAlignment value="0"/>
+            </properties>
           </component>
           <component id="e1a1b" class="javax.swing.JButton" binding="LOGINButton" default-binding="true">
             <constraints>
@@ -159,6 +154,17 @@
               <grid row="11" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
             </constraints>
           </vspacer>
+          <component id="94277" class="javax.swing.JPasswordField" binding="passwordField">
+            <constraints>
+              <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <minimum-size width="250" height="25"/>
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <horizontalAlignment value="0"/>
+            </properties>
+          </component>
         </children>
       </grid>
     </children>
