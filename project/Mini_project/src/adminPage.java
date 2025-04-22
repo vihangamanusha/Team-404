@@ -28,5 +28,12 @@ public class adminPage {
                 new loginPage().showLoginFrame(); // open login page againj
             }
         });
+        EDITUSERButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                new UsereditPage();
+            }
+        });
     }
 }
