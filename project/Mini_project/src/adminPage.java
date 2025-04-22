@@ -7,6 +7,10 @@ public class adminPage {
     private JButton LOGOUTButton;
     private JButton EDITUSERButton;
     private JPanel adminpage;
+    private JButton NOTIFICATIONButton;
+    private JButton COURSEButton;
+    private JButton TIMETABLEButton;
+    private JButton USERButton;
 
     public adminPage() {
         JFrame frame = new JFrame("Admin Page");
