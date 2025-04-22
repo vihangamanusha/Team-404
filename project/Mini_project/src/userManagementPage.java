@@ -24,10 +24,12 @@ public class userManagementPage {
         frame.setContentPane(UsermanagementPage);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setLocationRelativeTo(null);
         frame.setSize(1000, 500);
+        frame.setLocationRelativeTo(null);
         frame.setResizable(false);
         frame.setVisible(true);
+
+
 
         RESETButton.addActionListener(new ActionListener() {
             @Override
