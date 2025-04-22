@@ -35,5 +35,12 @@ public class adminPage {
                 new UsereditPage();
             }
         });
+        NOTIFICATIONButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                new notificationPage();
+            }
+        });
     }
 }
