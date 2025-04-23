@@ -50,8 +50,7 @@ public class MedicalPage extends JFrame {
 
         // Only set content pane once
         setContentPane(mainpanel);
-        //setContentPane( formpanel);
-       // setContentPane( ButtonPanel);
+
 
         // Frame settings
         setDefaultCloseOperation(EXIT_ON_CLOSE);
