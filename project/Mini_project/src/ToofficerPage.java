@@ -1,4 +1,6 @@
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class ToofficerPage extends JFrame{
     private JButton LOGOUTButton;
@@ -8,8 +10,7 @@ public class ToofficerPage extends JFrame{
     private JButton NOTICEButton;
     private JButton TIMETABLEButton;
     private JPanel mainpanel;
-    private JButton button5;
-    private JButton button6;
+
 
     public ToofficerPage() {
         setTitle("ToofficerPage");
@@ -18,6 +19,34 @@ public class ToofficerPage extends JFrame{
         setSize(1000, 500);
         setLocationRelativeTo(null);
         setVisible(true);
+        ATTENDANCEButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new attendancePage();
+
+            }
+        });
+        MEDICALButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                 new MedicalPage();
+
+            }
+        });
+        NOTICEButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new ViewNoticePage();
+
+            }
+        });
+        TIMETABLEButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new ViewTimeTablePage();
+
+            }
+        });
     }
     public static void main(String[] args) {
         SwingUtilities.invokeLater(ToofficerPage::new);
