@@ -141,13 +141,17 @@
                 <preferred-size width="150" height="50"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <text value=""/>
+            </properties>
           </component>
           <component id="2d6cb" class="javax.swing.JComboBox" binding="categary">
             <constraints>
               <grid row="2" column="4" row-span="1" col-span="9" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
-            <properties/>
+            <properties>
+              <model/>
+            </properties>
           </component>
           <component id="22f39" class="javax.swing.JLabel">
             <constraints>
