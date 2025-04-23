@@ -5,15 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c465c84c-c16e-4f5d-8376-0d20541dc92f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Mini_project/src/Lecturer/GUI/StdDetails.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mini_project/src/Lecturer/GUI/viewAttendence.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mini_project/src/Lecturer/LecturerOprations.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mini_project/src/Lecturer/Mark.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mini_project/src/Lecturer/MarkCal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mini_project/src/Lecturer/GUI/LectureDashboard.form" beforeDir="false" afterPath="$PROJECT_DIR$/Mini_project/src/Lecturer/GUI/LectureDashboard.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mini_project/src/Lecturer/GUI/LectureDashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/Mini_project/src/Lecturer/GUI/LectureDashboard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mini_project/src/Lecturer/GUI/viewCAMarks.form" beforeDir="false" afterPath="$PROJECT_DIR$/Mini_project/src/Lecturer/GUI/StdDetails.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mini_project/src/Lecturer/GUI/viewCAMarks.java" beforeDir="false" afterPath="$PROJECT_DIR$/Mini_project/src/Lecturer/GUI/viewAttendence.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/project/Lecturer/GUI/LectureDashboard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project/Lecturer/GUI/LectureDashboard.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/loginPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project/loginPage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project/Lecturer/GUI/viewCAMarks.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Interface" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -21,6 +37,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.LectureDashboard.executor": "Run",
+    "Application.StdDetails.executor": "Run",
     "Application.loginPage.executor": "Run",
     "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH": "271",
     "git-widget-placeholder": "TG1397",

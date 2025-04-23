@@ -3,7 +3,6 @@ package Lecturer.GUI;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.*;
 
 public class LectureDashboard {
 
@@ -20,6 +19,7 @@ public class LectureDashboard {
     private JButton editProfile;
     private JButton logout;
     private JPanel mainPanel;
+    private JButton backButton;
 
 
     public LectureDashboard() {
@@ -99,13 +99,13 @@ public class LectureDashboard {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
+
             JFrame frame = new JFrame("Lecturer Dashboard");
             frame.setContentPane(new LectureDashboard().getMainPanel());
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setSize(1000, 500);
             frame.setLocationRelativeTo(null); // center
             frame.setVisible(true);
-        });
+
     }
 }
