@@ -11,9 +11,13 @@ public class studentPage {
     private JButton viewGrade;
     private JButton viewNotice;
     private JButton viewTimeTableButton;
+    private JPanel mainPanel;
 
     public void viewattendance() {
 
+    }
+    public JPanel getMainPanel() {
+        return mainPanel;
     }
 
 
@@ -21,8 +25,19 @@ public class studentPage {
         viewAttendance.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new viewattendance();
+                new ViewAttendance();
             }
         });
+
     }
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Student Dashboard");
+        studentPage page = new studentPage();
+        frame.setContentPane(page.getMainPanel());
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(400, 300);
+        frame.setVisible(true);
+    }
+
+
 }
