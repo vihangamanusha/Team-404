@@ -33,10 +33,9 @@ public class loginPage {
                 }
 
                 try {
-                    Connection conn = DriverManager.getConnection(
-                            "jdbc:mysql://localhost:3306/vihang", "root", "801@Vihanga");
+                    Connection conn = DBConnection.getConnection();
 
-                    String sql = "SELECT * FROM data WHERE username = ? AND password = ?";
+                    String sql = "SELECT * FROM User WHERE Username = ? AND Password = ?";
                     PreparedStatement pst = conn.prepareStatement(sql);
                     pst.setString(1, user);
                     pst.setString(2, pass);
@@ -44,11 +43,28 @@ public class loginPage {
                     ResultSet rs = pst.executeQuery();
 
                     if (rs.next()) {
-                        //JOptionPane.showMessageDialog(null, "Login successful!");
+                        String role = rs.getString("Role").toLowerCase();
                         conn.close();
 
-                        // Open next page
-                        new adminPage();
+                        switch (role) {
+                            case "admin":
+                                new adminPage();  // Replace with actual admin page
+                                break;
+                            case "student":
+                                JOptionPane.showMessageDialog(null, "Welcome Student!");
+                                //new studentPage();  // Replace with actual student page
+                                break;
+                            case "lecture":
+                                JOptionPane.showMessageDialog(null, "Welcome Lecturer!");
+                                //new lecturerPage();  // Replace with actual lecturer page
+                                break;
+                            case "t/o":
+                                JOptionPane.showMessageDialog(null, "Welcome Technical Officer!");
+                                //new officerPage();  // Replace with actual officer page
+                                break;
+                            default:
+                                JOptionPane.showMessageDialog(null, "Unknown role: " + role);
+                        }
                     } else {
                         JOptionPane.showMessageDialog(null, "Invalid username or password.");
                     }
