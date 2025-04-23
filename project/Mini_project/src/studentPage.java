@@ -9,8 +9,8 @@ public class studentPage {
     private JButton viewMedical;
     private JButton viewCourseDetails;
     private JButton viewGrade;
-    private JButton viewTimeTable;
     private JButton viewNotice;
+    private JButton viewTimeTableButton;
 
     public void viewattendance() {
 
