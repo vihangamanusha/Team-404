@@ -19,21 +19,22 @@ public class LectureDashboard {
     private JButton editProfile;
     private JButton logout;
     private JPanel mainPanel;
-    private JButton backButton;
 
 
     public LectureDashboard() {
-        
+
         viewDetailes.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                StdDetails stdDetails = new StdDetails();
 
             }
         });
+
         attendence.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                viewAttendence viewAttendence = new viewAttendence();
             }
         });
         medicalRecords.addActionListener(new ActionListener() {

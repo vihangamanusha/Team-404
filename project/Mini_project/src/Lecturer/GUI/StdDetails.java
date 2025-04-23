@@ -17,6 +17,13 @@ public class StdDetails {
 
 
     public StdDetails() {
+        JFrame frame = new JFrame("Student Details");
+        frame.setContentPane(mainPanel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(1000,500);
+        frame.setVisible(true);
+
+
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -37,13 +44,11 @@ public class StdDetails {
         });
     }
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Student Details");
-        frame.setContentPane(new StdDetails().mainPanel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1000,500);
-        frame.setVisible(true);
 
 
-    }
+
+
+
+
+
 }
