@@ -1,6 +1,8 @@
 import javax.swing.*;
 import com.github.lgooddatepicker.components.DatePicker;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class attendancePage extends JFrame {
     private JPanel panel1;
@@ -9,6 +11,10 @@ public class attendancePage extends JFrame {
     private JComboBox<String> comboBox2;
     private JComboBox<String> comboBox3;
     private JPanel datePickerPanel;
+    private JButton button1;
+    private JButton button2;
+    private JButton button3;
+    private JButton BACKButton;
     private DatePicker datePicker1;
 
     public attendancePage() {
@@ -27,6 +33,13 @@ public class attendancePage extends JFrame {
                                  // sizes frame to fit all components
         setLocationRelativeTo(null);           // center on screen
         setVisible(true);
+        BACKButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new ToofficerPage();
+                dispose();
+            }
+        });
     }
 
     public static void main(String[] args) {
