@@ -3,6 +3,7 @@ package Lecturer.GUI;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.*;
 
 public class LectureDashboard {
 
@@ -18,8 +19,11 @@ public class LectureDashboard {
     private JButton notification;
     private JButton editProfile;
     private JButton logout;
+    private JPanel mainPanel;
+
 
     public LectureDashboard() {
+        
         viewDetailes.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -85,6 +89,23 @@ public class LectureDashboard {
             public void actionPerformed(ActionEvent e) {
 
             }
+        });
+
+
+    }
+
+    public JPanel getMainPanel() {
+        return mainPanel;
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            JFrame frame = new JFrame("Lecturer Dashboard");
+            frame.setContentPane(new LectureDashboard().getMainPanel());
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setSize(1000, 500);
+            frame.setLocationRelativeTo(null); // center
+            frame.setVisible(true);
         });
     }
 }
