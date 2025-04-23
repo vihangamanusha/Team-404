@@ -1,8 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/user/Desktop/New folder&quot;
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c465c84c-c16e-4f5d-8376-0d20541dc92f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mini_project/src/Lecturer/GUI/LectureDashboard.form" beforeDir="false" afterPath="$PROJECT_DIR$/Mini_project/src/Lecturer/GUI/LectureDashboard.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project/Lecturer/GUI/LectureDashboard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project/Lecturer/GUI/LectureDashboard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project/loginPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project/loginPage.class" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.LectureDashboard.executor": "Run",
+    "Application.loginPage.executor": "Run",
+    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH": "271",
+    "git-widget-placeholder": "TG1397",
+    "last_opened_file_path": "C:/Users/user/Desktop/New folder",
+    "node.js.selected.package.tslint": "(autodetect)"
   }
-}</component>
+}]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="project" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="project" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="TaskManager">
+    <servers />
+  </component>
 </project>
