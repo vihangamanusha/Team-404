@@ -183,6 +183,14 @@ public class MedicalPage extends JFrame {
             startDatePicker.clear();
             endDatePicker.clear();
         });
+        BACKButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ToofficerPage toofficerPage = new ToofficerPage();
+                //toofficerPage.setVisible(true);
+                dispose();           // Close the current MedicalPage window
+            }
+        });
     }
 
     private void loadMedicalRecords() {
