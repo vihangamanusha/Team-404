@@ -56,5 +56,12 @@ public class adminPage {
                 new timeTablePage();
             }
         });
+        COURSEButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                new courseManagmentPage();
+            }
+        });
     }
 }
