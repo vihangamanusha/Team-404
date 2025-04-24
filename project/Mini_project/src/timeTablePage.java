@@ -8,10 +8,11 @@ public class timeTablePage {
     private JButton INSERTButton;
     private JButton RESETButton;
     private JTextField search;
-    private JButton SEARCHButton;
     private JButton REMOVEButton;
     private JComboBox level;
     private JPanel timetablepage;
+    private JTextField timetableid;
+    private JTable table1;
 
     public timeTablePage() {
         JFrame frame = new JFrame("Time Table");
