@@ -14,7 +14,7 @@ public class notificationPage {
     private JButton UPLOADButton;
     private JTable notificationtable;
     private JButton REMOVEButton;
-    private JButton GETTITLESButton; // New button
+    private JButton GETTITLESButton;
 
     public notificationPage() {
         // Initialize category dropdown
@@ -26,7 +26,7 @@ public class notificationPage {
         JFrame frame = new JFrame("Notification Page");
         frame.setContentPane(notificationPanel);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setSize(1000, 500);
+        frame.setSize(1100, 500);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
@@ -38,12 +38,13 @@ public class notificationPage {
         RESETButton.addActionListener(e -> resetForm());
         UPLOADButton.addActionListener(e -> uploadNotice());
         REMOVEButton.addActionListener(e -> removeSelectedNotice());
-        GETTITLESButton.addActionListener(e -> getAllNoticeTitles()); // Get all titles
+        GETTITLESButton.addActionListener(e -> getAllNoticeTitles());
 
-        loadNoticesIntoTable(); // Load notices on startup
+        loadNoticesIntoTable(); // Load on start
     }
 
     private void uploadNotice() {
+        // Check if title and content are non-empty
         if (title.getText().trim().isEmpty() || content.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(null,
                     "Title and content are required!",
@@ -52,19 +53,28 @@ public class notificationPage {
             return;
         }
 
+        // Generate notice ID
         String noticeId = "N" + System.currentTimeMillis() % 1000000;
 
         try (Connection conn = DBConnection.getConnection()) {
-            String sql = "INSERT INTO Notice (Notice_id, Title, Publish_date, Admin_Username, content, category) " +
-                    "VALUES (?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO Notice (Notice_id, Title, Publish_date, Admin_Username, content, category, attachment) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
             try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
                 pstmt.setString(1, noticeId);
                 pstmt.setString(2, title.getText());
                 pstmt.setDate(3, Date.valueOf(LocalDate.now()));
-                pstmt.setString(4, "AD0001"); // Replace with actual logged-in admin username
+                pstmt.setString(4, "AD0001"); // Example admin username
                 pstmt.setString(5, content.getText());
                 pstmt.setString(6, (String) categary.getSelectedItem());
+
+                // If attachment is not provided, set it as null
+                String attachmentText = attachment.getText().trim();
+                if (attachmentText.isEmpty()) {
+                    pstmt.setNull(7, Types.VARCHAR); // If attachment is empty, store as NULL in the database
+                } else {
+                    pstmt.setString(7, attachmentText);
+                }
 
                 int rowsAffected = pstmt.executeUpdate();
 
@@ -97,21 +107,24 @@ public class notificationPage {
 
     private void loadNoticesIntoTable() {
         DefaultTableModel model = new DefaultTableModel();
-        model.setColumnIdentifiers(new String[]{"Notice ID", "Title", "Date", "Admin", "Content", "Category"});
+        model.setColumnIdentifiers(new String[] {
+                "Notice ID", "Title", "Date", "Admin", "Content", "Category", "Attachment"
+        });
 
         try (Connection conn = DBConnection.getConnection()) {
-            String sql = "SELECT Notice_id, Title, Publish_date, Admin_Username, content, category FROM Notice";
+            String sql = "SELECT Notice_id, Title, Publish_date, Admin_Username, content, category, attachment FROM Notice";
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
-                model.addRow(new Object[]{
+                model.addRow(new Object[] {
                         rs.getString("Notice_id"),
                         rs.getString("Title"),
                         rs.getDate("Publish_date"),
                         rs.getString("Admin_Username"),
                         rs.getString("content"),
-                        rs.getString("category")
+                        rs.getString("category"),
+                        rs.getString("attachment")
                 });
             }
 
@@ -137,7 +150,7 @@ public class notificationPage {
             return;
         }
 
-        String noticeId = notificationtable.getValueAt(selectedRow, 0).toString(); // Notice_id is column 0
+        String noticeId = notificationtable.getValueAt(selectedRow, 0).toString(); // Column 0 = ID
 
         int confirm = JOptionPane.showConfirmDialog(null,
                 "Are you sure you want to delete Notice ID: " + noticeId + "?",
