@@ -45,5 +45,5 @@ public class attendancePage extends JFrame {
     public static void main(String[] args) {
         // Launch on the Event‑Dispatch Thread
         SwingUtilities.invokeLater(() -> new attendancePage());
-    }
+    }//
 }
