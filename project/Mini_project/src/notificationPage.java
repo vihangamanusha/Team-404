@@ -1,6 +1,5 @@
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import javax.swing.table.DefaultTableModel;
 import java.sql.*;
 import java.time.LocalDate;
 
@@ -9,10 +8,13 @@ public class notificationPage {
     private JPanel notificationPanel;
     private JTextField title;
     private JTextArea content;
-    private JComboBox<String> categary;  // Specify generic type
+    private JComboBox<String> categary;
     private JTextField attachment;
     private JButton RESETButton;
     private JButton UPLOADButton;
+    private JTable notificationtable;
+    private JButton REMOVEButton;
+    private JButton GETTITLESButton; // New button
 
     public notificationPage() {
         // Initialize category dropdown
@@ -34,13 +36,15 @@ public class notificationPage {
         });
 
         RESETButton.addActionListener(e -> resetForm());
-
         UPLOADButton.addActionListener(e -> uploadNotice());
+        REMOVEButton.addActionListener(e -> removeSelectedNotice());
+        GETTITLESButton.addActionListener(e -> getAllNoticeTitles()); // Get all titles
+
+        loadNoticesIntoTable(); // Load notices on startup
     }
 
     private void uploadNotice() {
-        // 1. Validate inputs
-        if(title.getText().trim().isEmpty() || content.getText().trim().isEmpty()) {
+        if (title.getText().trim().isEmpty() || content.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(null,
                     "Title and content are required!",
                     "Error",
@@ -48,29 +52,26 @@ public class notificationPage {
             return;
         }
 
-        // 2. Generate notice ID (modify as needed)
         String noticeId = "N" + System.currentTimeMillis() % 1000000;
 
         try (Connection conn = DBConnection.getConnection()) {
-            // 3. Create SQL with all columns
             String sql = "INSERT INTO Notice (Notice_id, Title, Publish_date, Admin_Username, content, category) " +
                     "VALUES (?, ?, ?, ?, ?, ?)";
 
-            // 4. Set parameters
             try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
                 pstmt.setString(1, noticeId);
                 pstmt.setString(2, title.getText());
                 pstmt.setDate(3, Date.valueOf(LocalDate.now()));
-                pstmt.setString(4, "AD0001"); // Replace with actual admin username
+                pstmt.setString(4, "AD0001"); // Replace with actual logged-in admin username
                 pstmt.setString(5, content.getText());
-                pstmt.setString(6, (String)categary.getSelectedItem());
+                pstmt.setString(6, (String) categary.getSelectedItem());
 
-                // 5. Execute update
                 int rowsAffected = pstmt.executeUpdate();
 
-                if(rowsAffected > 0) {
+                if (rowsAffected > 0) {
                     JOptionPane.showMessageDialog(null, "Notice published successfully!");
                     resetForm();
+                    loadNoticesIntoTable(); // Refresh table
                 } else {
                     JOptionPane.showMessageDialog(null,
                             "Failed to publish notice",
@@ -92,5 +93,104 @@ public class notificationPage {
         content.setText("");
         categary.setSelectedIndex(0);
         attachment.setText("");
+    }
+
+    private void loadNoticesIntoTable() {
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(new String[]{"Notice ID", "Title", "Date", "Admin", "Content", "Category"});
+
+        try (Connection conn = DBConnection.getConnection()) {
+            String sql = "SELECT Notice_id, Title, Publish_date, Admin_Username, content, category FROM Notice";
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                model.addRow(new Object[]{
+                        rs.getString("Notice_id"),
+                        rs.getString("Title"),
+                        rs.getDate("Publish_date"),
+                        rs.getString("Admin_Username"),
+                        rs.getString("content"),
+                        rs.getString("category")
+                });
+            }
+
+            notificationtable.setModel(model);
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null,
+                    "Error loading notices: " + ex.getMessage(),
+                    "Database Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void removeSelectedNotice() {
+        int selectedRow = notificationtable.getSelectedRow();
+
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(null,
+                    "Please select a notice to remove.",
+                    "No Selection",
+                    JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        String noticeId = notificationtable.getValueAt(selectedRow, 0).toString(); // Notice_id is column 0
+
+        int confirm = JOptionPane.showConfirmDialog(null,
+                "Are you sure you want to delete Notice ID: " + noticeId + "?",
+                "Confirm Delete",
+                JOptionPane.YES_NO_OPTION);
+
+        if (confirm != JOptionPane.YES_OPTION) {
+            return;
+        }
+
+        try (Connection conn = DBConnection.getConnection()) {
+            String sql = "DELETE FROM Notice WHERE Notice_id = ?";
+            try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                pstmt.setString(1, noticeId);
+                int rowsAffected = pstmt.executeUpdate();
+
+                if (rowsAffected > 0) {
+                    JOptionPane.showMessageDialog(null, "Notice deleted successfully!");
+                    loadNoticesIntoTable(); // Refresh table
+                } else {
+                    JOptionPane.showMessageDialog(null,
+                            "Failed to delete notice.",
+                            "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null,
+                    "Database Error: " + ex.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void getAllNoticeTitles() {
+        DefaultTableModel model = (DefaultTableModel) notificationtable.getModel();
+        int rowCount = model.getRowCount();
+
+        System.out.println("All Notice Titles:");
+        for (int i = 0; i < rowCount; i++) {
+            String title = model.getValueAt(i, 1).toString(); // Column 1 = Title
+            System.out.println("- " + title);
+        }
+    }
+
+    private void getSelectedNoticeTitle() {
+        int selectedRow = notificationtable.getSelectedRow();
+        if (selectedRow != -1) {
+            String selectedTitle = notificationtable.getValueAt(selectedRow, 1).toString(); // Column 1 = Title
+            JOptionPane.showMessageDialog(null, "Selected Title: " + selectedTitle);
+        } else {
+            JOptionPane.showMessageDialog(null, "No row selected.");
+        }
     }
 }
