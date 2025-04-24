@@ -49,6 +49,8 @@ public class loginPage {
                         switch (role) {
                             case "admin":
                                 new adminPage();  // Replace with actual admin page
+                                username.setText("");
+                                passwordField.setText("");
                                 break;
                             case "student":
                                 JOptionPane.showMessageDialog(null, "Welcome Student!");
