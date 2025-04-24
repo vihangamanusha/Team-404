@@ -1,5 +1,6 @@
 package Lecturer.GUI;
 
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,12 +14,11 @@ public class LectureDashboard {
     private JButton manage;
     private JButton viewMarks;
     private JButton calculateMarks;
-    private JButton CAmarks;
-    private JButton FinalMarks;
     private JButton notification;
     private JButton editProfile;
     private JButton logout;
     private JPanel mainPanel;
+    private JButton ADDMARKSButton;
 
 
     public LectureDashboard() {
@@ -26,6 +26,7 @@ public class LectureDashboard {
         viewDetailes.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //frame.dispose();
                 StdDetails stdDetails = new StdDetails();
 
             }
@@ -40,7 +41,7 @@ public class LectureDashboard {
         medicalRecords.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                new viewStdMedicales();
             }
         });
         manage.addActionListener(new ActionListener() {
@@ -61,18 +62,7 @@ public class LectureDashboard {
 
             }
         });
-        CAmarks.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
 
-            }
-        });
-        FinalMarks.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
         notification.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -93,6 +83,12 @@ public class LectureDashboard {
         });
 
 
+        ADDMARKSButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new addMarks();
+            }
+        });
     }
 
     public JPanel getMainPanel() {

@@ -6,10 +6,10 @@ import java.util.Arrays;
 
 public abstract class MarkCal implements Mark {
     private DBConnection dbConnector;
-    Connection connection = null;
-    PreparedStatement pstmt = null;
-    Statement stmt = null;
-    ResultSet rs = null;
+    private Connection connection = null;
+    private PreparedStatement pstmt = null;
+    private Statement stmt = null;
+    private ResultSet rs = null;
 
     DecimalFormat df = new DecimalFormat("#.##");
 
