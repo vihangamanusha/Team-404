@@ -35,6 +35,7 @@ public class ViewAttendance {
         mainPanel.add(viewAttendanceButton);
         mainPanel.add(tableScrollPane);
         mainPanel.add(backBtn);
+        mainPanel.setSize(1000,500);
 
         viewAttendanceButton.addActionListener(e -> {
             String studentID = textField1.getText();

@@ -100,6 +100,7 @@ public class viewCourseDetails {
         mainPanel.add(new JLabel("Lecture Materials:"));
         mainPanel.add(tableScrollPane);
         mainPanel.add(backBtn);
+        mainPanel.setSize(1000,500);
 
         // Add course codes to the combo box
         comboBox1.addItem("ICT2133");

@@ -1,9 +1,11 @@
 import javax.swing.*;
 
 public class ViewGradeDetails {
-    private JPanel Dashboard;
-    private JTextField SID;
-    private JTextField CourseId;
-    private JButton viewGRADEButton;
+    private JTextField studentGradeAndGPATextField;
+    private JButton gradeBackBtnButton;
+    private JTextField studentId;
+    private JButton viewGradeDetailsButton;
+    private JTextField CGPAfield;
+    private JTextField SGPAfield;
     private JTable table1;
 }

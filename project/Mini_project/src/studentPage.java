@@ -76,7 +76,7 @@ public class studentPage {
         studentPage page = new studentPage();
         page.openDashboard(frame);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(500, 400);
+        frame.setSize(1000, 500);
         frame.setVisible(true);
     }
 }
