@@ -1,12 +1,13 @@
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 public class ViewAttendance {
     private JButton button1;
     private JTextField textField1;
     private JTextField textField2;
     private JButton viewAttendanceButton;
-    private JTextArea textArea1;
     private JPanel mainPanel;
+    private JTable attendanceTable;
 
     public ViewAttendance() {
         // Initialize components
@@ -15,10 +16,12 @@ public class ViewAttendance {
         textField2 = new JTextField(15); // Course Code
         viewAttendanceButton = new JButton("View Attendance");
         button1 = new JButton("Back");
-        textArea1 = new JTextArea(10, 30); // For attendance display
-        textArea1.setEditable(false);
-        JScrollPane scrollPane = new JScrollPane(textArea1);
 
+        // Column names for the JTable
+        String[] columnNames = {"Date", "Attendance ID", "Type", "Status"};
+        DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
+        attendanceTable = new JTable(tableModel);
+        JScrollPane tableScrollPane = new JScrollPane(attendanceTable);
 
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
         mainPanel.add(new JLabel("Student ID:"));
@@ -26,9 +29,8 @@ public class ViewAttendance {
         mainPanel.add(new JLabel("Course Code:"));
         mainPanel.add(textField2);
         mainPanel.add(viewAttendanceButton);
-        mainPanel.add(scrollPane);
+        mainPanel.add(tableScrollPane);
         mainPanel.add(button1);
-
 
         viewAttendanceButton.addActionListener(e -> {
             String studentID = textField1.getText();
@@ -39,40 +41,24 @@ public class ViewAttendance {
                 return;
             }
 
-            // Example dummy attendance data
-            String attendanceInfo = "Attendance for Student ID: " + studentID + "\n";
-            attendanceInfo += "Course Code: " + courseCode + "\n\n";
-            attendanceInfo += "Date       Status\n";
-            attendanceInfo += "----------------------\n";
-            attendanceInfo += "2025-04-20   Present\n";
-            attendanceInfo += "2025-04-21   Absent\n";
+            // Clear old data
+            tableModel.setRowCount(0);
 
-            textArea1.setText(attendanceInfo);
+            // Example dummy data (you can replace this with real DB results)
+            tableModel.addRow(new Object[]{"2025-04-20", "A001", "Lecture", "Present"});
+            tableModel.addRow(new Object[]{"2025-04-21", "A002", "Lecture", "Absent"});
         });
 
         button1.addActionListener(e -> JOptionPane.showMessageDialog(mainPanel, "Going back..."));
 
-            JFrame frame = new JFrame("View Attendance");
-            frame.setContentPane(mainPanel);
-            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            frame.setSize(400, 300);
-            frame.setVisible(true);
-
-
-
+        JFrame frame = new JFrame("View Attendance");
+        frame.setContentPane(mainPanel);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setSize(500, 400);
+        frame.setVisible(true);
     }
 
-
-
-    /*public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            ViewAttendance view = new ViewAttendance();
-            JFrame frame = new JFrame("View Attendance");
-            frame.setContentPane(view.mainPanel);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setSize(500, 400);
-            frame.setVisible(true);
-        });
-    }*/
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(ViewAttendance::new);
+    }
 }
-
