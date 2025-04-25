@@ -13,56 +13,33 @@ public class studentPage {
     private JButton viewTimeTableButton;
     private JPanel mainPanel;
 
-    public void viewattendance() {
-
-    }
     public JPanel getMainPanel() {
         return mainPanel;
     }
-
 
     public studentPage() {
         viewAttendance.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new ViewAttendance();
+                JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(mainPanel);
+                new ViewAttendance(currentFrame); // navigate in same frame
             }
         });
-
     }
+
+    public void openDashboard(JFrame currentFrame) {
+        currentFrame.setTitle("Student Dashboard");
+        currentFrame.setContentPane(this.getMainPanel());
+        currentFrame.revalidate();
+        currentFrame.repaint();
+    }
+
     public static void main(String[] args) {
         JFrame frame = new JFrame("Student Dashboard");
         studentPage page = new studentPage();
-        frame.setContentPane(page.getMainPanel());
+        page.openDashboard(frame);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(400, 300);
+        frame.setSize(500, 400);
         frame.setVisible(true);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
-
-
 }
