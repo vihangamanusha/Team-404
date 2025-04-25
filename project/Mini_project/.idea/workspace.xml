@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d7a7091-184d-4e25-8012-cb80ddcc4c84" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MedicalPage.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/MedicalPage.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MedicalPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MedicalPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ViewNoticePage.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/ViewNoticePage.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ViewNoticePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ViewNoticePage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +45,14 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.TOViewNoticePage">
+    <configuration name="TOViewNoticePage" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="TOViewNoticePage" />
+      <module name="Mini_project" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="attendancePage" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="attendancePage" />
       <module name="Mini_project" />
@@ -56,6 +62,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.TOViewNoticePage" />
         <item itemvalue="Application.attendancePage" />
       </list>
     </recent_temporary>
@@ -76,7 +83,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1745489855266</updated>
-      <workItem from="1745489856351" duration="11587000" />
+      <workItem from="1745489856351" duration="12390000" />
     </task>
     <servers />
   </component>

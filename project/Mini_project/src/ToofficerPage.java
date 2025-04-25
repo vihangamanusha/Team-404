@@ -36,7 +36,7 @@ public class ToofficerPage extends JFrame{
         NOTICEButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new ViewNoticePage();
+                new TOViewNoticePage();
 
             }
         });
