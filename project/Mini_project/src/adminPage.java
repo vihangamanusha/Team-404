@@ -25,7 +25,7 @@ public class adminPage {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose(); //  close current window
-                new loginPage().showLoginFrame(); // open login page againj
+                new loginPage(); // open login page againj
             }
         });
         EDITUSERButton.addActionListener(new ActionListener() {
