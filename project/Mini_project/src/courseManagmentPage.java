@@ -8,13 +8,15 @@ public class courseManagmentPage {
     private JComboBox status;
     private JComboBox lecturerid;
     private JTextField material;
-    private JButton MATERIALSButton;
     private JButton INSERTButton;
     private JButton UPDATEButton;
     private JButton REMOVEButton;
     private JButton RESETButton;
     private JTextField search;
     private JPanel coureManagementPage;
+    private JTextField textField1;
+    private JTextField textField2;
+    private JTextField textField3;
 
     public courseManagmentPage() {
         JFrame frame = new JFrame("Course Management Page");

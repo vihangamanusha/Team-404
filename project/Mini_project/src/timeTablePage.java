@@ -15,6 +15,7 @@ public class timeTablePage {
     private JTextField timetableid;
     private JTable table1;
     private JButton VIEWTIMETABLEButton;
+    private JScrollPane Jscrollpane;
 
     public timeTablePage() {
         JFrame frame = new JFrame("Time Table");
@@ -23,20 +24,25 @@ public class timeTablePage {
         frame.setSize(1000, 500);
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
 
-        loadTableData(); // Load data on start
+        // Load data on start
+        loadTableData();
 
+        // Action Listeners
         INSERTButton.addActionListener(e -> insertTimeTable());
         RESETButton.addActionListener(e -> resetForm());
         REMOVEButton.addActionListener(e -> deleteSelectedTimetable());
         VIEWTIMETABLEButton.addActionListener(e -> viewSelectedTimetable());
+
         button1.addActionListener(e -> {
             frame.dispose();
             new adminPage(); // Assumes this class exists
         });
+
+        frame.setVisible(true);
     }
 
+    // Insert timetable into database
     private void insertTimeTable() {
         String id = timetableid.getText().trim();
         String pdfPath = PDF.getText().trim();
@@ -66,6 +72,7 @@ public class timeTablePage {
         }
     }
 
+    // Delete selected timetable from the database
     private void deleteSelectedTimetable() {
         int selectedRow = table1.getSelectedRow();
         if (selectedRow == -1) {
@@ -99,6 +106,7 @@ public class timeTablePage {
         }
     }
 
+    // View the selected timetable (open the file)
     private void viewSelectedTimetable() {
         int selectedRow = table1.getSelectedRow();
         if (selectedRow == -1) {
@@ -121,6 +129,7 @@ public class timeTablePage {
         }
     }
 
+    // Load data into the table
     private void loadTableData() {
         DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers(new String[]{"Timetable ID", "Content"});
@@ -144,9 +153,17 @@ public class timeTablePage {
         }
     }
 
+    // Reset form fields and table selection
     private void resetForm() {
         timetableid.setText("");
         PDF.setText("");
         table1.clearSelection();
+    }
+
+    // Create custom components (called by the GUI designer)
+    private void createUIComponents() {
+        // This method can be empty if the components are already designed in the IDE
+        // Example:
+        // JScrollPane scrollPane = new JScrollPane(table1);
     }
 }
