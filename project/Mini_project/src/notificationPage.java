@@ -14,6 +14,7 @@ public class notificationPage {
     private JButton UPLOADButton;
     private JTable notificationtable;
     private JButton REMOVEButton;
+    private JScrollPane jscrollpanenotice;
     private JButton GETTITLESButton;
 
     public notificationPage() {
@@ -22,6 +23,10 @@ public class notificationPage {
         categary.addItem("Academic");
         categary.addItem("Event");
         categary.addItem("Urgent");
+
+        // Set up the JTable and JScrollPane
+        notificationtable = new JTable();
+        jscrollpanenotice.setViewportView(notificationtable); // ✅ Attach JTable to JScrollPane
 
         JFrame frame = new JFrame("Notification Page");
         frame.setContentPane(notificationPanel);
@@ -44,7 +49,6 @@ public class notificationPage {
     }
 
     private void uploadNotice() {
-        // Check if title and content are non-empty
         if (title.getText().trim().isEmpty() || content.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(null,
                     "Title and content are required!",
@@ -53,7 +57,6 @@ public class notificationPage {
             return;
         }
 
-        // Generate notice ID
         String noticeId = "N" + System.currentTimeMillis() % 1000000;
 
         try (Connection conn = DBConnection.getConnection()) {
@@ -64,14 +67,13 @@ public class notificationPage {
                 pstmt.setString(1, noticeId);
                 pstmt.setString(2, title.getText());
                 pstmt.setDate(3, Date.valueOf(LocalDate.now()));
-                pstmt.setString(4, "AD0001"); // Example admin username
+                pstmt.setString(4, "AD0001");
                 pstmt.setString(5, content.getText());
                 pstmt.setString(6, (String) categary.getSelectedItem());
 
-                // If attachment is not provided, set it as null
                 String attachmentText = attachment.getText().trim();
                 if (attachmentText.isEmpty()) {
-                    pstmt.setNull(7, Types.VARCHAR); // If attachment is empty, store as NULL in the database
+                    pstmt.setNull(7, Types.VARCHAR);
                 } else {
                     pstmt.setString(7, attachmentText);
                 }
@@ -150,7 +152,7 @@ public class notificationPage {
             return;
         }
 
-        String noticeId = notificationtable.getValueAt(selectedRow, 0).toString(); // Column 0 = ID
+        String noticeId = notificationtable.getValueAt(selectedRow, 0).toString();
 
         int confirm = JOptionPane.showConfirmDialog(null,
                 "Are you sure you want to delete Notice ID: " + noticeId + "?",
@@ -169,7 +171,7 @@ public class notificationPage {
 
                 if (rowsAffected > 0) {
                     JOptionPane.showMessageDialog(null, "Notice deleted successfully!");
-                    loadNoticesIntoTable(); // Refresh table
+                    loadNoticesIntoTable();
                 } else {
                     JOptionPane.showMessageDialog(null,
                             "Failed to delete notice.",
@@ -200,7 +202,7 @@ public class notificationPage {
     private void getSelectedNoticeTitle() {
         int selectedRow = notificationtable.getSelectedRow();
         if (selectedRow != -1) {
-            String selectedTitle = notificationtable.getValueAt(selectedRow, 1).toString(); // Column 1 = Title
+            String selectedTitle = notificationtable.getValueAt(selectedRow, 1).toString();
             JOptionPane.showMessageDialog(null, "Selected Title: " + selectedTitle);
         } else {
             JOptionPane.showMessageDialog(null, "No row selected.");

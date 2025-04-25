@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;
 
@@ -19,15 +21,20 @@ public class userManagementPage {
     private JButton SEARCHButton;
     private JTable userdatatable;
     private JButton DELETEButton;
+    private JScrollPane jscrollpaneuser;
 
     public userManagementPage() {
         JFrame frame = new JFrame("User Management Page");
         frame.setContentPane(UsermanagementPage);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setSize(1000, 500);
+        frame.setSize(1500, 600);
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
+
+        jscrollpaneuser.setViewportView(userdatatable);
         frame.setVisible(true);
+
+        showUsers();
 
         INSERTButton.addActionListener(e -> insertUser());
         RESETButton.addActionListener(e -> resetForm());
@@ -36,8 +43,10 @@ public class userManagementPage {
         UPDATEButton.addActionListener(e -> updateUser());
         button1.addActionListener(e -> {
             frame.dispose();
-            new adminPage(); // Assumes adminPage class exists
+            new adminPage(); // Assuming adminPage exists
         });
+
+        userdatatable.getSelectionModel().addListSelectionListener(e -> populateFieldsFromTable(e));
     }
 
     private void insertUser() {
@@ -69,6 +78,7 @@ public class userManagementPage {
 
                 if (rows > 0) {
                     JOptionPane.showMessageDialog(null, "User inserted successfully!");
+                    showUsers();
                     resetForm();
                 }
             }
@@ -80,7 +90,7 @@ public class userManagementPage {
     private void searchUser() {
         String searchTerm = search.getText().trim();
         if (searchTerm.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Please enter a username to search!", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            showUsers();
             return;
         }
 
@@ -111,9 +121,9 @@ public class userManagementPage {
     }
 
     private void deleteUser() {
-        String userName = search.getText().trim();
+        String userName = username.getText().trim();
         if (userName.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Please enter a username to delete!", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Select a user to delete!", "Validation Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -131,6 +141,7 @@ public class userManagementPage {
 
                 if (rowsAffected > 0) {
                     JOptionPane.showMessageDialog(null, "User deleted successfully!");
+                    showUsers();
                     resetForm();
                 } else {
                     JOptionPane.showMessageDialog(null, "No user found with that username.", "Delete Error", JOptionPane.ERROR_MESSAGE);
@@ -157,17 +168,6 @@ public class userManagementPage {
         }
 
         try (Connection conn = DBConnection.getConnection()) {
-            String checkSql = "SELECT * FROM USER WHERE Username = ?";
-            try (PreparedStatement checkStmt = conn.prepareStatement(checkSql)) {
-                checkStmt.setString(1, userName);
-                ResultSet rs = checkStmt.executeQuery();
-
-                if (!rs.next()) {
-                    JOptionPane.showMessageDialog(null, "User does not exist!", "Update Error", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-            }
-
             String sql = "UPDATE USER SET First_name = ?, Last_name = ?, Phone_Number = ?, Email = ?, Role = ?, Password = ? WHERE Username = ?";
             try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
                 pstmt.setString(1, firstName);
@@ -181,6 +181,7 @@ public class userManagementPage {
                 int rows = pstmt.executeUpdate();
                 if (rows > 0) {
                     JOptionPane.showMessageDialog(null, "User updated successfully!");
+                    showUsers();
                     resetForm();
                 } else {
                     JOptionPane.showMessageDialog(null, "Update failed!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -188,6 +189,43 @@ public class userManagementPage {
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Database Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void showUsers() {
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(new String[]{"Username", "First Name", "Last Name", "Phone", "Email", "Role"});
+
+        try (Connection conn = DBConnection.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT * FROM USER")) {
+
+            while (rs.next()) {
+                model.addRow(new Object[]{
+                        rs.getString("Username"),
+                        rs.getString("First_name"),
+                        rs.getString("Last_name"),
+                        rs.getString("Phone_Number"),
+                        rs.getString("Email"),
+                        rs.getString("Role")
+                });
+            }
+
+            userdatatable.setModel(model);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error loading user table: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void populateFieldsFromTable(ListSelectionEvent e) {
+        if (!e.getValueIsAdjusting() && userdatatable.getSelectedRow() != -1) {
+            int row = userdatatable.getSelectedRow();
+            username.setText(userdatatable.getValueAt(row, 0).toString());
+            fname.setText(userdatatable.getValueAt(row, 1).toString());
+            lname.setText(userdatatable.getValueAt(row, 2).toString());
+            phoneno.setText(userdatatable.getValueAt(row, 3).toString());
+            email.setText(userdatatable.getValueAt(row, 4).toString());
+            role.setSelectedItem(userdatatable.getValueAt(row, 5).toString());
         }
     }
 
@@ -200,6 +238,6 @@ public class userManagementPage {
         role.setSelectedIndex(0);
         passwordField1.setText("");
         search.setText("");
-        ((DefaultTableModel) userdatatable.getModel()).setRowCount(0);
+        showUsers();
     }
 }
