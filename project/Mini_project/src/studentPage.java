@@ -1,4 +1,4 @@
-/*import javax.swing.*;
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -17,7 +17,37 @@ public class studentPage {
         return mainPanel;
     }
 
+
     public studentPage() {
+        // Action listener for the View Attendance button
+        viewAttendance.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(mainPanel);
+                // Set the ViewAttendance panel as the current frame's content
+                currentFrame.setContentPane(new ViewAttendance(currentFrame).getMainPanel());
+                currentFrame.revalidate();
+                currentFrame.repaint();
+            }
+        });
+
+        // Action listener for the View Course Details button
+        viewCourseDetails.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(mainPanel);
+                // Set the viewCourseDetails panel as the current frame's content
+                currentFrame.setContentPane(new viewCourseDetails(currentFrame).getMainPanel());
+                currentFrame.revalidate();
+                currentFrame.repaint();
+            }
+        });
+    }
+
+
+
+
+   /* public studentPage() {
         viewAttendance.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -25,7 +55,14 @@ public class studentPage {
                 new ViewAttendance(currentFrame); // navigate in same frame
             }
         });
-    }
+        viewCourseDetails.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame currentFrame1 = (JFrame) SwingUtilities.getWindowAncestor(mainPanel);
+                new viewCourseDetails(currentFrame1);
+            }
+        });
+    }*/
 
     public void openDashboard(JFrame currentFrame) {
         currentFrame.setTitle("Student Dashboard");
@@ -42,7 +79,7 @@ public class studentPage {
         frame.setSize(500, 400);
         frame.setVisible(true);
     }
-}*/
+}
 
 /*------------------------------------------------------------/*
 
@@ -97,7 +134,7 @@ public class studentPage {
 
 
 
-import javax.swing.*;
+/*import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -141,15 +178,15 @@ public class studentPage {
         });
 
         // View Course Details
-        viewCourseDetails.addActionListener(e -> {
+     /*   viewCourseDetails.addActionListener(e -> {
             JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(mainPanel);
-            new ViewCourseDetails(currentFrame);
-        });
+           // new ViewCourseDetails(currentFrame);
+        });*/
 
         // TODO: Add other button actions if needed
-    }
+  //  }
 
-    public JPanel getMainPanel() {
+    /*public JPanel getMainPanel() {
         return mainPanel;
     }
 
@@ -168,6 +205,6 @@ public class studentPage {
         frame.setSize(600, 400);
         frame.setVisible(true);
     }
-}
+}*/
 
 
