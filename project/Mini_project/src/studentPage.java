@@ -42,6 +42,16 @@ public class studentPage {
                 currentFrame.repaint();
             }
         });
+        viewGrade.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(mainPanel);
+                // Set the viewCourseDetails panel as the current frame's content
+                currentFrame.setContentPane(new ViewGradeDetails(currentFrame).getMainPanel());
+                currentFrame.revalidate();
+                currentFrame.repaint();
+            }
+        });
     }
 
 

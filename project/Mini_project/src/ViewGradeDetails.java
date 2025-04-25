@@ -1,4 +1,4 @@
-import javax.swing.*;
+/*import javax.swing.*;
 
 public class ViewGradeDetails {
     private JTextField studentGradeAndGPATextField;
@@ -8,4 +8,129 @@ public class ViewGradeDetails {
     private JTextField CGPAfield;
     private JTextField SGPAfield;
     private JTable table1;
+}*/
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class ViewGradeDetails {
+    private JTextField studentId;
+    private JButton viewGradeDetailsButton;
+    private JTextField CGPAfield;
+    private JTextField SGPAfield;
+    private JTable table1;
+    private JButton gradeBackBtnButton;
+    private JPanel mainPanel;
+
+    public JPanel getMainPanel() {
+        return mainPanel;
+    }
+
+    public ViewGradeDetails(JFrame currentFrame) {
+        studentId = new JTextField(15);
+        CGPAfield = new JTextField(10);
+        SGPAfield = new JTextField(10);
+        viewGradeDetailsButton = new JButton("View Grade Details");
+        gradeBackBtnButton = new JButton("Back");
+        table1 = new JTable();
+        mainPanel = new JPanel();
+
+        // Make fields non-editable
+        CGPAfield.setEditable(false);
+        SGPAfield.setEditable(false);
+
+        // Set up the grade table
+        String[] columnNames = {"Course ID", "CA", "Grade"};
+        DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
+        table1.setModel(tableModel);
+        JScrollPane tableScrollPane = new JScrollPane(table1);
+
+        // Add components to the main panel
+        mainPanel.add(new JLabel("Student ID:"));
+        mainPanel.add(studentId);
+        mainPanel.add(viewGradeDetailsButton);
+        mainPanel.add(new JLabel("SGPA:"));
+        mainPanel.add(SGPAfield);
+        mainPanel.add(new JLabel("CGPA:"));
+        mainPanel.add(CGPAfield);
+        mainPanel.add(new JLabel("Grade Details:"));
+        mainPanel.add(tableScrollPane);
+        mainPanel.add(gradeBackBtnButton);
+        mainPanel.setSize(1000, 500);
+
+        // Action listener for viewing grades
+       /* viewGradeDetailsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String enteredId = studentId.getText().trim();
+                DefaultTableModel model = (DefaultTableModel) table1.getModel();
+                model.setRowCount(0); // Clear previous data
+
+                if (enteredId.equals("ST1234")) {
+                    SGPAfield.setText("3.5");
+                    CGPAfield.setText("3.6");
+
+                    model.addRow(new Object[]{"ICT2133", "75", "A"});
+                    model.addRow(new Object[]{"ICT2142", "68", "B+"});
+                    model.addRow(new Object[]{"ICT2152", "80", "A"});
+                } else if (enteredId.equals("ST5678")) {
+                    SGPAfield.setText("3.2");
+                    CGPAfield.setText("3.3");
+
+                    model.addRow(new Object[]{"ICT2133", "65", "B"});
+                    model.addRow(new Object[]{"ICT2142", "72", "B+"});
+                    model.addRow(new Object[]{"ICT2152", "70", "B+"});
+                } else {
+                    JOptionPane.showMessageDialog(mainPanel, "No data found for Student ID: " + enteredId);
+                }
+            }
+        });*/
+
+        // Back button action
+       /* gradeBackBtnButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                currentFrame.setContentPane(new studentPage().getMainPanel());
+                currentFrame.revalidate();
+                currentFrame.repaint();
+            }
+        });*/
+        viewGradeDetailsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String enteredId = studentId.getText().trim();
+                DefaultTableModel model = (DefaultTableModel) table1.getModel();
+                model.setRowCount(0); // Clear previous data
+
+                if (enteredId.equals("ST1234")) {
+                    SGPAfield.setText("3.5");
+                    CGPAfield.setText("3.6");
+
+                    model.addRow(new Object[]{"ICT2133", "75", "A"});
+                    model.addRow(new Object[]{"ICT2142", "68", "B+"});
+                    model.addRow(new Object[]{"ICT2152", "80", "A"});
+                } else if (enteredId.equals("ST5678")) {
+                    SGPAfield.setText("3.2");
+                    CGPAfield.setText("3.3");
+
+                    model.addRow(new Object[]{"ICT2133", "65", "B"});
+                    model.addRow(new Object[]{"ICT2142", "72", "B+"});
+                    model.addRow(new Object[]{"ICT2152", "70", "B+"});
+                } else {
+                    JOptionPane.showMessageDialog(mainPanel, "No data found for Student ID: " + enteredId);
+                }
+            }
+        });
+        gradeBackBtnButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                currentFrame.setContentPane(new studentPage().getMainPanel());
+                currentFrame.revalidate();
+                currentFrame.repaint();
+            }
+        });
+    }
 }
+
