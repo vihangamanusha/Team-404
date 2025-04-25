@@ -55,7 +55,7 @@ public class ViewAttendance {
             JFrame frame = new JFrame("View Attendance");
             frame.setContentPane(mainPanel);
             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            frame.setSize(500, 400);
+            frame.setSize(400, 300);
             frame.setVisible(true);
 
 
