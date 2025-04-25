@@ -1,8 +1,6 @@
 package Lecturer.GUI;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.*;
 
 public class addMarks {
@@ -29,8 +27,12 @@ public class addMarks {
     private JButton clearButton;
     private JTextField studentUsernameField;
     private JTextField courseCodeField;
+    private String lecturerUsername; // Added to store lecturer's username
 
+    // Constructor now accepts lecturerUsername
     public addMarks() {
+
+
         JFrame frame = new JFrame("Add Marks");
         frame.setContentPane(panel1);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -38,7 +40,7 @@ public class addMarks {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
-        // Add action listeners for each addButton
+        // Attach action listeners to buttons
         addButton.addActionListener(e -> updateMark("Quiz1", quiz1.getText()));
         addButton1.addActionListener(e -> updateMark("Quiz2", quiz2.getText()));
         addButton2.addActionListener(e -> updateMark("Quiz3", quiz3.getText()));
@@ -56,28 +58,44 @@ public class addMarks {
         String studentUsername = studentUsernameField.getText().trim();
         String courseCode = courseCodeField.getText().trim();
 
+        // Validate inputs
         if (studentUsername.isEmpty() || courseCode.isEmpty() || value.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Please fill all fields properly.");
+            JOptionPane.showMessageDialog(null, "All fields are required.");
             return;
         }
 
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/tecmis", "root", "");
-             PreparedStatement ps = conn.prepareStatement("UPDATE Marks SET " + column + " = ? WHERE Student_Username = ? AND Course_code = ?")) {
+        // Validate numeric input
+        try {
+            Float.parseFloat(value);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Invalid number format for " + column);
+            return;
+        }
 
-            ps.setFloat(1, Float.parseFloat(value));
-            ps.setString(2, studentUsername);
+        // SQL query to insert/update marks
+        String sql = "INSERT INTO Marks (Student_Username, Lecturer_Username, Course_code, " + column + ") " +
+                "VALUES (?, ?, ?, ?) " +
+                "ON DUPLICATE KEY UPDATE " + column + " = VALUES(" + column + ")";
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, studentUsername);
+            ps.setString(2, lecturerUsername); // Lecturer from logged-in user
             ps.setString(3, courseCode);
+            ps.setFloat(4, Float.parseFloat(value));
 
-            int updated = ps.executeUpdate();
-            if (updated > 0) {
+            int rowsAffected = ps.executeUpdate();
+
+            if (rowsAffected > 0) {
                 JOptionPane.showMessageDialog(null, column + " updated successfully!");
             } else {
-                JOptionPane.showMessageDialog(null, "No record found to update.");
+                JOptionPane.showMessageDialog(null, "Failed to update " + column);
             }
 
-        } catch (SQLException | NumberFormatException ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Database error: " + ex.getMessage());
         }
     }
 
@@ -91,9 +109,12 @@ public class addMarks {
         midT.setText("");
         endP.setText("");
         endT.setText("");
+        studentUsernameField.setText("");
+        courseCodeField.setText("");
     }
 
     public static void main(String[] args) {
-        new addMarks();
+        // Example: Pass lecturer username when opening the form
+        //new addMarks("LEC0001"); // Replace with actual lecturer username
     }
 }

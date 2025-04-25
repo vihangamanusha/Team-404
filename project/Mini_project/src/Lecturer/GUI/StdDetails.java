@@ -1,29 +1,30 @@
 package Lecturer.GUI;
 
-
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
 
 public class StdDetails {
     private JTextField StudentID;
-    private JTextField FirstName;
-    private JTextField LastName;
-    private JTextField contactNum;
-    private JTextField emailAddress;
     private JButton backButton;
     private JButton searchButton;
     private JButton clearButton;
     private JPanel mainPanel;
+    private JTable table1;
 
     public StdDetails() {
         JFrame frame = new JFrame("Student Details");
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(600, 400);
+        frame.setSize(1000, 500);
         frame.setLocationRelativeTo(null); // Center the frame
         frame.setVisible(true);
+
+        // Initialize table column names
+        String[] columnNames = {"Student ID", "First Name", "Last Name", "Contact", "Email"};
+        table1.setModel(new DefaultTableModel(null, columnNames));
 
         // Search Button Logic
         searchButton.addActionListener(new ActionListener() {
@@ -36,27 +37,32 @@ public class StdDetails {
                     return;
                 }
 
-
                 try (Connection conn = DBConnection.getConnection()) {
                     if (conn != null) {
-                        String query = "SELECT u.First_Name, u.Last_Name, u.Phone_Number, u.Email " +
-                                "FROM USER u " +
-                                "JOIN Student s ON u.NIC = s.NIC " +
-                                "WHERE s.Student_id = ?";
+                        // CORRECTED QUERY: Use 'Designation' instead of 'Role'
+                        String query = "SELECT Username AS StudentID, First_Name, Last_Name, Phone_Number, Email " +
+                                "FROM USER WHERE Username = ? AND Designation = 'Student'";
 
                         PreparedStatement stmt = conn.prepareStatement(query);
                         stmt.setString(1, studentId);
-
                         ResultSet rs = stmt.executeQuery();
 
                         if (rs.next()) {
-                            FirstName.setText(rs.getString("First_Name"));
-                            LastName.setText(rs.getString("Last_Name"));
-                            contactNum.setText(rs.getString("Phone_Number"));
-                            emailAddress.setText(rs.getString("Email"));
+                            // Extract data from ResultSet
+                            String studentID = rs.getString("StudentID");
+                            String firstName = rs.getString("First_Name");
+                            String lastName = rs.getString("Last_Name");
+                            String contact = rs.getString("Phone_Number");
+                            String email = rs.getString("Email");
+
+                            // Update table model
+                            DefaultTableModel model = new DefaultTableModel(null, columnNames);
+                            model.addRow(new Object[]{studentID, firstName, lastName, contact, email});
+                            table1.setModel(model);
                         } else {
                             JOptionPane.showMessageDialog(frame, "No student found with ID: " + studentId);
-                            clearFields();
+                            // Clear table
+                            table1.setModel(new DefaultTableModel(null, columnNames));
                         }
 
                         rs.close();
@@ -66,7 +72,7 @@ public class StdDetails {
                     }
                 } catch (SQLException ex) {
                     ex.printStackTrace();
-                    JOptionPane.showMessageDialog(frame, "An error occurred while fetching data.");
+                    JOptionPane.showMessageDialog(frame, "An error occurred: " + ex.getMessage());
                 }
             }
         });
@@ -75,7 +81,8 @@ public class StdDetails {
         clearButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                clearFields();
+                StudentID.setText("");
+                table1.setModel(new DefaultTableModel(null, columnNames)); // Reset table with column headers
             }
         });
 
@@ -83,22 +90,10 @@ public class StdDetails {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.dispose(); // Close current window
-                new LectureDashboard();// Add navigation to previous form if needed
+                frame.dispose();
+                new LectureDashboard(); // Replace with your dashboard class
             }
         });
     }
 
-    // Method to clear text fields
-    private void clearFields() {
-        StudentID.setText("");
-        FirstName.setText("");
-        LastName.setText("");
-        contactNum.setText("");
-        emailAddress.setText("");
-    }
-
-    public static void main(String[] args) {
-        new StdDetails();
-    }
 }

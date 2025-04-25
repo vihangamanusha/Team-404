@@ -27,7 +27,7 @@ public class LectureDashboard {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //frame.dispose();
-                StdDetails stdDetails = new StdDetails();
+                 new StdDetails();
 
             }
         });
