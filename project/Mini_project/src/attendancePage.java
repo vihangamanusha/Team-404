@@ -11,10 +11,12 @@ public class attendancePage extends JFrame {
     private JComboBox<String> comboBox2;
     private JComboBox<String> comboBox3;
     private JPanel datePickerPanel;
-    private JButton button1;
+    private JButton showStudentsButton;
     private JButton button2;
     private JButton button3;
     private JButton BACKButton;
+    private JTable table1;
+    private JButton button1;
     private DatePicker datePicker1;
 
     public attendancePage() {
@@ -34,6 +36,13 @@ public class attendancePage extends JFrame {
         setLocationRelativeTo(null);           // center on screen
         setVisible(true);
         BACKButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new ToofficerPage();
+                dispose();
+            }
+        });
+        button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new ToofficerPage();

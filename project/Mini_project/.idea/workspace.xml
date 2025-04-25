@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="2d7a7091-184d-4e25-8012-cb80ddcc4c84" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mini_project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Mini_project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/attendancePage.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/attendancePage.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/attendancePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/attendancePage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +31,7 @@
     "Application.attendancePage.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW": "true",
     "git-widget-placeholder": "TG1343",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Admin/Desktop/Java mini project/Team-404/project/Mini_project/src/LGoodDatePicker-11.2.1.jar",
@@ -44,6 +46,20 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="attendancePage" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="attendancePage" />
+      <module name="Mini_project" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.attendancePage" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -60,7 +76,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1745489855266</updated>
-      <workItem from="1745489856351" duration="7622000" />
+      <workItem from="1745489856351" duration="10454000" />
     </task>
     <servers />
   </component>
