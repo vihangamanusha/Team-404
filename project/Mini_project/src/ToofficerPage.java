@@ -43,7 +43,7 @@ public class ToofficerPage extends JFrame{
         TIMETABLEButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new ViewTimeTablePage();
+                new TOViewTimeTablePage();
 
             }
         });
