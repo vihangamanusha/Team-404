@@ -29,6 +29,7 @@ public class MedicalPage extends JFrame {
     private JPanel formpanel;
     private JPanel ButtonPanel;
     private JTable table1;
+    private JButton button1;
 
     private DatePicker submissionDatePicker;
     private DatePicker startDatePicker;
@@ -189,6 +190,13 @@ public class MedicalPage extends JFrame {
                 ToofficerPage toofficerPage = new ToofficerPage();
                 //toofficerPage.setVisible(true);
                 dispose();           // Close the current MedicalPage window
+            }
+        });
+        button1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new ToofficerPage();
+                dispose();
             }
         });
     }
