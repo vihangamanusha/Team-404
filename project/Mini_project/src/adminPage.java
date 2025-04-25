@@ -63,5 +63,13 @@ public class adminPage {
                 new courseManagmentPage();
             }
         });
+        button1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                new noticeviewPage();
+            }
+        });
+
     }
 }
