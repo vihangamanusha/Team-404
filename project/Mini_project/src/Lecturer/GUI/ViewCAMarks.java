@@ -13,15 +13,14 @@ public class ViewCAMarks {
     private JTextField courseId;
     private JButton VIEWButton;   // View individual
     private JButton VIEWButton1;  // View batch
-    private JPanel panel;
+    private JPanel panel;          // <--- This is your main panel
     private JFrame frame;
 
     public ViewCAMarks() {
         frame = new JFrame("View CA Marks");
-        //frame.setContentPane(panel);
-        frame.setContentPane(table1.getParent());
+        frame.setContentPane(panel); // ✅ Correct: set the panel designed in .form
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1200, 600);
+        frame.setSize(1000, 500);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
@@ -95,12 +94,9 @@ public class ViewCAMarks {
     }
 
     private void viewBatchMarks() {
-        //String lecturerUsername = UserSession.getInstance().getUsername();  // Assuming UserSession exists
-
         try (Connection conn = DBConnection.getConnection()) {
-            String sql = "SELECT * FROM Marks WHERE Lecturer_Username = ?";
+            String sql = "SELECT * FROM Marks";
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            //pstmt.setString(1, lecturerUsername);
             ResultSet rs = pstmt.executeQuery();
 
             DefaultTableModel model = (DefaultTableModel) table1.getModel();
