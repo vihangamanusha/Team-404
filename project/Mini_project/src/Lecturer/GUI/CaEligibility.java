@@ -14,14 +14,14 @@ public class CaEligibility {
     private JTextField stuId;
     private JTextField courseCode;
     private JButton VIEWButton;
-    private JButton BATCHVIEWButton;  // NEW BUTTON for Batch View
+    private JButton BATCHVIEWButton;
     private JFrame frame;
 
     public CaEligibility() {
         frame = new JFrame("CA Eligibility Checker");
         frame.setContentPane(panel1);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1200, 600);
+        frame.setSize(1000, 500);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
@@ -90,7 +90,7 @@ public class CaEligibility {
     }
 
     private void checkBatchEligibility() {
-        String lecturerUsername = UserSession.getInstance().getUsername();  // Assuming UserSession exists
+        //String lecturerUsername = UserSession.getInstance().getUsername();  // Assuming UserSession exists
 
         try (Connection conn = DBConnection.getConnection()) {
             String sql = "SELECT m.*, c.Course_type, " +
@@ -101,7 +101,7 @@ public class CaEligibility {
                     "WHERE m.Lecturer_Username = ?";
 
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, lecturerUsername);
+            //pstmt.setString(1, lecturerUsername);
             ResultSet rs = pstmt.executeQuery();
 
             DefaultTableModel model = (DefaultTableModel) table1.getModel();
