@@ -36,7 +36,7 @@ public class timeTablePage {
 
         button1.addActionListener(e -> {
             frame.dispose();
-            new adminPage(); // Assumes this class exists
+            new adminPage();
         });
 
         frame.setVisible(true);
@@ -162,8 +162,6 @@ public class timeTablePage {
 
     // Create custom components (called by the GUI designer)
     private void createUIComponents() {
-        // This method can be empty if the components are already designed in the IDE
-        // Example:
-        // JScrollPane scrollPane = new JScrollPane(table1);
+
     }
 }

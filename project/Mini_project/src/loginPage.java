@@ -89,6 +89,6 @@ public class loginPage {
     }
 
     public void showLoginPage() {
-        new loginPage(); // Call this method from your splash or other class
+        new loginPage();
     }
 }

@@ -20,7 +20,7 @@ public class noticeviewPage {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
-        // Set up table
+
         table1 = new JTable();
         jscoralpanenotice.setViewportView(table1);
         loadNoticeData();

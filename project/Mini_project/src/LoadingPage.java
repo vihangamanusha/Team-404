@@ -8,23 +8,23 @@ public class LoadingPage {
 
 
 
-        // Frame setup
+
         JFrame frame = new JFrame("Loading...");
-        frame.setContentPane(loadingpagepanel); // Set the existing panel as the content pane
+        frame.setContentPane(loadingpagepanel);
         frame.setUndecorated(true); // No window border
-        frame.setSize(600, 500); // Set the frame size
+        frame.setSize(600, 500);
         frame.setResizable(false);
-        frame.setLocationRelativeTo(null); // Center the frame on screen
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
-        // Simulate loading process
+
         new Thread(() -> {
             try {
                 Thread.sleep(3000); // Simulate loading process (wait for 3 seconds)
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            frame.dispose(); // Close the loading screen after completion
+            frame.dispose();
             SwingUtilities.invokeLater(() -> new loginPage()); // Load the login page after loading
         }).start();
     }

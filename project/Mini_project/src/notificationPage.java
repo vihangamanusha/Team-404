@@ -31,7 +31,7 @@ public class notificationPage {
         notificationtable.setFillsViewportHeight(true);
         jscrollpanenotice.setViewportView(notificationtable);
 
-        // Set up frame
+
         JFrame frame = new JFrame("Notification Page");
         frame.setContentPane(notificationPanel);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -39,7 +39,7 @@ public class notificationPage {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
-        // Button actions
+
         button1.addActionListener(e -> {
             frame.dispose();
             new adminPage(); // Redirect to admin page
