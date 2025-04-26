@@ -244,7 +244,8 @@ public class notificationPage {
 
                 if (rowsAffected > 0) {
                     JOptionPane.showMessageDialog(null, "Notice updated successfully!");
-                    loadNoticesIntoTable();  // Refresh the JTable to reflect the updated data
+                    loadNoticesIntoTable();
+                    resetForm();// Refresh the JTable to reflect the updated data
                 } else {
                     JOptionPane.showMessageDialog(null,
                             "Failed to update notice.",

@@ -29,13 +29,15 @@ public class UsereditPage {
         button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                  frame.dispose();
-                  new adminPage();
+                frame.dispose();
+                new adminPage();  // Navigate to the admin page after closing this page
             }
         });
+
         RESETButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                // Clear all the text fields
                 firstname.setText("");
                 lastname.setText("");
                 email.setText("");
@@ -43,9 +45,9 @@ public class UsereditPage {
                 passwordField1.setText("");
                 passwordField2.setText("");
                 image.setText("");
-
             }
         });
+
         UPDATEButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -55,9 +57,9 @@ public class UsereditPage {
                 String phone = phonenumber.getText();
                 String pass1 = new String(passwordField1.getPassword());
                 String pass2 = new String(passwordField2.getPassword());
-                String img = image.getText(); // If needed
-                String username = "AD0001"; // You can dynamically set this
-                String role = "Admin"; // Can also be dynamic
+                String img = image.getText();  // Image path if needed
+                String username = "AD0001";    // Assuming username is set dynamically, hardcoded for now
+                String role = "Admin";         // Assuming role is hardcoded, can be dynamic
 
                 if (!pass1.equals(pass2)) {
                     JOptionPane.showMessageDialog(null, "Passwords do not match!");
@@ -65,31 +67,34 @@ public class UsereditPage {
                 }
 
                 try {
-                    // Load JDBC driver (example for MySQL)
+                    // Load JDBC driver
                     Class.forName("com.mysql.cj.jdbc.Driver");
 
                     // Connect to the database
                     Connection conn = DBConnection.getConnection();
 
-                    // Insert SQL statement
-                    String sql = "UPDATE User SET First_Name = ?, Last_Name = ?, Role = ?, Phone_Number = ?, Email = ?, Password = ? " +
-                            "WHERE Username = ?";
-
+                    // SQL update query with corrected order of parameters
+                    String sql = "UPDATE User SET First_Name = ?, Last_Name = ?, Role = ?, Phone_Number = ?, Email = ?, Password = ?, Profile_Pic_Path = ? WHERE Username = ?";
 
                     PreparedStatement pstmt = conn.prepareStatement(sql);
 
+                    // Set the prepared statement parameters
                     pstmt.setString(1, fname);
                     pstmt.setString(2, lname);
                     pstmt.setString(3, role);
                     pstmt.setString(4, phone);
                     pstmt.setString(5, mail);
                     pstmt.setString(6, pass1);
-                    pstmt.setString(7, username);
+                    pstmt.setString(7, img);     // Image path
+                    pstmt.setString(8, username); // Username for the WHERE clause
 
+                    // Execute the update
                     int rowsInserted = pstmt.executeUpdate();
                     if (rowsInserted > 0) {
                         JOptionPane.showMessageDialog(null, "User updated successfully!");
                     }
+
+                    // Clear the fields after update
                     firstname.setText("");
                     lastname.setText("");
                     email.setText("");
@@ -98,12 +103,12 @@ public class UsereditPage {
                     passwordField2.setText("");
                     image.setText("");
 
-                    conn.close();
+                    conn.close();  // Close the database connection
+
                 } catch (Exception ex) {
                     ex.printStackTrace();
                     JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
                 }
-
             }
         });
     }
