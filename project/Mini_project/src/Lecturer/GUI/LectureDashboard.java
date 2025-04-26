@@ -13,12 +13,13 @@ public class LectureDashboard {
     private JButton medicalRecords;
     private JButton manage;
     private JButton viewMarks;
-    private JButton calculateMarks;
     private JButton notification;
     private JButton editProfile;
     private JButton logout;
     private JPanel mainPanel;
     private JButton ADDMARKSButton;
+    private JButton FINALMARKSButton;
+    private JButton CAELIGIBILITYButton;
 
 
     public LectureDashboard() {
@@ -53,15 +54,10 @@ public class LectureDashboard {
         viewMarks.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                //new ViewMarks();
             }
         });
-        calculateMarks.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
 
-            }
-        });
 
         notification.addActionListener(new ActionListener() {
             @Override
@@ -87,6 +83,30 @@ public class LectureDashboard {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new addMarks();
+            }
+        });
+        CAELIGIBILITYButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        viewMarks.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        FINALMARKSButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        CAELIGIBILITYButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new CaEligibility();
             }
         });
     }

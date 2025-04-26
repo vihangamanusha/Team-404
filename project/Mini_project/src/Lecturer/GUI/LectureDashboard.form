@@ -167,7 +167,9 @@
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                 </constraints>
-                <properties/>
+                <properties>
+                  <background color="-6691363"/>
+                </properties>
                 <border type="none"/>
                 <children>
                   <component id="8ee3c" class="javax.swing.JLabel">
@@ -233,7 +235,9 @@
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                 </constraints>
-                <properties/>
+                <properties>
+                  <background color="-6691363"/>
+                </properties>
                 <border type="none"/>
                 <children>
                   <component id="5aacd" class="javax.swing.JLabel">
@@ -269,7 +273,7 @@
               </vspacer>
             </children>
           </grid>
-          <grid id="f80e7" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="f80e7" layout-manager="GridLayoutManager" row-count="4" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
               <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -280,32 +284,53 @@
             </properties>
             <border type="none"/>
             <children>
-              <grid id="c3014" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+              <grid id="c3014" layout-manager="GridLayoutManager" row-count="2" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                 <margin top="0" left="0" bottom="0" right="0"/>
                 <constraints>
-                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <background color="-6691363"/>
                 </properties>
                 <border type="none"/>
                 <children>
-                  <component id="c800f" class="javax.swing.JButton" binding="calculateMarks">
+                  <component id="44b63" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <foreground color="-16777216"/>
+                      <text value="VIEW MARKS"/>
+                    </properties>
+                  </component>
+                  <hspacer id="1bf44">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                  </hspacer>
+                  <hspacer id="ee973">
+                    <constraints>
+                      <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                  </hspacer>
+                  <component id="eaf0e" class="javax.swing.JButton" binding="viewMarks">
                     <constraints>
                       <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <foreground color="-9473563"/>
-                      <text value="CALCULATE MARKS"/>
+                      <background color="-9473563"/>
+                      <foreground color="-16777216"/>
+                      <text value="CA MARKS"/>
                     </properties>
                   </component>
-                  <component id="eaf0e" class="javax.swing.JButton" binding="viewMarks">
+                  <component id="7a1f9" class="javax.swing.JButton" binding="FINALMARKSButton" default-binding="true">
                     <constraints>
-                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                      <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <foreground color="-9473563"/>
-                      <text value="VIEW MARKS"/>
+                      <background color="-9473563"/>
+                      <foreground color="-16777216"/>
+                      <text value="FINAL MARKS"/>
                     </properties>
                   </component>
                 </children>
@@ -315,7 +340,9 @@
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                 </constraints>
-                <properties/>
+                <properties>
+                  <background color="-6691363"/>
+                </properties>
                 <border type="none"/>
                 <children>
                   <component id="4db2f" class="javax.swing.JLabel">
@@ -348,6 +375,15 @@
                   <text value="ADD MARKS"/>
                 </properties>
               </component>
+              <component id="f1b80" class="javax.swing.JButton" binding="CAELIGIBILITYButton" default-binding="true">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <foreground color="-9473563"/>
+                  <text value="CA ELIGIBILITY"/>
+                </properties>
+              </component>
             </children>
           </grid>
           <grid id="53111" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
@@ -355,7 +391,9 @@
             <constraints>
               <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
-            <properties/>
+            <properties>
+              <background color="-6691363"/>
+            </properties>
             <border type="none"/>
             <children>
               <component id="455a9" class="javax.swing.JButton" binding="notification">
