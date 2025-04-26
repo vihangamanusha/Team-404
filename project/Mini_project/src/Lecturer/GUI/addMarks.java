@@ -1,120 +1,231 @@
 package Lecturer.GUI;
 
 import javax.swing.*;
-import java.sql.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class addMarks {
     private JPanel panel1;
     private JButton backButton;
-    private JButton addButton;
-    private JButton addButton1;
-    private JButton addButton2;
-    private JButton addButton3;
-    private JButton addButton4;
-    private JButton addButton5;
-    private JButton addButton6;
-    private JButton addButton7;
-    private JButton addButton8;
     private JTextField quiz1;
     private JTextField quiz2;
     private JTextField quiz3;
     private JTextField quiz4;
     private JTextField assessmentMark;
+    private JTextField assessment02;
     private JTextField midP;
     private JTextField midT;
     private JTextField endP;
     private JTextField endT;
     private JButton clearButton;
+    private JButton addMarksButton;
     private JTextField studentUsernameField;
     private JTextField courseCodeField;
-    private String lecturerUsername; // Added to store lecturer's username
+    private JTextField lecturerUsernameField;
+    private JTextField studentId;
+    private JTextField courseCode;
+    private JButton deleteMarksButton;
 
-    // Constructor now accepts lecturerUsername
     public addMarks() {
-
-
-        JFrame frame = new JFrame("Add Marks");
+        JFrame frame = new JFrame("Marks Management");
         frame.setContentPane(panel1);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1000, 600);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
-        // Attach action listeners to buttons
-        addButton.addActionListener(e -> updateMark("Quiz1", quiz1.getText()));
-        addButton1.addActionListener(e -> updateMark("Quiz2", quiz2.getText()));
-        addButton2.addActionListener(e -> updateMark("Quiz3", quiz3.getText()));
-        addButton3.addActionListener(e -> updateMark("Quiz4", quiz4.getText()));
-        addButton4.addActionListener(e -> updateMark("Assessment_Mark", assessmentMark.getText()));
-        addButton5.addActionListener(e -> updateMark("Mid_Practical", midP.getText()));
-        addButton6.addActionListener(e -> updateMark("Mid_Theory", midT.getText()));
-        addButton7.addActionListener(e -> updateMark("End_Practical", endP.getText()));
-        addButton8.addActionListener(e -> updateMark("End_Theory", endT.getText()));
+        // ADD MARKS BUTTON
+        addMarksButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!allFieldsFilled()) {
+                    JOptionPane.showMessageDialog(frame, "All fields must be filled!");
+                    return;
+                }
 
-        clearButton.addActionListener(e -> clearFields());
-    }
+                String studentUsername = studentUsernameField.getText().trim();
+                String courseCode = courseCodeField.getText().trim();
+                String lecturerUsername = lecturerUsernameField.getText().trim();
 
-    private void updateMark(String column, String value) {
-        String studentUsername = studentUsernameField.getText().trim();
-        String courseCode = courseCodeField.getText().trim();
+                // Validate and parse all marks fields
+                Float q1 = parseMark(quiz1, "Quiz 1");
+                Float q2 = parseMark(quiz2, "Quiz 2");
+                Float q3 = parseMark(quiz3, "Quiz 3");
+                Float q4 = parseMark(quiz4, "Quiz 4");
+                Float a1 = parseMark(assessmentMark, "Assessment Mark 01");
+                Float a2 = parseMark(assessment02, "Assessment Mark 02");
+                Float mp = parseMark(midP, "Mid Practical");
+                Float mt = parseMark(midT, "Mid Theory");
+                Float ep = parseMark(endP, "End Practical");
+                Float et = parseMark(endT, "End Theory");
 
-        // Validate inputs
-        if (studentUsername.isEmpty() || courseCode.isEmpty() || value.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "All fields are required.");
-            return;
-        }
+                if (q1 == null || q2 == null || q3 == null || q4 == null ||
+                        a1 == null || a2 == null || mp == null ||
+                        mt == null || ep == null || et == null) {
+                    return;
+                }
 
-        // Validate numeric input
-        try {
-            Float.parseFloat(value);
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Invalid number format for " + column);
-            return;
-        }
+                // Save to database
+                try (Connection conn = DBConnection.getConnection()) {
+                    String sql = "INSERT INTO marks (Student_Username, Lecturer_Username, Course_code, " +
+                            "Quiz1, Quiz2, Quiz3, Quiz4, Assessment_Mark, Assessment_Mark_02, " +
+                            "Mid_Practical, Mid_Theory, End_Practical, End_Theory) " +
+                            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-        // SQL query to insert/update marks
-        String sql = "INSERT INTO Marks (Student_Username, Lecturer_Username, Course_code, " + column + ") " +
-                "VALUES (?, ?, ?, ?) " +
-                "ON DUPLICATE KEY UPDATE " + column + " = VALUES(" + column + ")";
+                    PreparedStatement stmt = conn.prepareStatement(sql);
+                    stmt.setString(1, studentUsername);
+                    stmt.setString(2, lecturerUsername);
+                    stmt.setString(3, courseCode);
+                    stmt.setFloat(4, q1);
+                    stmt.setFloat(5, q2);
+                    stmt.setFloat(6, q3);
+                    stmt.setFloat(7, q4);
+                    stmt.setFloat(8, a1);
+                    stmt.setFloat(9, a2);
+                    stmt.setFloat(10, mp);
+                    stmt.setFloat(11, mt);
+                    stmt.setFloat(12, ep);
+                    stmt.setFloat(13, et);
 
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-
-            ps.setString(1, studentUsername);
-            ps.setString(2, lecturerUsername); // Lecturer from logged-in user
-            ps.setString(3, courseCode);
-            ps.setFloat(4, Float.parseFloat(value));
-
-            int rowsAffected = ps.executeUpdate();
-
-            if (rowsAffected > 0) {
-                JOptionPane.showMessageDialog(null, column + " updated successfully!");
-            } else {
-                JOptionPane.showMessageDialog(null, "Failed to update " + column);
+                    int rows = stmt.executeUpdate();
+                    if (rows > 0) {
+                        JOptionPane.showMessageDialog(frame, "Marks added successfully!");
+                        clearAllFields();
+                    } else {
+                        JOptionPane.showMessageDialog(frame, "Failed to add marks.");
+                    }
+                } catch (SQLException ex) {
+                    if (ex.getMessage().contains("Duplicate entry")) {
+                        JOptionPane.showMessageDialog(frame,
+                                "Marks for this student and course already exist!");
+                    } else {
+                        ex.printStackTrace();
+                        JOptionPane.showMessageDialog(frame,
+                                "Database error: " + ex.getMessage());
+                    }
+                }
             }
+        });
 
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Database error: " + ex.getMessage());
+        // DELETE MARKS BUTTON
+        deleteMarksButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String studentIdText = studentId.getText().trim();
+                String courseCodeText = courseCode.getText().trim();
+
+                if (studentIdText.isEmpty() || courseCodeText.isEmpty()) {
+                    JOptionPane.showMessageDialog(frame,
+                            "Both Student ID and Course Code are required for deletion!");
+                    return;
+                }
+
+                int confirm = JOptionPane.showConfirmDialog(frame,
+                        "Are you sure you want to delete marks for:\n" +
+                                "Student ID: " + studentIdText + "\n" +
+                                "Course Code: " + courseCodeText,
+                        "Confirm Deletion", JOptionPane.YES_NO_OPTION);
+
+                if (confirm == JOptionPane.YES_OPTION) {
+                    try (Connection conn = DBConnection.getConnection()) {
+                        String sql = "DELETE FROM marks WHERE Student_Username = ? AND Course_code = ?";
+                        PreparedStatement stmt = conn.prepareStatement(sql);
+                        stmt.setString(1, studentIdText);
+                        stmt.setString(2, courseCodeText);
+
+                        int rowsDeleted = stmt.executeUpdate();
+                        if (rowsDeleted > 0) {
+                            JOptionPane.showMessageDialog(frame,
+                                    "Marks deleted successfully!");
+                            studentId.setText("");
+                            courseCode.setText("");
+                        } else {
+                            JOptionPane.showMessageDialog(frame,
+                                    "No marks found for this student and course!");
+                        }
+                    } catch (SQLException ex) {
+                        ex.printStackTrace();
+                        JOptionPane.showMessageDialog(frame,
+                                "Database error: " + ex.getMessage());
+                    }
+                }
+            }
+        });
+
+        // CLEAR BUTTON
+        clearButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                clearAllFields();
+            }
+        });
+
+        // BACK BUTTON
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                new LectureDashboard();
+            }
+        });
+    }
+
+    private Float parseMark(JTextField field, String fieldName) {
+        String input = field.getText().trim();
+        if (input.isEmpty()) {
+            JOptionPane.showMessageDialog(null, fieldName + " cannot be empty.");
+            return null;
+        }
+        try {
+            float mark = Float.parseFloat(input);
+            if (mark < 0 || mark > 100) {
+                JOptionPane.showMessageDialog(null,
+                        fieldName + " must be between 0 and 100.");
+                return null;
+            }
+            return mark;
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null,
+                    fieldName + " must be a valid number.");
+            return null;
         }
     }
 
-    private void clearFields() {
+    private boolean allFieldsFilled() {
+        return !studentUsernameField.getText().trim().isEmpty() &&
+                !courseCodeField.getText().trim().isEmpty() &&
+                !lecturerUsernameField.getText().trim().isEmpty() &&
+                !quiz1.getText().trim().isEmpty() &&
+                !quiz2.getText().trim().isEmpty() &&
+                !quiz3.getText().trim().isEmpty() &&
+                !quiz4.getText().trim().isEmpty() &&
+                !assessmentMark.getText().trim().isEmpty() &&
+                !assessment02.getText().trim().isEmpty() &&
+                !midP.getText().trim().isEmpty() &&
+                !midT.getText().trim().isEmpty() &&
+                !endP.getText().trim().isEmpty() &&
+                !endT.getText().trim().isEmpty();
+    }
+
+    private void clearAllFields() {
+        studentUsernameField.setText("");
+        courseCodeField.setText("");
+        lecturerUsernameField.setText("");
+        studentId.setText("");
+        courseCode.setText("");
         quiz1.setText("");
         quiz2.setText("");
         quiz3.setText("");
         quiz4.setText("");
         assessmentMark.setText("");
+        assessment02.setText("");
         midP.setText("");
         midT.setText("");
         endP.setText("");
         endT.setText("");
-        studentUsernameField.setText("");
-        courseCodeField.setText("");
     }
 
-    public static void main(String[] args) {
-        // Example: Pass lecturer username when opening the form
-        //new addMarks("LEC0001"); // Replace with actual lecturer username
-    }
 }

@@ -35,7 +35,7 @@ public class LectureDashboard {
         attendence.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                viewAttendence viewAttendence = new viewAttendence();
+               new ViewAttendance();
             }
         });
         medicalRecords.addActionListener(new ActionListener() {
@@ -47,7 +47,7 @@ public class LectureDashboard {
         manage.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                new ManageCourseDetails();
             }
         });
         viewMarks.addActionListener(new ActionListener() {
