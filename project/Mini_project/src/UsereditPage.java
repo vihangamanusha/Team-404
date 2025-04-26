@@ -3,6 +3,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class UsereditPage {
     private JButton button1;
@@ -61,6 +63,28 @@ public class UsereditPage {
                 String username = "AD0001";    // Assuming username is set dynamically, hardcoded for now
                 String role = "Admin";         // Assuming role is hardcoded, can be dynamic
 
+                // Validation checks for empty fields
+                if (fname.isEmpty() || lname.isEmpty() || mail.isEmpty() || phone.isEmpty() || pass1.isEmpty() || pass2.isEmpty() || img.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "All fields must be filled out.");
+                    return;
+                }
+
+                // Validate email format using regex
+                String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+                Pattern emailPattern = Pattern.compile(emailRegex);
+                Matcher emailMatcher = emailPattern.matcher(mail);
+                if (!emailMatcher.matches()) {
+                    JOptionPane.showMessageDialog(null, "Please enter a valid email address.");
+                    return;
+                }
+
+                // Validate phone number (ensure it's all digits and not empty)
+                if (!phone.matches("\\d+")) {
+                    JOptionPane.showMessageDialog(null, "Phone number must be numeric and cannot be empty.");
+                    return;
+                }
+
+                // Check if passwords match
                 if (!pass1.equals(pass2)) {
                     JOptionPane.showMessageDialog(null, "Passwords do not match!");
                     return;
