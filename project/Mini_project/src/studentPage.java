@@ -158,6 +158,22 @@ public class studentPage {
         });
 
         //end of save bttn
+       /* LOGOUTButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(mainPanel);
+                currentFrame.dispose(); // close the student dashboard frame
+
+                // Now manually open the login page frame exactly like loginPage main method
+                JFrame frame = new JFrame("Login Page");
+                frame.setContentPane(new loginPage().LoginPage);
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.setResizable(false);
+                frame.pack();
+                frame.setLocationRelativeTo(null);
+                frame.setVisible(true);
+            }
+        });*/
     }
 
     public void openDashboard(JFrame currentFrame) {
