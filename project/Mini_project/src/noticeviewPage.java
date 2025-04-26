@@ -16,7 +16,7 @@ public class noticeviewPage {
         JFrame frame = new JFrame("Notification Page");
         frame.setContentPane(noticeviewPanel);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setSize(1100, 500);
+        frame.setSize(1000, 600);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 

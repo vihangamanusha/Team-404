@@ -1,6 +1,5 @@
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.event.ActionListener;
 import java.sql.*;
 
 public class courseManagmentPage {
@@ -54,7 +53,6 @@ public class courseManagmentPage {
                 Credit.setText(table1.getValueAt(row, 5).toString());
                 lecturerid.setSelectedItem(table1.getValueAt(row, 6).toString());
                 username.setText(table1.getValueAt(row, 7).toString());
-
             }
         });
     }
@@ -69,7 +67,6 @@ public class courseManagmentPage {
         String lecturer = (String) lecturerid.getSelectedItem();
         String admin = username.getText().trim();
 
-
         if (code.isEmpty() || name.isEmpty() || type == null || theory.isEmpty() ||
                 practical.isEmpty() || creditVal.isEmpty() || lecturer == null || admin.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please fill in all fields!", "Validation Error", JOptionPane.ERROR_MESSAGE);
@@ -82,7 +79,7 @@ public class courseManagmentPage {
             int creditsInt = Integer.parseInt(creditVal);
 
             try (Connection conn = DBConnection.getConnection()) {
-                String sql = "INSERT INTO Course_unit (Course_code, CourseName, Course_type, Theory_hours, Practical_hours, Credits, Lecturer_Username, Admin_Username, Lecture_Note) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                String sql = "INSERT INTO Course_unit (Course_code, CourseName, Course_type, Theory_hours, Practical_hours, Credits, Lecturer_Username, Admin_Username) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
                 try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
                     pstmt.setString(1, code);
                     pstmt.setString(2, name);
@@ -123,7 +120,7 @@ public class courseManagmentPage {
                 try (ResultSet rs = pstmt.executeQuery()) {
                     DefaultTableModel model = new DefaultTableModel();
                     model.setColumnIdentifiers(new String[]{
-                            "Course_code", "CourseName", "Course_type", "Theory_hours", "Practical_hours", "Credits", "Lecturer_Username", "Admin_Username", "Lecture_Note"
+                            "Course_code", "CourseName", "Course_type", "Theory_hours", "Practical_hours", "Credits", "Lecturer_Username", "Admin_Username"
                     });
 
                     while (rs.next()) {
@@ -135,8 +132,7 @@ public class courseManagmentPage {
                                 rs.getInt("Practical_hours"),
                                 rs.getInt("Credits"),
                                 rs.getString("Lecturer_Username"),
-                                rs.getString("Admin_Username"),
-
+                                rs.getString("Admin_Username")
                         });
                     }
 
@@ -168,7 +164,6 @@ public class courseManagmentPage {
                         rs.getInt("Credits"),
                         rs.getString("Lecturer_Username"),
                         rs.getString("Admin_Username")
-
                 });
             }
 
@@ -186,7 +181,7 @@ public class courseManagmentPage {
         }
 
         try (Connection conn = DBConnection.getConnection()) {
-            String sql = "UPDATE Course_unit SET CourseName=?, Course_type=?, Theory_hours=?, Practical_hours=?, Credits=?, Lecturer_Username=?, Admin_Username=?, Lecture_Note=? WHERE Course_code=?";
+            String sql = "UPDATE Course_unit SET CourseName=?, Course_type=?, Theory_hours=?, Practical_hours=?, Credits=?, Lecturer_Username=?, Admin_Username=? WHERE Course_code=?";
             try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
                 pstmt.setString(1, coursename.getText().trim());
                 pstmt.setString(2, (String) status.getSelectedItem());
@@ -195,7 +190,7 @@ public class courseManagmentPage {
                 pstmt.setInt(5, Integer.parseInt(Credit.getText().trim()));
                 pstmt.setString(6, (String) lecturerid.getSelectedItem());
                 pstmt.setString(7, username.getText().trim());
-                pstmt.setString(9, code);
+                pstmt.setString(8, code);
 
                 int rows = pstmt.executeUpdate();
                 if (rows > 0) {
