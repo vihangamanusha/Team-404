@@ -25,7 +25,7 @@
               <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <font name="Franklin Gothic Book" size="36" style="1"/>
+              <font name="Courier New" size="36" style="1"/>
               <text value="ACEDEMIC MEDICAL PORTAL"/>
             </properties>
           </component>
@@ -34,6 +34,8 @@
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <background color="-13947600"/>
+              <enabled value="true"/>
               <icon value="images/arrow.png"/>
               <text value=""/>
             </properties>
@@ -75,6 +77,8 @@
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <background color="-6836574"/>
+                  <foreground color="-16316665"/>
                   <text value="ADD"/>
                 </properties>
               </component>
@@ -103,6 +107,8 @@
                   <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <background color="-6836574"/>
+                  <foreground color="-16316665"/>
                   <text value="CLEAR"/>
                 </properties>
               </component>
@@ -116,6 +122,8 @@
                   <grid row="0" column="8" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <background color="-6836574"/>
+                  <foreground color="-16316665"/>
                   <text value="DELETE"/>
                 </properties>
               </component>
@@ -124,6 +132,8 @@
                   <grid row="0" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <background color="-6836574"/>
+                  <foreground color="-16316665"/>
                   <text value="UPDATE"/>
                 </properties>
               </component>
@@ -132,6 +142,8 @@
                   <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <background color="-6836574"/>
+                  <foreground color="-16316665"/>
                   <text value="SEARCH"/>
                 </properties>
               </component>
@@ -204,7 +216,9 @@
                     <constraints>
                       <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
-                    <properties/>
+                    <properties>
+                      <model/>
+                    </properties>
                   </component>
                   <component id="63286" class="javax.swing.JTextField" binding="textField2" default-binding="true">
                     <constraints>
@@ -323,6 +337,8 @@
                       <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
+                      <background color="-6836574"/>
+                      <foreground color="-16316665"/>
                       <text value="UPLOAD MEDICAL IMAGE"/>
                     </properties>
                   </component>
@@ -354,7 +370,9 @@
                       <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="CLEAR THE IMAGE"/>
+                      <background color="-6836574"/>
+                      <foreground color="-16316665"/>
+                      <text value="REMOVE IMAGE"/>
                     </properties>
                   </component>
                 </children>
