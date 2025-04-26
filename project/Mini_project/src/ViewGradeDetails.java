@@ -20,7 +20,7 @@ public class ViewGradeDetails {
     private JButton viewGradeDetailsButton;
     private JTextField CGPAfield;
     private JTextField SGPAfield;
-    private JTable table1;
+    private JTable viewGradeTable;
     private JButton gradeBackBtnButton;
     private JPanel mainPanel;
 
@@ -34,7 +34,7 @@ public class ViewGradeDetails {
         SGPAfield = new JTextField(10);
         viewGradeDetailsButton = new JButton("View Grade Details");
         gradeBackBtnButton = new JButton("Back");
-        table1 = new JTable();
+        viewGradeTable = new JTable();
         mainPanel = new JPanel();
 
         // Make fields non-editable
@@ -44,8 +44,8 @@ public class ViewGradeDetails {
         // Set up the grade table
         String[] columnNames = {"Course ID", "CA", "Grade"};
         DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
-        table1.setModel(tableModel);
-        JScrollPane tableScrollPane = new JScrollPane(table1);
+        viewGradeTable.setModel(tableModel);
+        JScrollPane tableScrollPane = new JScrollPane(viewGradeTable);
 
         // Add components to the main panel
         mainPanel.add(new JLabel("Student ID:"));
@@ -101,7 +101,7 @@ public class ViewGradeDetails {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String enteredId = studentId.getText().trim();
-                DefaultTableModel model = (DefaultTableModel) table1.getModel();
+                DefaultTableModel model = (DefaultTableModel) viewGradeTable.getModel();
                 model.setRowCount(0); // Clear previous data
 
                 if (enteredId.equals("ST1234")) {
