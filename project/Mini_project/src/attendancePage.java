@@ -1488,6 +1488,13 @@ public class attendancePage extends JFrame {
         ADDButton.addActionListener(e -> addAttendanceToDatabase());
         UPDATEButton.addActionListener(e -> updateAttendanceInDatabase());
         DELETEButton.addActionListener(e -> deleteAttendanceFromDatabase());
+        button1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new ToofficerPage();
+                dispose();
+            }
+        });
     }
 
     private void loadComboBoxData() {
