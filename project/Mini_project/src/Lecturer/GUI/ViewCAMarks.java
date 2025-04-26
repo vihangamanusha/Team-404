@@ -78,8 +78,8 @@ public class ViewCAMarks {
                         rs.getFloat("Quiz2"),
                         rs.getFloat("Quiz3"),
                         rs.getFloat("Quiz4"),
-                        rs.getFloat("Assessment_Mark"),
-                        rs.getFloat("Assessment_Mark_02"),
+                        rs.getFloat("Assessment_01"),
+                        rs.getFloat("Assessment_02"),
                         rs.getFloat("Mid_Theory"),
                         rs.getFloat("Mid_Practical")
                 });
@@ -110,8 +110,8 @@ public class ViewCAMarks {
                         rs.getFloat("Quiz2"),
                         rs.getFloat("Quiz3"),
                         rs.getFloat("Quiz4"),
-                        rs.getFloat("Assessment_Mark"),
-                        rs.getFloat("Assessment_Mark_02"),
+                        rs.getFloat("Assessment_01"),
+                        rs.getFloat("Assessment_02"),
                         rs.getFloat("Mid_Theory"),
                         rs.getFloat("Mid_Practical")
                 });

@@ -71,7 +71,7 @@ public class addMarks {
                 // Save to database
                 try (Connection conn = DBConnection.getConnection()) {
                     String sql = "INSERT INTO marks (Student_Username, Lecturer_Username, Course_code, " +
-                            "Quiz1, Quiz2, Quiz3, Quiz4, Assessment_Mark, Assessment_Mark_02, " +
+                            "Quiz1, Quiz2, Quiz3, Quiz4, Assessment_01, Assessment_02, " +
                             "Mid_Practical, Mid_Theory, End_Practical, End_Theory) " +
                             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 

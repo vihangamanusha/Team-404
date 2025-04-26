@@ -41,7 +41,7 @@ public class StdDetails {
                     if (conn != null) {
                         // CORRECTED QUERY: Use 'Designation' instead of 'Role'
                         String query = "SELECT Username AS StudentID, First_Name, Last_Name, Phone_Number, Email " +
-                                "FROM USER WHERE Username = ? AND Designation = 'Student'";
+                                "FROM USER WHERE Username = ? AND Role = 'Student'";
 
                         PreparedStatement stmt = conn.prepareStatement(query);
                         stmt.setString(1, studentId);

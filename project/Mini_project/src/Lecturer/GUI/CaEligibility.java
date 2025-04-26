@@ -132,8 +132,8 @@ public class CaEligibility {
         float quiz2 = rs.getFloat("Quiz2");
         float quiz3 = rs.getFloat("Quiz3");
         float quiz4 = rs.getFloat("Quiz4");
-        float assessment1 = rs.getFloat("Assessment_Mark");
-        float assessment2 = rs.getFloat("Assessment_Mark_02");
+        float assessment1 = rs.getFloat("Assessment_01");
+        float assessment2 = rs.getFloat("Assessment_02");
         float midTheory = rs.getFloat("Mid_Theory");
         float midPractical = rs.getFloat("Mid_Practical");
 
