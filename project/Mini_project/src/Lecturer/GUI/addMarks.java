@@ -228,4 +228,8 @@ public class addMarks {
         endT.setText("");
     }
 
+    public static void main(String[] args) {
+        new addMarks();
+    }
+
 }
