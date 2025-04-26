@@ -90,6 +90,13 @@ public class UsereditPage {
                     if (rowsInserted > 0) {
                         JOptionPane.showMessageDialog(null, "User updated successfully!");
                     }
+                    firstname.setText("");
+                    lastname.setText("");
+                    email.setText("");
+                    phonenumber.setText("");
+                    passwordField1.setText("");
+                    passwordField2.setText("");
+                    image.setText("");
 
                     conn.close();
                 } catch (Exception ex) {
