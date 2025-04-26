@@ -19,7 +19,6 @@ public class courseManagmentPage {
     private JTextField pactricalhours;
     private JTextField coursecode;
     private JTextField Credit;
-    private JTextField note;
     private JButton SEARCHButton;
     private JTable table1;
     private JScrollPane jscrollpanecourse;
@@ -55,7 +54,7 @@ public class courseManagmentPage {
                 Credit.setText(table1.getValueAt(row, 5).toString());
                 lecturerid.setSelectedItem(table1.getValueAt(row, 6).toString());
                 username.setText(table1.getValueAt(row, 7).toString());
-                note.setText(table1.getValueAt(row, 8) != null ? table1.getValueAt(row, 8).toString() : "");
+
             }
         });
     }
@@ -69,7 +68,7 @@ public class courseManagmentPage {
         String creditVal = Credit.getText().trim();
         String lecturer = (String) lecturerid.getSelectedItem();
         String admin = username.getText().trim();
-        String noteText = note.getText().trim();
+
 
         if (code.isEmpty() || name.isEmpty() || type == null || theory.isEmpty() ||
                 practical.isEmpty() || creditVal.isEmpty() || lecturer == null || admin.isEmpty()) {
@@ -93,7 +92,6 @@ public class courseManagmentPage {
                     pstmt.setInt(6, creditsInt);
                     pstmt.setString(7, lecturer);
                     pstmt.setString(8, admin);
-                    pstmt.setString(9, noteText);
 
                     int rows = pstmt.executeUpdate();
                     if (rows > 0) {
@@ -138,7 +136,7 @@ public class courseManagmentPage {
                                 rs.getInt("Credits"),
                                 rs.getString("Lecturer_Username"),
                                 rs.getString("Admin_Username"),
-                                rs.getString("Lecture_Note")
+
                         });
                     }
 
@@ -157,7 +155,7 @@ public class courseManagmentPage {
 
             DefaultTableModel model = new DefaultTableModel();
             model.setColumnIdentifiers(new String[]{
-                    "Course_code", "CourseName", "Course_type", "Theory_hours", "Practical_hours", "Credits", "Lecturer_Username", "Admin_Username", "Lecture_Note"
+                    "Course_code", "CourseName", "Course_type", "Theory_hours", "Practical_hours", "Credits", "Lecturer_Username", "Admin_Username"
             });
 
             while (rs.next()) {
@@ -169,8 +167,8 @@ public class courseManagmentPage {
                         rs.getInt("Practical_hours"),
                         rs.getInt("Credits"),
                         rs.getString("Lecturer_Username"),
-                        rs.getString("Admin_Username"),
-                        rs.getString("Lecture_Note")
+                        rs.getString("Admin_Username")
+
                 });
             }
 
@@ -197,7 +195,6 @@ public class courseManagmentPage {
                 pstmt.setInt(5, Integer.parseInt(Credit.getText().trim()));
                 pstmt.setString(6, (String) lecturerid.getSelectedItem());
                 pstmt.setString(7, username.getText().trim());
-                pstmt.setString(8, note.getText().trim());
                 pstmt.setString(9, code);
 
                 int rows = pstmt.executeUpdate();
@@ -251,7 +248,6 @@ public class courseManagmentPage {
         Credit.setText("");
         lecturerid.setSelectedIndex(0);
         username.setText("");
-        note.setText("");
         search.setText("");
     }
 }

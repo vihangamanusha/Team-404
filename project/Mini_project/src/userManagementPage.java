@@ -27,7 +27,7 @@ public class userManagementPage {
         JFrame frame = new JFrame("User Management Page");
         frame.setContentPane(UsermanagementPage);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setSize(1500, 600);
+        frame.setSize(1000, 600);
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
 
