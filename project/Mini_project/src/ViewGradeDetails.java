@@ -1,15 +1,3 @@
-/*import javax.swing.*;
-
-public class ViewGradeDetails {
-    private JTextField studentGradeAndGPATextField;
-    private JButton gradeBackBtnButton;
-    private JTextField studentId;
-    private JButton viewGradeDetailsButton;
-    private JTextField CGPAfield;
-    private JTextField SGPAfield;
-    private JTable table1;
-}*/
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
@@ -60,43 +48,7 @@ public class ViewGradeDetails {
         mainPanel.add(gradeBackBtnButton);
         mainPanel.setSize(1000, 500);
 
-        // Action listener for viewing grades
-       /* viewGradeDetailsButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String enteredId = studentId.getText().trim();
-                DefaultTableModel model = (DefaultTableModel) table1.getModel();
-                model.setRowCount(0); // Clear previous data
 
-                if (enteredId.equals("ST1234")) {
-                    SGPAfield.setText("3.5");
-                    CGPAfield.setText("3.6");
-
-                    model.addRow(new Object[]{"ICT2133", "75", "A"});
-                    model.addRow(new Object[]{"ICT2142", "68", "B+"});
-                    model.addRow(new Object[]{"ICT2152", "80", "A"});
-                } else if (enteredId.equals("ST5678")) {
-                    SGPAfield.setText("3.2");
-                    CGPAfield.setText("3.3");
-
-                    model.addRow(new Object[]{"ICT2133", "65", "B"});
-                    model.addRow(new Object[]{"ICT2142", "72", "B+"});
-                    model.addRow(new Object[]{"ICT2152", "70", "B+"});
-                } else {
-                    JOptionPane.showMessageDialog(mainPanel, "No data found for Student ID: " + enteredId);
-                }
-            }
-        });*/
-
-        // Back button action
-       /* gradeBackBtnButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                currentFrame.setContentPane(new studentPage().getMainPanel());
-                currentFrame.revalidate();
-                currentFrame.repaint();
-            }
-        });*/
         viewGradeDetailsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
