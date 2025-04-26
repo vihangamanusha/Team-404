@@ -31,9 +31,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class viewNotice {
-    private JTable viewNoticeTable;
     private JButton noticeBackBtn;
-    private JButton clickToViewYourButton;
+    private JButton viewNoticesButton;
+    private JTable noticeTable;
     private JPanel mainPanel;
 
     public JPanel getMainPanel() {
@@ -41,30 +41,29 @@ public class viewNotice {
     }
 
     public viewNotice(JFrame currentFrame) {
-        // Set up table model with column headers
-        String[] columnNames = {"Notice Published Date", "Download Notice"};
+        // Set up table columns
+        String[] columnNames = {"Date", "Notice Title", "Download Link"};
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);
-        viewNoticeTable.setModel(model);
+        noticeTable.setModel(model);
 
-        // Button to load notices
-        clickToViewYourButton.addActionListener(new ActionListener() {
+        // Sample data (you can replace this with real data from a file or DB)
+        String[][] data = {
+                {"2025-04-25", "Midterm Notice", "https://example.com/notice1.pdf"},
+                {"2025-04-26", "Exam Schedule", "https://example.com/notice2.pdf"}
+        };
+
+        // View Notices Button
+        viewNoticesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Sample data
-                String[][] notices = {
-                        {"2025-04-26", "https://example.com/notice1.pdf"},
-                        {"2025-04-25", "https://example.com/notice2.pdf"}
-                };
-
-                // Clear old rows and add new ones
-                model.setRowCount(0);
-                for (String[] row : notices) {
+                model.setRowCount(0); // Clear old data
+                for (String[] row : data) {
                     model.addRow(row);
                 }
             }
         });
 
-        // Back to Student Page
+        // Back Button
         noticeBackBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

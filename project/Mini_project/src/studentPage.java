@@ -77,7 +77,11 @@ public class studentPage {
         viewNotice.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+                JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(mainPanel);
+                // Set the viewCourseDetails panel as the current frame's content
+                currentFrame.setContentPane(new  viewNotice(currentFrame).getMainPanel());
+                currentFrame.revalidate();
+                currentFrame.repaint();
             }
         });
     }
