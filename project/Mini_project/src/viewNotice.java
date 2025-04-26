@@ -32,9 +32,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class viewNotice {
-    private JButton noticeBackBtn;
+
     private JButton clickToViewYourButton;
     private JTable viewNoticeTable;
+    private JButton noticeBackButton;
     private JPanel mainPanel;
 
     public JPanel getMainPanel() {
@@ -50,12 +51,16 @@ public class viewNotice {
         viewNoticeTable = new JTable(model);
         JScrollPane scrollPane = new JScrollPane(viewNoticeTable);
 
+
+
+
+
         // Create Buttons
-        JPanel buttonPanel = new JPanel();
+       JPanel buttonPanel = new JPanel();
         clickToViewYourButton = new JButton("Click to View Your Notices");
-        noticeBackBtn = new JButton("Back");
+        noticeBackButton= new JButton("Back");
         buttonPanel.add(clickToViewYourButton);
-        buttonPanel.add(noticeBackBtn);
+        buttonPanel.add(noticeBackButton);
 
         // Add components to main panel
         mainPanel.add(scrollPane, BorderLayout.CENTER);
@@ -78,7 +83,8 @@ public class viewNotice {
             }
         });
 
-        noticeBackBtn.addActionListener(new ActionListener() {
+
+        noticeBackButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 currentFrame.setContentPane(new studentPage().getMainPanel());
@@ -88,3 +94,6 @@ public class viewNotice {
         });
     }
 }
+
+
+

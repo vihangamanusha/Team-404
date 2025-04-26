@@ -24,7 +24,7 @@
             </constraints>
             <properties>
               <icon value="images/arrow.png"/>
-              <text value="Button"/>
+              <text value=""/>
             </properties>
           </component>
           <vspacer id="7adde">
@@ -108,6 +108,7 @@
             </constraints>
             <properties>
               <background color="-6043950"/>
+              <font name="JetBrains Mono" size="20" style="1"/>
               <foreground color="-14541797"/>
               <text value="Faculty Of Technology - University Of Ruhuna "/>
             </properties>
