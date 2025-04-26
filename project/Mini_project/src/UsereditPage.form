@@ -176,10 +176,10 @@
           </component>
           <component id="471c4" class="javax.swing.JLabel">
             <constraints>
-              <grid row="1" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Last Name :"/>
+              <text value="Last Name            :"/>
             </properties>
           </component>
           <component id="720ef" class="javax.swing.JTextField" binding="firstname">
@@ -213,7 +213,7 @@
               <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Email :"/>
+              <text value="Email                    :"/>
             </properties>
           </component>
           <component id="f185" class="javax.swing.JTextField" binding="phonenumber">
@@ -245,7 +245,7 @@
               <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Phone Number :"/>
+              <text value="Phone Number     :"/>
             </properties>
           </component>
           <component id="85f61" class="javax.swing.JLabel">
@@ -253,7 +253,7 @@
               <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Password"/>
+              <text value="Password            :"/>
             </properties>
           </component>
           <component id="a7137" class="javax.swing.JLabel">
