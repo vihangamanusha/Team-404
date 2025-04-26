@@ -64,6 +64,16 @@ public class studentPage {
                 currentFrame.repaint();
             }
         });
+        viewTimeTableButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(mainPanel);
+                // Set the viewCourseDetails panel as the current frame's content
+                currentFrame.setContentPane(new  ViewTimeTable(currentFrame).getMainPanel());
+                currentFrame.revalidate();
+                currentFrame.repaint();
+            }
+        });
     }
 
 
