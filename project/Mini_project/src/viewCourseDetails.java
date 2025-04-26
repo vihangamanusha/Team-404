@@ -1,41 +1,3 @@
-/*import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-public class viewCourseDetails {
-    private JComboBox comboBox1;
-    private JButton viewCourseDetailsButton;
-    private JTextField courseName;
-    private JTextField courseType;
-    private JTextField theoryHours;
-    private JTextField practicalHours;
-    private JTextField credits;
-    private JTable table1;
-    private JButton backBtn;
-    private JPanel mainPanel;
-
-    public JPanel getMainPanel() {
-        return mainPanel;
-    }
-
-
-
-    public viewCourseDetails() {
-        backBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-        viewCourseDetailsButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-    }
-}*/
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
@@ -167,15 +129,7 @@ public class viewCourseDetails {
             }
         });
 
-        // Action listener for the "Back" button
-        /*backBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Add functionality to go back to the previous screen (e.g., Student Dashboard)
-                // For now, just showing a simple message box
-                JOptionPane.showMessageDialog(mainPanel, "Going back to the previous screen...");
-            }
-        });*/
+
 
 
         backBtn.addActionListener(new ActionListener() {
