@@ -23,6 +23,8 @@
               <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <background color="-15782352"/>
+              <foreground color="-1"/>
               <text value="LOG OUT"/>
             </properties>
           </component>
@@ -31,6 +33,8 @@
               <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <background color="-15782352"/>
+              <foreground color="-1"/>
               <text value="EDIT USER"/>
             </properties>
           </component>
@@ -113,6 +117,8 @@
                       <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
+                      <background color="-15782352"/>
+                      <foreground color="-1"/>
                       <text value="ATTENDANCE"/>
                     </properties>
                   </component>
@@ -142,6 +148,8 @@
                       <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
+                      <background color="-15782352"/>
+                      <foreground color="-1"/>
                       <text value="MEDICAL"/>
                     </properties>
                   </component>
@@ -171,6 +179,8 @@
                       <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
+                      <background color="-15782352"/>
+                      <foreground color="-1"/>
                       <text value="NOTICE"/>
                     </properties>
                   </component>
@@ -209,6 +219,8 @@
                       <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
+                      <background color="-15782352"/>
+                      <foreground color="-1"/>
                       <text value="TIME TABLE"/>
                     </properties>
                   </component>
