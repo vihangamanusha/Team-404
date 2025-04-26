@@ -27,13 +27,14 @@ public class viewNotice {
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class viewNotice {
     private JButton noticeBackBtn;
-    private JButton viewNoticesButton;
-    private JTable noticeTable;
+    private JButton clickToViewYourButton;
+    private JTable viewNoticeTable;
     private JPanel mainPanel;
 
     public JPanel getMainPanel() {
@@ -41,19 +42,33 @@ public class viewNotice {
     }
 
     public viewNotice(JFrame currentFrame) {
-        // Set up table columns
+        mainPanel = new JPanel(new BorderLayout());
+
+        // Create Table
         String[] columnNames = {"Date", "Notice Title", "Download Link"};
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);
-        noticeTable.setModel(model);
+        viewNoticeTable = new JTable(model);
+        JScrollPane scrollPane = new JScrollPane(viewNoticeTable);
 
-        // Sample data (you can replace this with real data from a file or DB)
+        // Create Buttons
+        JPanel buttonPanel = new JPanel();
+        clickToViewYourButton = new JButton("Click to View Your Notices");
+        noticeBackBtn = new JButton("Back");
+        buttonPanel.add(clickToViewYourButton);
+        buttonPanel.add(noticeBackBtn);
+
+        // Add components to main panel
+        mainPanel.add(scrollPane, BorderLayout.CENTER);
+        mainPanel.add(buttonPanel, BorderLayout.SOUTH);
+
+        // Sample data
         String[][] data = {
                 {"2025-04-25", "Midterm Notice", "https://example.com/notice1.pdf"},
                 {"2025-04-26", "Exam Schedule", "https://example.com/notice2.pdf"}
         };
 
-        // View Notices Button
-        viewNoticesButton.addActionListener(new ActionListener() {
+        // Button listeners
+        clickToViewYourButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 model.setRowCount(0); // Clear old data
@@ -63,7 +78,6 @@ public class viewNotice {
             }
         });
 
-        // Back Button
         noticeBackBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
