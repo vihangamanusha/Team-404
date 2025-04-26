@@ -32,14 +32,14 @@ public class UsereditPage {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                new adminPage();  // Navigate to the admin page after closing this page
+                new adminPage();
             }
         });
 
         RESETButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Clear all the text fields
+
                 firstname.setText("");
                 lastname.setText("");
                 email.setText("");
@@ -59,17 +59,17 @@ public class UsereditPage {
                 String phone = phonenumber.getText();
                 String pass1 = new String(passwordField1.getPassword());
                 String pass2 = new String(passwordField2.getPassword());
-                String img = image.getText();  // Image path if needed
-                String username = "AD0001";    // Assuming username is set dynamically, hardcoded for now
-                String role = "Admin";         // Assuming role is hardcoded, can be dynamic
+                String img = image.getText();
+                String username = "AD0001";
+                String role = "Admin";
 
-                // Validation checks for empty fields
+
                 if (fname.isEmpty() || lname.isEmpty() || mail.isEmpty() || phone.isEmpty() || pass1.isEmpty() || pass2.isEmpty() || img.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "All fields must be filled out.");
                     return;
                 }
 
-                // Validate email format using regex
+
                 String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
                 Pattern emailPattern = Pattern.compile(emailRegex);
                 Matcher emailMatcher = emailPattern.matcher(mail);
@@ -78,7 +78,7 @@ public class UsereditPage {
                     return;
                 }
 
-                // Validate phone number (ensure it's all digits and not empty)
+
                 if (!phone.matches("\\d+")) {
                     JOptionPane.showMessageDialog(null, "Phone number must be numeric and cannot be empty.");
                     return;
@@ -94,10 +94,10 @@ public class UsereditPage {
                     // Load JDBC driver
                     Class.forName("com.mysql.cj.jdbc.Driver");
 
-                    // Connect to the database
+
                     Connection conn = DBConnection.getConnection();
 
-                    // SQL update query with corrected order of parameters
+
                     String sql = "UPDATE User SET First_Name = ?, Last_Name = ?, Role = ?, Phone_Number = ?, Email = ?, Password = ?, Profile_Pic_Path = ? WHERE Username = ?";
 
                     PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -109,8 +109,8 @@ public class UsereditPage {
                     pstmt.setString(4, phone);
                     pstmt.setString(5, mail);
                     pstmt.setString(6, pass1);
-                    pstmt.setString(7, img);     // Image path
-                    pstmt.setString(8, username); // Username for the WHERE clause
+                    pstmt.setString(7, img);
+                    pstmt.setString(8, username);
 
                     // Execute the update
                     int rowsInserted = pstmt.executeUpdate();
@@ -127,7 +127,7 @@ public class UsereditPage {
                     passwordField2.setText("");
                     image.setText("");
 
-                    conn.close();  // Close the database connection
+                    conn.close();
 
                 } catch (Exception ex) {
                     ex.printStackTrace();
