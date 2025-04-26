@@ -1,28 +1,3 @@
-/*import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-public class viewNotice {
-    private JTable viewNoticeTable;
-    private JButton noticeBackBtn;
-    private JButton clickToViewYourButton;
-
-    public viewNotice() {
-        noticeBackBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-        clickToViewYourButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-    }
-}
-*/
 
 
 import javax.swing.*;
