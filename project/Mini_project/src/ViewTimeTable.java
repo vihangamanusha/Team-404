@@ -1,29 +1,3 @@
-/*import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-public class ViewTimeTable {
-    private JButton TimetableBacktn;
-    private JButton viewYourTimeTableButton;
-    private JTable table1;
-
-    public ViewTimeTable() {
-        TimetableBacktn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-        viewYourTimeTableButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-    }
-}
-*/
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
