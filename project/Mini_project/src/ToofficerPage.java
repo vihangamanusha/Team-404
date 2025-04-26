@@ -13,7 +13,7 @@ public class ToofficerPage extends JFrame{
 
 
     public ToofficerPage() {
-        setTitle("ToofficerPage");
+        setTitle("Technical Officer Page");
         setContentPane(mainpanel);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(1000, 500);
