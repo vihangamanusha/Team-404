@@ -21,6 +21,5 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="mysql-connector-j-9.1.0" level="project" />
   </component>
 </module>
