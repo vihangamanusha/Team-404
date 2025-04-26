@@ -310,7 +310,7 @@ public class MedicalPage extends JFrame {
         setSize(1000, 500);
         setLocationRelativeTo(null);
 
-        // ✅ Set DatePickers with format and placeholder
+        //  Set DatePickers with format and placeholder
         DatePickerSettings submissionSettings = new DatePickerSettings();
         submissionSettings.setFormatForDatesCommonEra("yyyy-MM-dd");
         submissionSettings.setFormatForTodayButton(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
