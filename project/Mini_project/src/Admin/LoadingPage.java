@@ -1,5 +1,6 @@
+package Admin;
+
 import javax.swing.*;
-import java.awt.*;
 
 public class LoadingPage {
     private JPanel loadingpagepanel;
