@@ -53,6 +53,7 @@ public class loginPage {
 
                         UserSession.getInstance().setUsername(user);
                         ToUserSession.getInstance().setUsername(user);
+                        stUserSession.getInstance().setUsername(user);
                         conn.close();
 
                         switch (role) {
@@ -62,17 +63,15 @@ public class loginPage {
                                 break;
                             case "student":
                                 frame.dispose();
-                                JOptionPane.showMessageDialog(null, "Welcome Student!");
-                                // new studentPage();
+                                new testStudent();
                                 break;
                             case "lecturer":
                                 frame.dispose();
                                 new LectureDashboard();
                                 break;
-                            case "Technical Officer":
+                            case "technical officer":
                                 frame.dispose();
-                                JOptionPane.showMessageDialog(null, "Welcome Technical Officer!");
-                                // new officerPage();
+                                new ToofficerPage();
                                 break;
                             default:
                                 JOptionPane.showMessageDialog(null, "Unknown role: " + role);

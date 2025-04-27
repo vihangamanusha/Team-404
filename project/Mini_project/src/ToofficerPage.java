@@ -54,8 +54,9 @@ public class ToofficerPage {
         LOGOUTButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new loginPage();
                 frame.dispose();
+                new loginPage();
+
             }
         });
 
