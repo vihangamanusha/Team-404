@@ -367,12 +367,12 @@ VALUES
 ('TG1317', 'TT001'),
 ('TG1318', 'TT001'),
 ('TG1319', 'TT001'),
-('TG1320', 'TT001'),
-('TG1321', 'TT001'),
-('TG1322', 'TT001'),
-('TG1323', 'TT001'),
-('TG1324', 'TT001'),
-('TG1325', 'TT001');
+('TG1320','TT001'),
+('TG1321','TT001'),
+('TG1322','TT001'),
+('TG1323','TT001'),
+('TG1324','TT001'),
+('TG1325','TT001');
 
 
 
@@ -3787,7 +3787,11 @@ VALUES
 INSERT INTO Notice (Notice_id, Title, Publish_date, Admin_Username, Content, Category, Attachment)
 VALUES
 ('N271266', 'Bursary signature sheet-', '2025-04-27', 'AD0001', 'for the month of May  2025', 'General', 'C:\Users\vihan\OneDrive\Desktop\Team 404\Team-404\project\Mini_project\src\uploads\notice\1.png'),
+ TG1349
+('N777858', 'academic activities', '2025-04-27', 'AD0001','on next Tuesday and Wednesday', 'Academic','C:\Users\vihan\OneDrive\Desktop\Team 404\Team-404\project\Mini_project\src\uploads\notice\2.png'),
+
 ('N777858', 'academic activities', '2025-04-27', 'AD0001', 'on next Tuesday and Wednesday', 'Academic','C:\Users\vihan\OneDrive\Desktop\Team 404\Team-404\project\Mini_project\src\uploads\notice\2.png'),
+
 ('N787787', 'End examination registration', '2025-04-27', 'AD0001', 'End examination registration', 'Academic', 'C:\Users\vihan\OneDrive\Desktop\Team 404\Team-404\project\Mini_project\src\uploads\notice\3.png');
 
 INSERT INTO Notice_Lecturer (Notice_id, Lecturer_Username)
