@@ -3787,7 +3787,7 @@ VALUES
 INSERT INTO Notice (Notice_id, Title, Publish_date, Admin_Username, Content, Category, Attachment)
 VALUES
 ('N271266', 'Bursary signature sheet-', '2025-04-27', 'AD0001', 'for the month of May  2025', 'General', 'C:\Users\vihan\OneDrive\Desktop\Team 404\Team-404\project\Mini_project\src\uploads\notice\1.png'),
-('N777858', 'academic activities', '2025-04-27', 'AD0001', 'WECWC', 'on next Tuesday and Wednesday', 'Academic','C:\Users\vihan\OneDrive\Desktop\Team 404\Team-404\project\Mini_project\src\uploads\notice\2.png'),
+('N777858', 'academic activities', '2025-04-27', 'AD0001', 'on next Tuesday and Wednesday', 'Academic','C:\Users\vihan\OneDrive\Desktop\Team 404\Team-404\project\Mini_project\src\uploads\notice\2.png'),
 ('N787787', 'End examination registration', '2025-04-27', 'AD0001', 'End examination registration', 'Academic', 'C:\Users\vihan\OneDrive\Desktop\Team 404\Team-404\project\Mini_project\src\uploads\notice\3.png');
 
 INSERT INTO Notice_Lecturer (Notice_id, Lecturer_Username)
@@ -3901,3 +3901,9 @@ VALUES
 ('N787787', 'TO0003'),
 ('N787787', 'TO0004');
 
+CREATE TABLE Course_Materials (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    course_code VARCHAR(50) NOT NULL,
+    lecturer_no VARCHAR(50) NOT NULL,
+    file_path VARCHAR(255) NOT NULL
+);
