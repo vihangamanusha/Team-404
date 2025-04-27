@@ -62,11 +62,11 @@ public class loginPage {
                                 JOptionPane.showMessageDialog(null, "Welcome Student!");
                                 // new studentPage();
                                 break;
-                            case "lecture":
+                            case "lecturer":
                                 frame.dispose();
                                 new LectureDashboard();
                                 break;
-                            case "t/o":
+                            case "Technical Officer":
                                 frame.dispose();
                                 JOptionPane.showMessageDialog(null, "Welcome Technical Officer!");
                                 // new officerPage();
