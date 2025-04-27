@@ -231,7 +231,7 @@ public class studentPage {
     public studentPage() {
         // Initialize database connection
         try {
-            connection = Student.DBConnection.getConnection(); // Corrected usage with package
+            connection = DBConnection.getConnection(); // Corrected usage with package
             System.out.println("Database Connected Successfully.");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Database connection failed: " + e.getMessage());
@@ -371,6 +371,8 @@ public class studentPage {
         page.openDashboard(frame);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1000, 500);
+        frame.setResizable(false);
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
 }
