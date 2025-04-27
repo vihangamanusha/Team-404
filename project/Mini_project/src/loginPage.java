@@ -12,6 +12,14 @@ public class loginPage {
     private JPasswordField passwordField;
 
     public loginPage() {
+        JFrame frame = new JFrame("Login Page");
+        frame.setContentPane(LoginPage);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+
         RESETButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -19,24 +27,22 @@ public class loginPage {
                 passwordField.setText("");
             }
         });
-        LOGINButton.addActionListener(new ActionListener() {
-            private Component loginPage;
 
+        LOGINButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String user = username.getText();
                 String pass = new String(passwordField.getPassword());
 
                 if (user.isEmpty() || pass.isEmpty()) {
-                    JOptionPane.showMessageDialog(loginPage, "Please enter a valid username/password");
+                    JOptionPane.showMessageDialog(frame, "Please enter a valid username/password");
                     return;
                 }
 
                 try {
-                    Connection conn = DriverManager.getConnection(
-                            "jdbc:mysql://localhost:3306/vihang", "root", "801@Vihanga");
+                    Connection conn = DBConnection.getConnection();
 
-                    String sql = "SELECT * FROM data WHERE username = ? AND password = ?";
+                    String sql = "SELECT * FROM User WHERE Username = ? AND Password = ?";
                     PreparedStatement pst = conn.prepareStatement(sql);
                     pst.setString(1, user);
                     pst.setString(2, pass);
@@ -44,11 +50,32 @@ public class loginPage {
                     ResultSet rs = pst.executeQuery();
 
                     if (rs.next()) {
-                        //JOptionPane.showMessageDialog(null, "Login successful!");
+                        String role = rs.getString("Role").toLowerCase();
                         conn.close();
 
-                        // Open next page
-                        new adminPage();
+                        switch (role) {
+                            case "admin":
+                                frame.dispose();
+                                new adminPage();
+                                break;
+                            case "student":
+                                frame.dispose();
+                                JOptionPane.showMessageDialog(null, "Welcome Student!");
+                                // new studentPage();
+                                break;
+                            case "lecture":
+                                frame.dispose();
+                                JOptionPane.showMessageDialog(null, "Welcome Lecturer!");
+                                // new lecturerPage();
+                                break;
+                            case "t/o":
+                                frame.dispose();
+                                JOptionPane.showMessageDialog(null, "Welcome Technical Officer!");
+                                // new officerPage();
+                                break;
+                            default:
+                                JOptionPane.showMessageDialog(null, "Unknown role: " + role);
+                        }
                     } else {
                         JOptionPane.showMessageDialog(null, "Invalid username or password.");
                     }
@@ -57,23 +84,11 @@ public class loginPage {
                     ex.printStackTrace();
                     JOptionPane.showMessageDialog(null, "Database error: " + ex.getMessage());
                 }
-
-
-
-        }
+            }
         });
     }
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("loginPage");
-        frame.setContentPane(new loginPage().LoginPage);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false);
-        frame.pack();
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-    }
-
-    public void showLoginFrame() {
+    public void showLoginPage() {
+        new loginPage();
     }
 }
