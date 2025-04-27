@@ -27,7 +27,6 @@ public class viewFinalMarks {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
-        // Setup table columns (as you want)
         String[] columns = {"Student ID", "Course Code", "Final Mark", "SGPA", "CGPA"};
         table1.setModel(new DefaultTableModel(columns, 0));
 
@@ -149,7 +148,6 @@ public class viewFinalMarks {
     }
 
     private float calculateTotalMarks(ResultSet rs) throws SQLException {
-        // CA and Final Exam Marks:
         float quizzes = averageBestQuizzes(rs.getFloat("Quiz1"), rs.getFloat("Quiz2"), rs.getFloat("Quiz3"), rs.getFloat("Quiz4"));
         float assessment1 = rs.getFloat("Assessment_01");
         float assessment2 = rs.getFloat("Assessment_02");

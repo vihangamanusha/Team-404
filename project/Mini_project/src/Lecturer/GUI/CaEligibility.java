@@ -25,7 +25,7 @@ public class CaEligibility {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
-        // Setup Table Columns
+
         String[] columns = {"Student ID", "Course Code", "Course Type", "CA Total", "Attendance %", "Eligibility Status"};
         table1.setModel(new DefaultTableModel(columns, 0));
 
@@ -75,7 +75,7 @@ public class CaEligibility {
             ResultSet rs = pstmt.executeQuery();
 
             DefaultTableModel model = (DefaultTableModel) table1.getModel();
-            model.setRowCount(0); // Clear previous table content
+            model.setRowCount(0);
 
             if (rs.next()) {
                 fillEligibilityTable(model, rs);
@@ -105,8 +105,7 @@ public class CaEligibility {
             ResultSet rs = pstmt.executeQuery();
 
             DefaultTableModel model = (DefaultTableModel) table1.getModel();
-            model.setRowCount(0); // Clear previous table content
-
+            model.setRowCount(0);
             boolean found = false;
             while (rs.next()) {
                 fillEligibilityTable(model, rs);

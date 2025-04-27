@@ -27,12 +27,10 @@ public class ManageCourseDetails {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
-        // Table Model Setup
         String[] columnNames = { "Course Code", "Lecturer No", "File Path" };
         DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
         table1.setModel(tableModel);
 
-        // Add Button Logic
         ADDButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -53,14 +51,12 @@ public class ManageCourseDetails {
 
                 tableModel.addRow(new Object[]{ course, lecturer, path });
 
-                // Optional: Clear inputs
                 couresCode.setText("");
                 lectureNum.setText("");
                 filePath.setText("");
             }
         });
 
-        // Remove Button Logic
         REMOVEButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -88,7 +84,6 @@ public class ManageCourseDetails {
             }
         });
 
-        // Optional: Update button logic can be added here
         UPDATEButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -96,7 +91,6 @@ public class ManageCourseDetails {
             }
         });
 
-        // Back Button Logic
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

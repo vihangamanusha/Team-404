@@ -11,9 +11,9 @@ public class ViewCAMarks {
     private JTable table1;
     private JTextField stuId;
     private JTextField courseId;
-    private JButton VIEWButton;   // View individual
-    private JButton VIEWButton1;  // View batch
-    private JPanel panel;          // <--- This is your main panel
+    private JButton VIEWButton;
+    private JButton VIEWButton1;
+    private JPanel panel;
     private JFrame frame;
 
     public ViewCAMarks() {
@@ -24,7 +24,6 @@ public class ViewCAMarks {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
-        // Setup Table Columns
         String[] columns = {"Student ID", "Course Code", "Quiz1", "Quiz2", "Quiz3", "Quiz4", "Assessment1", "Assessment2", "Mid Theory", "Mid Practical"};
         table1.setModel(new DefaultTableModel(columns, 0));
 

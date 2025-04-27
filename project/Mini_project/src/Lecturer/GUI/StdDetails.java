@@ -19,14 +19,12 @@ public class StdDetails {
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1000, 500);
-        frame.setLocationRelativeTo(null); // Center the frame
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
-        // Initialize table column names
         String[] columnNames = {"Student ID", "First Name", "Last Name", "Contact", "Email"};
         table1.setModel(new DefaultTableModel(null, columnNames));
 
-        // Search Button Logic
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -39,7 +37,6 @@ public class StdDetails {
 
                 try (Connection conn = DBConnection.getConnection()) {
                     if (conn != null) {
-                        // CORRECTED QUERY: Use 'Designation' instead of 'Role'
                         String query = "SELECT Username AS StudentID, First_Name, Last_Name, Phone_Number, Email " +
                                 "FROM USER WHERE Username = ? AND Role = 'Student'";
 
@@ -48,20 +45,17 @@ public class StdDetails {
                         ResultSet rs = stmt.executeQuery();
 
                         if (rs.next()) {
-                            // Extract data from ResultSet
                             String studentID = rs.getString("StudentID");
                             String firstName = rs.getString("First_Name");
                             String lastName = rs.getString("Last_Name");
                             String contact = rs.getString("Phone_Number");
                             String email = rs.getString("Email");
 
-                            // Update table model
                             DefaultTableModel model = new DefaultTableModel(null, columnNames);
                             model.addRow(new Object[]{studentID, firstName, lastName, contact, email});
                             table1.setModel(model);
                         } else {
                             JOptionPane.showMessageDialog(frame, "No student found with ID: " + studentId);
-                            // Clear table
                             table1.setModel(new DefaultTableModel(null, columnNames));
                         }
 
@@ -77,7 +71,6 @@ public class StdDetails {
             }
         });
 
-        // Clear Button Logic
         clearButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -86,12 +79,11 @@ public class StdDetails {
             }
         });
 
-        // Back Button Logic
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                new LectureDashboard(); // Replace with your dashboard class
+                new LectureDashboard();
             }
         });
     }

@@ -37,7 +37,6 @@ public class addMarks {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
-        // ADD MARKS BUTTON
         addMarksButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -50,7 +49,6 @@ public class addMarks {
                 String courseCode = courseCodeField.getText().trim();
                 String lecturerUsername = lecturerUsernameField.getText().trim();
 
-                // Validate and parse all marks fields
                 Float q1 = parseMark(quiz1, "Quiz 1");
                 Float q2 = parseMark(quiz2, "Quiz 2");
                 Float q3 = parseMark(quiz3, "Quiz 3");
@@ -68,7 +66,6 @@ public class addMarks {
                     return;
                 }
 
-                // Save to database
                 try (Connection conn = DBConnection.getConnection()) {
                     String sql = "INSERT INTO marks (Student_Username, Lecturer_Username, Course_code, " +
                             "Quiz1, Quiz2, Quiz3, Quiz4, Assessment_01, Assessment_02, " +
@@ -110,7 +107,6 @@ public class addMarks {
             }
         });
 
-        // DELETE MARKS BUTTON
         deleteMarksButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -155,7 +151,6 @@ public class addMarks {
             }
         });
 
-        // CLEAR BUTTON
         clearButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -163,7 +158,6 @@ public class addMarks {
             }
         });
 
-        // BACK BUTTON
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

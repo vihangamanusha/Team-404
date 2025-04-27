@@ -62,7 +62,7 @@ public class LectureDashboard {
         notification.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+              // new Lecturernoticepage();
             }
         });
         editProfile.addActionListener(new ActionListener() {
@@ -100,7 +100,7 @@ public class LectureDashboard {
         FINALMARKSButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                new viewFinalMarks();
             }
         });
         CAELIGIBILITYButton.addActionListener(new ActionListener() {
