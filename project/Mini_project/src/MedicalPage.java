@@ -662,7 +662,7 @@ public class MedicalPage extends JFrame {
         setContentPane(mainpanel);
 
         ADDButton.addActionListener(e -> {
-            try (Connection conn = getConnection()) {
+            try (Connection conn = DBConnection.getConnection()) {
                 String sql = "INSERT INTO medical (Medical_id, Course_code, Student_Username, TO_Username, Submission_date, Status, Start_date, End_date, Reason, Medical_image) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 PreparedStatement ps = conn.prepareStatement(sql);
                 ps.setString(1, textField2.getText());
@@ -683,7 +683,7 @@ public class MedicalPage extends JFrame {
         });
 
         SEARCHButton.addActionListener(e -> {
-            try (Connection conn = getConnection()) {
+            try (Connection conn = DBConnection.getConnection()) {
                 String sql = "SELECT * FROM medical WHERE Medical_id = ? AND Student_Username = ?";
                 PreparedStatement ps = conn.prepareStatement(sql);
                 ps.setString(1, textField2.getText());
@@ -711,7 +711,7 @@ public class MedicalPage extends JFrame {
         });
 
         UPDATEButton.addActionListener(e -> {
-            try (Connection conn = getConnection()) {
+            try (Connection conn = DBConnection.getConnection()) {
                 String sql = "UPDATE medical SET Course_code=?, TO_Username=?, Submission_date=?, Status=?, Start_date=?, End_date=?, Reason=?, Medical_image=? WHERE Medical_id=? AND Student_Username=?";
                 PreparedStatement ps = conn.prepareStatement(sql);
                 ps.setString(1, (String) comboBox1.getSelectedItem());
@@ -732,7 +732,7 @@ public class MedicalPage extends JFrame {
         });
 
         DELETEButton.addActionListener(e -> {
-            try (Connection conn = getConnection()) {
+            try (Connection conn = DBConnection.getConnection()) {
                 String sql = "DELETE FROM medical WHERE Medical_id = ? AND Student_Username = ?";
                 PreparedStatement ps = conn.prepareStatement(sql);
                 ps.setString(1, textField2.getText());
@@ -805,17 +805,17 @@ public class MedicalPage extends JFrame {
         selectedImageFile = null;
     }
 
-    private Connection getConnection() {
-        try {
-            return DriverManager.getConnection("jdbc:mysql://localhost:3306/tecmis", "your_username", "1234");
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, "Database connection failed: " + e.getMessage());
-            return null;
-        }
-    }
+    //private Connection getConnection() {
+      //  try {
+        //    return DriverManager.getConnection("jdbc:mysql://localhost:3306/tecmis", "your_username", "1234");
+       // } catch (SQLException e) {
+       //     JOptionPane.showMessageDialog(this, "Database connection failed: " + e.getMessage());
+        //    return null;
+       // }
+    //}
 
     private void loadComboBoxData() {
-        try (Connection conn = getConnection()) {
+        try (Connection conn = DBConnection.getConnection()) {
             if (conn == null) {
                 JOptionPane.showMessageDialog(this, "Database connection failed.");
                 return;
