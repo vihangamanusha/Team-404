@@ -1,6 +1,9 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class studentPage {
     private JButton LOGOUTButton;
@@ -18,12 +21,30 @@ public class studentPage {
     private JButton studenteditProfilePictureButton;
     private JButton studentsaveButton;
 
+
+
+    // Declare a Connection object
+    private Connection connection;
+
+
     public JPanel getMainPanel() {
         return mainPanel;
     }
 
 
     public studentPage() {
+
+        // Initialize database connection
+        try {
+            // Initialize connection
+            MyDbConnector dbConnector = new MyDbConnector();
+            connection = dbConnector.getMyConnection(); // <-- FIXED here
+            System.out.println("Database Connected Successfully.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Database connection failed: " + e.getMessage());
+            e.printStackTrace();
+        }
+
 
         //  NEW LOGIC START (initially hide fields)
         welcomemsgTextField.setEditable(false);

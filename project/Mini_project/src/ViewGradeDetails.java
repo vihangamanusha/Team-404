@@ -4,12 +4,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ViewGradeDetails {
-    private JTextField studentId;
+    //private JTextField studentId;
     private JButton viewGradeDetailsButton;
     private JTextField CGPAfield;
     private JTextField SGPAfield;
     private JTable viewGradeTable;
     private JButton gradeBackBtnButton;
+    private JTextField gradeCourseIDField;
     private JPanel mainPanel;
 
     public JPanel getMainPanel() {
