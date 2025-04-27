@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
 
-public class ViewAttendance {
+public class ViewAttndnce {
     private JPanel panel1;
     private JButton backButton;
     private JTextField studentIdField;
@@ -12,7 +12,7 @@ public class ViewAttendance {
     private JTable attendanceTable;
     private JScrollPane scrollPane;
 
-    public ViewAttendance() {
+    public ViewAttndnce() {
         JFrame frame = new JFrame("Attendance Viewer");
         frame.setContentPane(panel1);  // Fixed: Use current panel
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -93,6 +93,6 @@ public class ViewAttendance {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new ViewAttendance());
+        SwingUtilities.invokeLater(() -> new ViewAttndnce());
     }
 }

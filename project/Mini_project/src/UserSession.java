@@ -3,7 +3,7 @@ public class UserSession {
     private String username;
 
     private UserSession() {
-        // Private constructor to prevent instantiation from other classes
+
     }
 
     public static UserSession getInstance() {

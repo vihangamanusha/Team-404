@@ -89,7 +89,7 @@ public class CaEligibility {
     }
 
     private void checkBatchEligibility() {
-        //String lecturerUsername = UserSession.getInstance().getUsername();  // Assuming UserSession exists
+        String lecturerUsername = UserSession.getInstance().getUsername();
 
         try (Connection conn = DBConnection.getConnection()) {
             String sql = "SELECT m.*, c.Course_type, " +
@@ -100,7 +100,7 @@ public class CaEligibility {
                     "WHERE m.Lecturer_Username = ?";
 
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            //pstmt.setString(1, lecturerUsername);
+            pstmt.setString(1, lecturerUsername);
             ResultSet rs = pstmt.executeQuery();
 
             DefaultTableModel model = (DefaultTableModel) table1.getModel();

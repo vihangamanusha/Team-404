@@ -17,9 +17,9 @@ public class DBConnection {
 
         Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
         if (conn != null) {
-            System.out.println("✅ Database connection successful!");
+            System.out.println("Database connection successful!");
         } else {
-            System.out.println("❌ Database connection failed!");
+            System.out.println("Database connection failed!");
         }
         return conn;
     }

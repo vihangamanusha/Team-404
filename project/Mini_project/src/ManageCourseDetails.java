@@ -3,6 +3,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.sql.*;
 
 public class ManageCourseDetails {
     private JPanel panel1;
@@ -29,6 +30,7 @@ public class ManageCourseDetails {
         DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
         table1.setModel(tableModel);
 
+        // ADD button action
         ADDButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -47,14 +49,31 @@ public class ManageCourseDetails {
                     return;
                 }
 
-                tableModel.addRow(new Object[]{ course, lecturer, path });
+                // Add data to database
+                try (Connection conn = DBConnection.getConnection()) {
+                    String sql = "INSERT INTO Course_Materials (course_code, lecturer_no, file_path) VALUES (?, ?, ?)";
+                    PreparedStatement pstmt = conn.prepareStatement(sql);
+                    pstmt.setString(1, course);
+                    pstmt.setString(2, lecturer);
+                    pstmt.setString(3, path);
+                    pstmt.executeUpdate();
+                    JOptionPane.showMessageDialog(frame, "Course material added successfully.");
 
-                couresCode.setText("");
-                lectureNum.setText("");
-                filePath.setText("");
+                    // Add row to table (to update the GUI)
+                    tableModel.addRow(new Object[]{ course, lecturer, path });
+
+                    // Clear the text fields
+                    couresCode.setText("");
+                    lectureNum.setText("");
+                    filePath.setText("");
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(frame, "Error adding course material: " + ex.getMessage());
+                }
             }
         });
 
+        // REMOVE button action
         REMOVEButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -78,10 +97,24 @@ public class ManageCourseDetails {
                     }
                 }
 
+                // Remove from database
+                String courseCode = (String) tableModel.getValueAt(selectedRow, 0);
+                try (Connection conn = DBConnection.getConnection()) {
+                    String sql = "DELETE FROM Course_Materials WHERE course_code = ?";
+                    PreparedStatement pstmt = conn.prepareStatement(sql);
+                    pstmt.setString(1, courseCode);
+                    pstmt.executeUpdate();
+                    JOptionPane.showMessageDialog(frame, "Course material removed from database.");
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(frame, "Error removing course material from database: " + ex.getMessage());
+                }
+
                 tableModel.removeRow(selectedRow);
             }
         });
 
+        // UPDATE button action (you can implement as needed)
         UPDATEButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -89,6 +122,7 @@ public class ManageCourseDetails {
             }
         });
 
+        // BACK button action
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -98,4 +132,7 @@ public class ManageCourseDetails {
         });
     }
 
+    public static void main(String[] args) {
+        new ManageCourseDetails();
+    }
 }
