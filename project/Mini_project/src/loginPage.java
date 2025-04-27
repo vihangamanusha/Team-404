@@ -50,6 +50,10 @@ public class loginPage {
 
                     if (rs.next()) {
                         String role = rs.getString("Role").toLowerCase();
+
+                        UserSession.getInstance().setUsername(user);
+                        ToUserSession.getInstance().setUsername(user);
+                        stUserSession.getInstance().setUsername(user);
                         conn.close();
 
                         switch (role) {
@@ -59,18 +63,15 @@ public class loginPage {
                                 break;
                             case "student":
                                 frame.dispose();
-                                JOptionPane.showMessageDialog(null, "Welcome Student!");
-                                // new studentPage();
+                                new testStudent();
                                 break;
-                            case "lecture":
+                            case "lecturer":
                                 frame.dispose();
-                                JOptionPane.showMessageDialog(null, "Welcome Lecturer!");
-                                // new lecturerPage();
+                                new LectureDashboard();
                                 break;
-                            case "t/o":
+                            case "technical officer":
                                 frame.dispose();
-                                JOptionPane.showMessageDialog(null, "Welcome Technical Officer!");
-                                // new officerPage();
+                                new ToofficerPage();
                                 break;
                             default:
                                 JOptionPane.showMessageDialog(null, "Unknown role: " + role);

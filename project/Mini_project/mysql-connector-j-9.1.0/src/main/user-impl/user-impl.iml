@@ -17,5 +17,9 @@
     <orderEntry type="module" module-name="test" />
     <orderEntry type="module" module-name="test2" />
     <orderEntry type="module" module-name="core-impl" />
+    <orderEntry type="module" module-name="core-impl" />
+    <orderEntry type="module" module-name="protocol-impl" />
+    <orderEntry type="module" module-name="core-api" />
+    <orderEntry type="module" module-name="test" />
   </component>
 </module>
