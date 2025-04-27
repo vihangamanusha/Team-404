@@ -32,7 +32,7 @@ public class Lecturernoticepage {
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
                 // Add logic to go back to the lecture dashboard or main page
-                // For example: new LectureDashboard();
+                new LectureDashboard();
             }
         });
 
@@ -71,16 +71,15 @@ public class Lecturernoticepage {
 
     private void loadNoticeData() {
         DefaultTableModel model = new DefaultTableModel();
-        model.setColumnIdentifiers(new String[] {"Title", "Date", "Content", "Category", "Attachment"});
+        model.setColumnIdentifiers(new String[]{"Title", "Date", "Content", "Category", "Attachment"});
 
         try (Connection conn = DBConnection.getConnection()) {
-            // Updated query to select all notices, without filtering by category
             String query = "SELECT Title, Publish_date, Content, Category, Attachment FROM Notice";
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
 
             while (rs.next()) {
-                model.addRow(new Object[] {
+                model.addRow(new Object[]{
                         rs.getString("Title"),
                         rs.getTimestamp("Publish_date"),
                         rs.getString("Content"),
@@ -91,7 +90,7 @@ public class Lecturernoticepage {
 
             table1.setModel(model);
 
-            // Optional: hide attachment column visually but keep data
+            // Optional: Hide attachment column
             table1.getColumnModel().getColumn(4).setMinWidth(0);
             table1.getColumnModel().getColumn(4).setMaxWidth(0);
             table1.getColumnModel().getColumn(4).setWidth(0);
@@ -100,15 +99,5 @@ public class Lecturernoticepage {
             JOptionPane.showMessageDialog(null, "Error loading data:\n" + e.getMessage());
             e.printStackTrace();
         }
-    }
-
-    // Main method to launch the application
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new Lecturernoticepage(); // Create and display the Lecturernoticepage
-            }
-        });
     }
 }
