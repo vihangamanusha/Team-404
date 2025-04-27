@@ -1,0 +1,12 @@
+----------------------------------------------------------------------------------------------------------------------
+| Course code   |             Course Name                  |     Date     |  Start time  |  End time   |   Venue     |
+|---------------------------------------------------------------------------------------------------------------------
+|  ICT2113      |   Business Economics                     |    Monday    |   10.00 am   |  12.00 pm   |   Lab I     |
+|  ICT2122      |   Data Structures & Algorithms           |    Tuesday   |   08.00 am   |  01.00 pm   |   Lab II    |
+|  ICT2133      |   Object oriented Programming            |    Wednesday |   08.00 am   |  12.00 pm   |   Lab II    |
+|  ICT2142      |   Object oriented Programming Practicum  |    Thursday  |   09.00 am   |  01.00 pm   |   Lab I     |
+|  ICT2152      |   Object oriented Programming Design     |    Friday    |   10.00 am   |  03.00 pm   |   Lab I     |
+|               |                                          |              |              |             |             |
+----------------------------------------------------------------------------------------------------------------------
+ 
+ 
