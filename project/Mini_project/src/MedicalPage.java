@@ -561,6 +561,12 @@ import java.util.List;
 public class MedicalPage extends JFrame
 */
 
+
+
+
+
+
+
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import com.github.lgooddatepicker.components.DatePicker;
@@ -597,7 +603,7 @@ public class MedicalPage extends JFrame {
         setSize(1000, 500);
         setLocationRelativeTo(null);
 
-        //  Set DatePickers with format and placeholder
+        // Set DatePickers
         DatePickerSettings submissionSettings = new DatePickerSettings();
         submissionSettings.setFormatForDatesCommonEra("yyyy-MM-dd");
         submissionSettings.setFormatForTodayButton(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
@@ -791,9 +797,9 @@ public class MedicalPage extends JFrame {
         comboBox2.setSelectedIndex(0);
         comboBox3.setSelectedIndex(0);
         textArea1.setText("");
-        submissionDatePicker.clear();
-        startDatePicker.clear();
-        endDatePicker.clear();
+        submissionDatePicker.setDate(null);
+        startDatePicker.setDate(null);
+        endDatePicker.setDate(null);
         imagePicker.setIcon(null);
         imagePicker.setText("Drag and drop image here or click to choose");
         selectedImageFile = null;
@@ -819,7 +825,6 @@ public class MedicalPage extends JFrame {
             comboBox2.removeAllItems();
             comboBox3.removeAllItems();
 
-            // Load Course Codes
             String sql1 = "SELECT DISTINCT Course_code FROM course";
             try (PreparedStatement ps = conn.prepareStatement(sql1);
                  ResultSet rs = ps.executeQuery()) {
@@ -828,7 +833,6 @@ public class MedicalPage extends JFrame {
                 }
             }
 
-            // Load TO Usernames
             String sql2 = "SELECT DISTINCT TO_Username FROM technical_officer";
             try (PreparedStatement ps = conn.prepareStatement(sql2);
                  ResultSet rs = ps.executeQuery()) {
@@ -837,7 +841,6 @@ public class MedicalPage extends JFrame {
                 }
             }
 
-            // Set Status manually
             comboBox3.addItem("Pending");
             comboBox3.addItem("Approved");
             comboBox3.addItem("Rejected");

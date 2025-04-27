@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d7a7091-184d-4e25-8012-cb80ddcc4c84" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/TOViewTimeTablePage.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/TOViewTimeTablePage.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TOViewTimeTablePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TOViewTimeTablePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MedicalPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MedicalPage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,13 +44,13 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.TOViewTimeTablePage">
+  <component name="RunManager" selected="Application.MedicalPage">
     <configuration name="MedicalPage" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MedicalPage" />
       <module name="Mini_project" />
@@ -88,9 +88,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MedicalPage" />
         <item itemvalue="Application.TOViewTimeTablePage" />
         <item itemvalue="Application.TOViewNoticePage" />
-        <item itemvalue="Application.MedicalPage" />
         <item itemvalue="Application.attendancePage" />
         <item itemvalue="Application.ToofficerPage" />
       </list>
@@ -113,7 +113,7 @@
       <option name="presentableId" value="Default" />
       <updated>1745489855266</updated>
       <workItem from="1745489856351" duration="72433000" />
-      <workItem from="1745700778658" duration="4529000" />
+      <workItem from="1745700778658" duration="8776000" />
     </task>
     <servers />
   </component>
