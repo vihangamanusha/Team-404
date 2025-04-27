@@ -1,6 +1,3 @@
-package Lecturer.GUI;
-
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,6 +20,14 @@ public class LectureDashboard {
 
 
     public LectureDashboard() {
+
+        JFrame frame = new JFrame("Lecturer Dashboard");
+        //frame.setContentPane(new LectureDashboard().getMainPanel());
+        frame.setContentPane(mainPanel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(1000, 500);
+        frame.setLocationRelativeTo(null); // center
+        frame.setVisible(true);
 
         viewDetailes.addActionListener(new ActionListener() {
             @Override
@@ -62,7 +67,7 @@ public class LectureDashboard {
         notification.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-              // new Lecturernoticepage();
+               new Lecturernoticepage();
             }
         });
         editProfile.addActionListener(new ActionListener() {
@@ -74,7 +79,9 @@ public class LectureDashboard {
         logout.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                frame.dispose();
+                new loginPage();
+                
             }
         });
 
@@ -118,12 +125,7 @@ public class LectureDashboard {
 
     public static void main(String[] args) {
 
-            JFrame frame = new JFrame("Lecturer Dashboard");
-            frame.setContentPane(new LectureDashboard().getMainPanel());
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setSize(1000, 500);
-            frame.setLocationRelativeTo(null); // center
-            frame.setVisible(true);
+        new LectureDashboard();
 
     }
 }
