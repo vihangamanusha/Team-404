@@ -1,9 +1,11 @@
+
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import com.github.lgooddatepicker.components.DatePicker;
 import com.github.lgooddatepicker.components.DatePickerSettings;
 import java.awt.*;
-import java.awt.datatransfer.*;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
 import java.awt.event.*;
 import java.io.File;
 import java.sql.*;
@@ -19,10 +21,20 @@ public class MedicalPage extends JFrame {
     private JComboBox<String> comboBox2; // TO Username
     private JComboBox<String> comboBox3; // Status
     private JTextArea textArea1; // Reason
-    private JButton ADDButton, UPDATEButton, DELETEButton, CLEARButton, SEARCHButton;
-    private JButton UPLOADMEDICALIMAGEButton, CLEARTHEIMAGEButton, button1;
-    private JPanel mainpanel, SubmissionDatePanel, StartDatePanel, EndDatePanel;
-    private JPanel formpanel, ButtonPanel;
+    private JButton ADDButton;
+    private JButton UPDATEButton;
+    private JButton DELETEButton;
+    private JButton CLEARButton;
+    private JButton SEARCHButton;
+    private JButton UPLOADMEDICALIMAGEButton;
+    private JButton CLEARTHEIMAGEButton;
+    private JButton button1;
+    private JPanel mainpanel;
+    private JPanel SubmissionDatePanel;
+    private JPanel StartDatePanel;
+    private JPanel EndDatePanel;
+    private JPanel formpanel;
+    private JPanel ButtonPanel;
     private JLabel imagePicker;
 
     private DatePicker submissionDatePicker, startDatePicker, endDatePicker;
@@ -90,9 +102,14 @@ public class MedicalPage extends JFrame {
             }
         });
 
-        setContentPane(mainpanel);
+        // Add action listeners to buttons
+        ADDButton.addActionListener(e -> addDataToDatabase());
+        UPDATEButton.addActionListener(e -> updateDataInDatabase());
+        DELETEButton.addActionListener(e -> deleteRecordInDatabase());
+        SEARCHButton.addActionListener(e -> searchDataInDatabase());
+        CLEARTHEIMAGEButton.addActionListener(e -> clearImage());
 
-        // Action listeners for buttons (Add, Search, Update, Delete, Clear) remain unchanged.
+        setContentPane(mainpanel);
 
         setVisible(true);
     }
@@ -135,6 +152,12 @@ public class MedicalPage extends JFrame {
         selectedImageFile = null;
     }
 
+    private void clearImage() {
+        imagePicker.setIcon(null);
+        imagePicker.setText("Drag and drop image here or click to choose");
+        selectedImageFile = null;
+    }
+
     private void loadComboBoxData() {
         try (Connection conn = DBConnection.getConnection()) {
             if (conn == null) {
@@ -172,6 +195,125 @@ public class MedicalPage extends JFrame {
         } catch (SQLException ex) {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(this, "Error loading combo box data: " + ex.getMessage());
+        }
+    }
+
+    private void addDataToDatabase() {
+        try (Connection conn = DBConnection.getConnection()) {
+            if (conn == null) {
+                JOptionPane.showMessageDialog(this, "Database connection failed.");
+                return;
+            }
+
+            String sql = "INSERT INTO Medical (Medical_id, Submission_date, Status, Start_date, End_date, Reason, Course_code, Student_Username, TO_Username, Medical_image) "
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            try (PreparedStatement ps = conn.prepareStatement(sql)) {
+                ps.setString(1, textField2.getText());
+                ps.setString(2, submissionDatePicker.getText());
+                ps.setString(3, (String) comboBox3.getSelectedItem());
+                ps.setString(4, startDatePicker.getText());
+                ps.setString(5, endDatePicker.getText());
+                ps.setString(6, textArea1.getText());
+                ps.setString(7, (String) comboBox1.getSelectedItem());
+                ps.setString(8, textField1.getText());
+                ps.setString(9, (String) comboBox2.getSelectedItem());
+                ps.setString(10, selectedImageFile != null ? selectedImageFile.getAbsolutePath() : null);
+
+                ps.executeUpdate();
+                JOptionPane.showMessageDialog(this, "Record added successfully!");
+                clearForm();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error adding record: " + e.getMessage());
+        }
+    }
+
+    private void updateDataInDatabase() {
+        try (Connection conn = DBConnection.getConnection()) {
+            if (conn == null) {
+                JOptionPane.showMessageDialog(this, "Database connection failed.");
+                return;
+            }
+
+            String sql = "UPDATE Medical SET Submission_date = ?, Status = ?, Start_date = ?, End_date = ?, Reason = ?, Course_code = ?, Student_Username = ?, TO_Username = ?, Medical_image = ? "
+                    + "WHERE Medical_id = ?";
+            try (PreparedStatement ps = conn.prepareStatement(sql)) {
+                ps.setString(1, submissionDatePicker.getText());
+                ps.setString(2, (String) comboBox3.getSelectedItem());
+                ps.setString(3, startDatePicker.getText());
+                ps.setString(4, endDatePicker.getText());
+                ps.setString(5, textArea1.getText());
+                ps.setString(6, (String) comboBox1.getSelectedItem());
+                ps.setString(7, textField1.getText());
+                ps.setString(8, (String) comboBox2.getSelectedItem());
+                ps.setString(9, selectedImageFile != null ? selectedImageFile.getAbsolutePath() : null);
+                ps.setString(10, textField2.getText());
+
+                ps.executeUpdate();
+                JOptionPane.showMessageDialog(this, "Record updated successfully!");
+                clearForm();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error updating record: " + e.getMessage());
+        }
+    }
+
+    private void deleteRecordInDatabase() {
+        try (Connection conn = DBConnection.getConnection()) {
+            if (conn == null) {
+                JOptionPane.showMessageDialog(this, "Database connection failed.");
+                return;
+            }
+
+            String sql = "DELETE FROM Medical WHERE Medical_id = ?";
+            try (PreparedStatement ps = conn.prepareStatement(sql)) {
+                ps.setString(1, textField2.getText());
+                ps.executeUpdate();
+                JOptionPane.showMessageDialog(this, "Record deleted successfully!");
+                clearForm();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error deleting record: " + e.getMessage());
+        }
+    }
+
+    private void searchDataInDatabase() {
+        try (Connection conn = DBConnection.getConnection()) {
+            if (conn == null) {
+                JOptionPane.showMessageDialog(this, "Database connection failed.");
+                return;
+            }
+
+            String sql = "SELECT * FROM Medical WHERE Medical_id = ?";
+            try (PreparedStatement ps = conn.prepareStatement(sql)) {
+                ps.setString(1, textField2.getText());
+                try (ResultSet rs = ps.executeQuery()) {
+                    if (rs.next()) {
+                        textField1.setText(rs.getString("Student_Username"));
+                        comboBox1.setSelectedItem(rs.getString("Course_code"));
+                        comboBox2.setSelectedItem(rs.getString("TO_Username"));
+                        comboBox3.setSelectedItem(rs.getString("Status"));
+                        textArea1.setText(rs.getString("Reason"));
+                        submissionDatePicker.setText(rs.getString("Submission_date"));
+                        startDatePicker.setText(rs.getString("Start_date"));
+                        endDatePicker.setText(rs.getString("End_date"));
+                        String imagePath = rs.getString("Medical_image");
+                        if (imagePath != null && !imagePath.isEmpty()) {
+                            setImage(new File(imagePath));
+                        } else {
+                            clearImage();
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(this, "No record found.");
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error searching record: " + e.getMessage());
         }
     }
 
