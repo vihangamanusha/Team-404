@@ -1,13 +1,10 @@
 import javax.swing.*;
-import java.awt.*;
 
 public class LoadingPage {
     private JPanel loadingpagepanel;
 
     public LoadingPage() {
-
-
-
+        
 
         JFrame frame = new JFrame("Loading...");
         frame.setContentPane(loadingpagepanel);
