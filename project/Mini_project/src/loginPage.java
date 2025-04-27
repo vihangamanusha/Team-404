@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
@@ -51,6 +50,8 @@ public class loginPage {
 
                     if (rs.next()) {
                         String role = rs.getString("Role").toLowerCase();
+
+                        //UserSession.getInstance().setUsername(user);
                         conn.close();
 
                         switch (role) {
@@ -63,12 +64,11 @@ public class loginPage {
                                 JOptionPane.showMessageDialog(null, "Welcome Student!");
                                 // new studentPage();
                                 break;
-                            case "lecture":
+                            case "lecturer":
                                 frame.dispose();
-                                JOptionPane.showMessageDialog(null, "Welcome Lecturer!");
-                                // new lecturerPage();
+                                //new LectureDashboard();
                                 break;
-                            case "t/o":
+                            case "Technical Officer":
                                 frame.dispose();
                                 JOptionPane.showMessageDialog(null, "Welcome Technical Officer!");
                                 // new officerPage();
