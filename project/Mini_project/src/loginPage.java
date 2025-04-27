@@ -64,7 +64,6 @@ public class loginPage {
                                 break;
                             case "lecturer":
                                 frame.dispose();
-                                JOptionPane.showMessageDialog(null, "Welcome Lecture!");
                                 new LectureDashboard();
                                 break;
                             case "Technical Officer":
