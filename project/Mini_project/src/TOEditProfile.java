@@ -70,6 +70,7 @@ public class TOEditProfile extends JFrame {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                new ToofficerPage();
                 dispose(); // Close window
             }
         });
@@ -103,13 +104,13 @@ public class TOEditProfile extends JFrame {
 
     private void updateProfileData() {
         try {
-           /* Connection conn = DriverManager.getConnection(
+            Connection conn = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/your_database_name",
                     "your_username",
                     "your_password"
             );
 
-            */
+
             String sql = "UPDATE USER SET First_Name=?, Last_Name=?, Phone_Number=?, Email=?, Password=? WHERE Username=?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, textField1.getText());
