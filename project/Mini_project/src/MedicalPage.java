@@ -112,6 +112,14 @@ public class MedicalPage extends JFrame {
         setContentPane(mainpanel);
 
         setVisible(true);
+
+        button1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new ToofficerPage();
+                dispose();
+            }
+        });
     }
 
     private void chooseImageFile() {

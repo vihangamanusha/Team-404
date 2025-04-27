@@ -5,15 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d7a7091-184d-4e25-8012-cb80ddcc4c84" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/ToUserSession.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/newTOEdit.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/newTOEdit.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TOEditProfile.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/TOEditProfile.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TOEditProfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TOEditProfile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TOViewNoticePage.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TOViewNoticePage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MedicalPage.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/MedicalPage.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MedicalPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MedicalPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TOViewTimeTablePage.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TOViewTimeTablePage.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ToofficerPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ToofficerPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/attendancePage.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/attendancePage.form" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +49,7 @@
     "Application.newTOEdit.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW": "true",
+    "UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW": "false",
     "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW": "true",
     "git-widget-placeholder": "TG1343",
     "kotlin-language-version-configured": "true",
@@ -105,10 +103,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ToofficerPage" />
         <item itemvalue="Application.TOEditProfile" />
         <item itemvalue="Application.attendancePage" />
         <item itemvalue="Application.MedicalPage" />
-        <item itemvalue="Application.ToofficerPage" />
         <item itemvalue="Application.TOViewTimeTablePage" />
       </list>
     </recent_temporary>
