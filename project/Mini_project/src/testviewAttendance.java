@@ -14,10 +14,11 @@ public class testviewAttendance {
     private JButton viewAttendanceButton;
     private JTextField viewAttendanceSessionType;
     private JTable attendanceTable;
+    private JScrollPane attendanceScroller;
     private JFrame frame;
 
     public testviewAttendance() {
-        frame = new JFrame("Student Dashboard");
+        frame = new JFrame("View Attendance");
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1000, 500);
@@ -29,6 +30,7 @@ public class testviewAttendance {
             public void actionPerformed(ActionEvent e) {
                 String courseCode = viewAttendanceCourseCode.getText().trim();
                 String sessionType = viewAttendanceSessionType.getText().trim();
+                String loggedInUsername = "TG1301"; // 🔥 Replace with the actual logged-in student's username
 
                 if (courseCode.isEmpty() || sessionType.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Please enter both Course Code and Session Type.");
@@ -36,37 +38,31 @@ public class testviewAttendance {
                 }
 
                 try {
-                    Connection conn = DBConnection.getConnection(); // Use your DBConnection class
+                    Connection conn = DBConnection.getConnection();
 
-                    String sql = "SELECT Session_date, Status FROM Attendance WHERE Course_code = ? AND Session_Type = ?";
+                    String sql = "SELECT Session_date, Status " +
+                            "FROM Attendance " +
+                            "WHERE Course_code = ? AND Session_Type = ? AND Student_Username = ?";
                     PreparedStatement pst = conn.prepareStatement(sql);
                     pst.setString(1, courseCode);
                     pst.setString(2, sessionType);
+                    pst.setString(3, loggedInUsername);
 
                     ResultSet rs = pst.executeQuery();
 
                     // Create table model manually
                     DefaultTableModel model = new DefaultTableModel();
-                    ResultSetMetaData rsmd = rs.getMetaData();
-                    int columnCount = rsmd.getColumnCount();
+                    model.addColumn("Session Date");
+                    model.addColumn("Status");
 
-                    // Add column names
-                    for (int i = 1; i <= columnCount; i++) {
-                        model.addColumn(rsmd.getColumnName(i));
-                    }
-
-                    // Add rows
                     while (rs.next()) {
-                        Object[] rowData = new Object[columnCount];
-                        for (int i = 1; i <= columnCount; i++) {
-                            rowData[i - 1] = rs.getObject(i);
-                        }
-                        model.addRow(rowData);
+                        String sessionDate = rs.getString("Session_date");
+                        String status = rs.getString("Status");
+                        model.addRow(new Object[]{sessionDate, status});
                     }
 
                     attendanceTable.setModel(model);
 
-                    // Close
                     rs.close();
                     pst.close();
                     conn.close();
@@ -77,11 +73,12 @@ public class testviewAttendance {
                 }
             }
         });
+
         backBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                new testStudent();
+                new testStudent(); // 👈 Go back to the student dashboard
             }
         });
     }

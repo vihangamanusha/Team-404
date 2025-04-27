@@ -109,7 +109,7 @@ public class testStudent extends Container {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                new studenteditpage();
+                new Studenteditpage();
             }
         });
     }

@@ -39,6 +39,7 @@
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
+                      <background color="-6043950"/>
                       <icon value="images/arrow.png"/>
                       <text value=""/>
                     </properties>
@@ -60,6 +61,9 @@
                     <properties>
                       <font name="JetBrains Mono" size="36" style="1"/>
                       <foreground color="-14541797"/>
+                      <horizontalAlignment value="0"/>
+                      <horizontalTextPosition value="0"/>
+                      <labelFor value="794ab"/>
                       <text value="View  Attendance Details"/>
                     </properties>
                   </component>
@@ -80,7 +84,7 @@
                       <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <font name="JetBrains Mono" size="20" style="1"/>
+                      <font name="JetBrains Mono" size="14" style="1"/>
                       <foreground color="-14541797"/>
                       <text value="Course Code"/>
                     </properties>
@@ -108,7 +112,7 @@
                       <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <font name="JetBrains Mono" size="20" style="1"/>
+                      <font name="JetBrains Mono" size="14" style="1"/>
                       <foreground color="-14541797"/>
                       <text value="Session Type"/>
                     </properties>
@@ -149,19 +153,24 @@
                 </constraints>
                 <properties>
                   <background color="-6043950"/>
-                  <font name="JetBrains Mono" size="20" style="1"/>
+                  <font name="JetBrains Mono" size="11" style="0"/>
                   <foreground color="-14541797"/>
                   <text value="Faculty Of Technology - University Of Ruhuna"/>
                 </properties>
               </component>
-              <component id="59f" class="javax.swing.JTable" binding="attendanceTable">
+              <scrollpane id="794ab" binding="attendanceScroller">
                 <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                    <preferred-size width="150" height="50"/>
-                  </grid>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
-              </component>
+                <border type="none"/>
+                <children>
+                  <component id="59f" class="javax.swing.JTable" binding="attendanceTable">
+                    <constraints/>
+                    <properties/>
+                  </component>
+                </children>
+              </scrollpane>
             </children>
           </grid>
         </children>
