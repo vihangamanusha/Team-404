@@ -3,6 +3,7 @@ import javax.swing.*;
 public class TOViewTimeTablePage extends JFrame {
     private JPanel timetablePanel;
     private JButton button1;
+    private JButton CLICKHERETOVIEWButton;
 
     public TOViewTimeTablePage() {
         setContentPane(timetablePanel);
