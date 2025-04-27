@@ -32,7 +32,7 @@ public class testStudent extends Container {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String loggedInUsername = "AD0001"; // Replace with the actual logged-in username
-
+ 
                 try {
                     // Step 1: Query the database for the timetable content
                     Connection conn = DBConnection.getConnection();
