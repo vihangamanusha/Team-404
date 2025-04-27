@@ -5,9 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d7a7091-184d-4e25-8012-cb80ddcc4c84" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/ToUserSession.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newTOEdit.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newTOEdit.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/attendancePage.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/attendancePage.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/attendancePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/attendancePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TOEditProfile.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/TOEditProfile.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TOEditProfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TOEditProfile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TOViewNoticePage.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TOViewNoticePage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ToofficerPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ToofficerPage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +40,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.LoadingPage.executor": "Run",
     "Application.MedicalPage.executor": "Run",
     "Application.TOEditProfile.executor": "Run",
     "Application.TOViewNoticePage.executor": "Run",
@@ -41,6 +48,7 @@
     "Application.ToofficerPage.executor": "Run",
     "Application.ViewTimeTablePage.executor": "Run",
     "Application.attendancePage.executor": "Run",
+    "Application.newTOEdit.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW": "true",
@@ -59,7 +67,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.attendancePage">
+  <component name="RunManager">
     <configuration name="MedicalPage" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MedicalPage" />
       <module name="Mini_project" />
@@ -97,10 +105,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.TOEditProfile" />
         <item itemvalue="Application.attendancePage" />
         <item itemvalue="Application.MedicalPage" />
         <item itemvalue="Application.ToofficerPage" />
-        <item itemvalue="Application.TOEditProfile" />
         <item itemvalue="Application.TOViewTimeTablePage" />
       </list>
     </recent_temporary>
@@ -122,7 +130,7 @@
       <option name="presentableId" value="Default" />
       <updated>1745489855266</updated>
       <workItem from="1745489856351" duration="72433000" />
-      <workItem from="1745700778658" duration="34202000" />
+      <workItem from="1745700778658" duration="41394000" />
     </task>
     <servers />
   </component>

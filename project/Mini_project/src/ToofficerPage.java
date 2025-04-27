@@ -36,7 +36,7 @@ public class ToofficerPage extends JFrame{
         NOTICEButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new TOViewNoticePage();
+               // new TOViewNoticePage();
 
             }
         });
@@ -45,6 +45,26 @@ public class ToofficerPage extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 new TOViewTimeTablePage();
 
+            }
+        });
+        LOGOUTButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new loginPage();
+            }
+        });
+        EDITUSERButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new newTOEdit();
+                dispose();
+            }
+        });
+        LOGOUTButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new loginPage();
+                dispose();
             }
         });
     }

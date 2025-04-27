@@ -1,135 +1,250 @@
-/*
-import javax.swing.*;
+/*import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.sql.*;
 
-public class TOEditProfile extends JFrame {
+public class TOEditProfile {
+    private JPanel panel;
+    private JTextField firstNameField;
+    private JTextField lastNameField;
+    private JTextField phoneField;
+    private JTextField emailField;
+    private JTextField profilePicture;
+    private JTextField passwordField;
+    private JButton updateButton;
+    //private String username; // Logged-in TO's username
     private JButton backButton;
-    private JTextField textField1;
-    private JTextField textField2;
-    private JTextField textField3;
-    private JTextField textField4;
-    private JTextField textField5;
-    private JButton UPDATEButton;
-    private JButton RESETButton;
 
-    private JPanel editProfilePanel;
-    public TOEditProfile() {
-        setContentPane(editProfilePanel);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setSize(1000, 500);
-        setLocationRelativeTo(null);
-        setVisible(true);
+    public TOEditProfile(String username) {
+        this.username = username;
+
+        panel = new JPanel();
+        panel.setLayout(new GridLayout(6, 2, 10, 10));
+
+        panel.add(new JLabel("First Name:"));
+        firstNameField = new JTextField();
+        panel.add(firstNameField);
+
+        panel.add(new JLabel("Last Name:"));
+        lastNameField = new JTextField();
+        panel.add(lastNameField);
+
+        panel.add(new JLabel("Phone Number:"));
+        phoneField = new JTextField();
+        panel.add(phoneField);
+
+        panel.add(new JLabel("Email:"));
+        emailField = new JTextField();
+        panel.add(emailField);
+
+        panel.add(new JLabel("Password:"));
+        passwordField = new JTextField();
+        panel.add(passwordField);
+
+        updateButton = new JButton("Update Profile");
+        panel.add(updateButton);
+
+        loadUserData();
+
+        updateButton.addActionListener(e -> updateUserData());
+
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new ToofficerPage();
+                //frame.dispose();
+            }
+        });
     }
+
+    private void loadUserData() {
+        try (Connection con = DBConnection.getConnection()) {
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM User WHERE Username = ?");
+            ps.setString(1, username);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                firstNameField.setText(rs.getString("First_Name"));
+                lastNameField.setText(rs.getString("Last_Name"));
+                phoneField.setText(rs.getString("Phone_Number"));
+                emailField.setText(rs.getString("Email"));
+                passwordField.setText(rs.getString("Password"));
+            } else {
+                JOptionPane.showMessageDialog(panel, "User not found!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private void updateUserData() {
+        String firstName = firstNameField.getText().trim();
+        String lastName = lastNameField.getText().trim();
+        String phone = phoneField.getText().trim();
+        String email = emailField.getText().trim();
+        String password = passwordField.getText().trim();
+
+        if (firstName.isEmpty() || lastName.isEmpty() || phone.isEmpty() || email.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(panel, "Please fill all fields!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        try (Connection con = DBConnection.getConnection()) {
+            PreparedStatement ps = con.prepareStatement(
+                    "UPDATE User SET First_Name = ?, Last_Name = ?, Phone_Number = ?, Email = ?, Password = ? WHERE Username = ?"
+            );
+            ps.setString(1, firstName);
+            ps.setString(2, lastName);
+            ps.setString(3, phone);
+            ps.setString(4, email);
+            ps.setString(5, password);
+            ps.setString(6, username);
+
+            int updated = ps.executeUpdate();
+            if (updated > 0) {
+                JOptionPane.showMessageDialog(panel, "Profile updated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(panel, "Update failed!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public JPanel getPanel() {
+        return panel;
+    }
+
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(TOEditProfile::new);
+
     }
 }
 */
 import javax.swing.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.*;
 
-public class TOEditProfile extends JFrame {
+public class TOEditProfile {
+    private JPanel panel;
+    private JTextField firstNameField;
+    private JTextField lastNameField;
+    private JTextField phoneField;
+    private JTextField emailField;
+    private JTextField profilePicture;
+    private JPasswordField passwordField;
+    private JButton updateButton;
+    private JButton resetButton;
     private JButton backButton;
-    private JTextField textField1; // First Name
-    private JTextField textField2; // Last Name
-    private JTextField textField3; // Phone Number
-    private JTextField textField4; // Email
-    private JTextField textField5; // Password
-    private JButton UPDATEButton;
-    private JButton RESETButton;
-    private JPanel editProfilePanel;
 
-    private String loggedInUsername; // Username of the logged-in TO
+    private String username;
 
     public TOEditProfile(String username) {
-        this.loggedInUsername = username;
+        this.username = username;
 
-        setContentPane(editProfilePanel);
-        setTitle("Edit Profile");
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setSize(1000, 500);
-        setLocationRelativeTo(null);
-        setVisible(true);
+        JFrame frame = new JFrame("Edit Profile - Technical Officer");
+        frame.setContentPane(panel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
 
-        loadProfileData();
+        loadUserData();
 
-        UPDATEButton.addActionListener(new ActionListener() {
+        updateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                updateProfileData();
+                updateProfile();
             }
         });
 
-        RESETButton.addActionListener(new ActionListener() {
+        resetButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                loadProfileData(); // Reset fields
+                clearFields();
             }
         });
 
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new ToofficerPage();
-                dispose(); // Close window
+                frame.dispose();
             }
         });
     }
 
-    private void loadProfileData() {
+    private void loadUserData() {
         try {
-            Connection conn = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/your_database_name",
-                    "your_username",
-                    "your_password"
-            );
-            String sql = "SELECT First_Name, Last_Name, Phone_Number, Email, Password FROM USER WHERE Username = ?";
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, loggedInUsername);
-            ResultSet rs = pstmt.executeQuery();
+            Connection conn = DBConnection.getConnection();
+            String sql = "SELECT * FROM User WHERE Username = ?";
+            PreparedStatement pst = conn.prepareStatement(sql);
+            pst.setString(1, username);
+
+            ResultSet rs = pst.executeQuery();
 
             if (rs.next()) {
-                textField1.setText(rs.getString("First_Name"));
-                textField2.setText(rs.getString("Last_Name"));
-                textField3.setText(rs.getString("Phone_Number"));
-                textField4.setText(rs.getString("Email"));
-                textField5.setText(rs.getString("Password"));
+                firstNameField.setText(rs.getString("First_Name"));
+                lastNameField.setText(rs.getString("Last_Name"));
+                phoneField.setText(rs.getString("Phone_Number"));
+                emailField.setText(rs.getString("Email"));
+                profilePicture.setText(rs.getString("Profile_Pic_Path"));
+                passwordField.setText(rs.getString("Password")); // show password, but not editable
+                passwordField.setEditable(false);
             }
             conn.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Error loading profile data.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error loading profile: " + ex.getMessage());
         }
     }
 
-    private void updateProfileData() {
+    private void updateProfile() {
+        String firstName = firstNameField.getText();
+        String lastName = lastNameField.getText();
+        String phone = phoneField.getText();
+        String email = emailField.getText();
+        String profilePic = profilePicture.getText();
+
+        if (firstName.isEmpty() || lastName.isEmpty() || phone.isEmpty() || email.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please fill all required fields!");
+            return;
+        }
+
         try {
-            Connection conn = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/your_database_name",
-                    "your_username",
-                    "your_password"
-            );
+            Connection conn = DBConnection.getConnection();
+            String sql = "UPDATE User SET First_Name = ?, Last_Name = ?, Phone_Number = ?, Email = ?, Profile_Pic_Path = ? WHERE Username = ?";
+            PreparedStatement pst = conn.prepareStatement(sql);
 
+            pst.setString(1, firstName);
+            pst.setString(2, lastName);
+            pst.setString(3, phone);
+            pst.setString(4, email);
+            pst.setString(5, profilePic);
+            pst.setString(6, username);
 
-            String sql = "UPDATE USER SET First_Name=?, Last_Name=?, Phone_Number=?, Email=?, Password=? WHERE Username=?";
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, textField1.getText());
-            pstmt.setString(2, textField2.getText());
-            pstmt.setString(3, textField3.getText());
-            pstmt.setString(4, textField4.getText());
-            pstmt.setString(5, textField5.getText());
-            pstmt.setString(6, loggedInUsername);
+            int updated = pst.executeUpdate();
 
-            int updatedRows = pstmt.executeUpdate();
-            if (updatedRows > 0) {
-                JOptionPane.showMessageDialog(this, "Profile updated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            if (updated > 0) {
+                JOptionPane.showMessageDialog(null, "Profile updated successfully.");
             } else {
-                JOptionPane.showMessageDialog(this, "Update failed.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Update failed.");
             }
+
             conn.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Error updating profile.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Database error: " + ex.getMessage());
         }
+    }
+
+    private void clearFields() {
+        firstNameField.setText("");
+        lastNameField.setText("");
+        phoneField.setText("");
+        emailField.setText("");
+        profilePicture.setText("");
+        // Do not clear password field
     }
 }
+
+
