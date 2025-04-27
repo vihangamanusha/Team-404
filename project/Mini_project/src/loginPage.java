@@ -14,6 +14,14 @@ public class loginPage {
     private JPasswordField passwordField;
 
     public loginPage() {
+        JFrame frame = new JFrame("Login Page");
+        frame.setContentPane(LoginPage);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+
         RESETButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -21,16 +29,15 @@ public class loginPage {
                 passwordField.setText("");
             }
         });
-        LOGINButton.addActionListener(new ActionListener() {
-            private Component loginPage;
 
+        LOGINButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String user = username.getText();
                 String pass = new String(passwordField.getPassword());
 
                 if (user.isEmpty() || pass.isEmpty()) {
-                    JOptionPane.showMessageDialog(loginPage, "Please enter a valid username/password");
+                    JOptionPane.showMessageDialog(frame, "Please enter a valid username/password");
                     return;
                 }
 
@@ -50,19 +57,23 @@ public class loginPage {
 
                         switch (role) {
                             case "admin":
-                                new adminPage();  // Replace with actual admin page
+                                frame.dispose();
+                                new adminPage();
                                 break;
                             case "student":
+                                frame.dispose();
                                 JOptionPane.showMessageDialog(null, "Welcome Student!");
-                                //new studentPage();  // Replace with actual student page
+                                // new studentPage();
                                 break;
                             case "lecture":
+                                frame.dispose();
                                 JOptionPane.showMessageDialog(null, "Welcome Lecturer!");
-                                //new lecturerPage();  // Replace with actual lecturer page
+                                // new lecturerPage();
                                 break;
                             case "t/o":
+                                frame.dispose();
                                 JOptionPane.showMessageDialog(null, "Welcome Technical Officer!");
-                                //new officerPage();  // Replace with actual officer page
+                                // new officerPage();
                                 break;
                             default:
                                 JOptionPane.showMessageDialog(null, "Unknown role: " + role);
@@ -75,23 +86,11 @@ public class loginPage {
                     ex.printStackTrace();
                     JOptionPane.showMessageDialog(null, "Database error: " + ex.getMessage());
                 }
-
-
-
-        }
+            }
         });
     }
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("loginPage");
-        frame.setContentPane(new loginPage().LoginPage);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false);
-        frame.pack();
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-    }
-
-    public void showLoginFrame() {
+    public void showLoginPage() {
+        new loginPage();
     }
 }
