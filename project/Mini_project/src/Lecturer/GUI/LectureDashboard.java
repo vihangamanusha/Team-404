@@ -94,7 +94,7 @@ public class LectureDashboard {
         viewMarks.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+               new ViewCAMarks();
             }
         });
         FINALMARKSButton.addActionListener(new ActionListener() {
@@ -109,6 +109,7 @@ public class LectureDashboard {
                 new CaEligibility();
             }
         });
+
     }
 
     public JPanel getMainPanel() {
