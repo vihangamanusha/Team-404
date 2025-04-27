@@ -1,5 +1,5 @@
 package Lecturer.GUI;
-import
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
