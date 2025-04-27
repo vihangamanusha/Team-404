@@ -1,5 +1,3 @@
-package Admin;
-
 import javax.swing.*;
 
 public class LoadingPage {

@@ -1,7 +1,3 @@
-package Admin;
-
-import DBConnection;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
