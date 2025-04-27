@@ -160,7 +160,4 @@ public class LectureDashboard {
         return mainPanel;
     }
 
-    public static void main(String[] args) {
-        new LectureDashboard();
-    }
 }

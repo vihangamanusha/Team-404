@@ -51,7 +51,8 @@ public class loginPage {
                     if (rs.next()) {
                         String role = rs.getString("Role").toLowerCase();
 
-                        //UserSession.getInstance().setUsername(user);
+                        UserSession.getInstance().setUsername(user);
+                        ToUserSession getInstance().setUsername(user);
                         conn.close();
 
                         switch (role) {
@@ -66,7 +67,7 @@ public class loginPage {
                                 break;
                             case "lecturer":
                                 frame.dispose();
-                                //new LectureDashboard();
+                                new LectureDashboard();
                                 break;
                             case "Technical Officer":
                                 frame.dispose();
