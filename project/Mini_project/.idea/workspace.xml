@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="2d7a7091-184d-4e25-8012-cb80ddcc4c84" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MedicalPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MedicalPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/attendancePage.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/attendancePage.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TOViewNoticePage.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/TOViewNoticePage.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TOViewNoticePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TOViewNoticePage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,41 +17,41 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 5
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="2w3G2NbME6unGewi3Gz0Pk2jRYw" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.MedicalPage.executor": "Run",
-    "Application.TOViewNoticePage.executor": "Run",
-    "Application.TOViewTimeTablePage.executor": "Run",
-    "Application.ToofficerPage.executor": "Run",
-    "Application.ViewTimeTablePage.executor": "Run",
-    "Application.attendancePage.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW": "true",
-    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW": "true",
-    "git-widget-placeholder": "TG1343",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Admin/Desktop/Java mini project/Team-404/project/Mini_project/src/LGoodDatePicker-11.2.1.jar",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.MedicalPage.executor&quot;: &quot;Run&quot;,
+    &quot;Application.TOViewNoticePage.executor&quot;: &quot;Run&quot;,
+    &quot;Application.TOViewTimeTablePage.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ToofficerPage.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ViewTimeTablePage.executor&quot;: &quot;Run&quot;,
+    &quot;Application.attendancePage.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW&quot;: &quot;true&quot;,
+    &quot;UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;TG1343&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Admin/Desktop/Java mini project/Team-404/project/Mini_project/src/LGoodDatePicker-11.2.1.jar&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
-  <component name="RunManager" selected="Application.attendancePage">
+}</component>
+  <component name="RunManager" selected="Application.TOViewNoticePage">
     <configuration name="MedicalPage" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MedicalPage" />
       <module name="Mini_project" />
@@ -89,11 +89,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.attendancePage" />
+        <item itemvalue="Application.TOViewNoticePage" />
         <item itemvalue="Application.MedicalPage" />
+        <item itemvalue="Application.attendancePage" />
         <item itemvalue="Application.ToofficerPage" />
         <item itemvalue="Application.TOViewTimeTablePage" />
-        <item itemvalue="Application.TOViewNoticePage" />
       </list>
     </recent_temporary>
   </component>
@@ -114,10 +114,22 @@
       <option name="presentableId" value="Default" />
       <updated>1745489855266</updated>
       <workItem from="1745489856351" duration="72433000" />
+      <workItem from="1745700778658" duration="4215000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/TOViewNoticePage.java</url>
+          <line>36</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

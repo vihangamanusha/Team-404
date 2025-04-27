@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 public class TOViewNoticePage extends JFrame{
     private JPanel noticePanel;
     private JButton button1;
+    private JButton CLICKHERETOVIEWButton;
 
     public TOViewNoticePage() {
         JFrame frame = new JFrame("Notice Page");
@@ -19,6 +20,12 @@ public class TOViewNoticePage extends JFrame{
                 new ToofficerPage();
                 dispose();
 
+            }
+        });
+        CLICKHERETOVIEWButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ///   //
             }
         });
     }
