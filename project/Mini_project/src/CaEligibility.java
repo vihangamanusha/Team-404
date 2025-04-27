@@ -13,6 +13,7 @@ public class CaEligibility {
     private JTextField courseCode;
     private JButton VIEWButton;
     private JButton BATCHVIEWButton;
+    private JButton CLEARButton;
     private JFrame frame;
 
     public CaEligibility() {

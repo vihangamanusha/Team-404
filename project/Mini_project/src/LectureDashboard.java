@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 public class LectureDashboard {
 
 
+
     private JButton viewDetailes;
     private JButton attendence;
     private JButton medicalRecords;
@@ -17,6 +18,7 @@ public class LectureDashboard {
     private JButton ADDMARKSButton;
     private JButton FINALMARKSButton;
     private JButton CAELIGIBILITYButton;
+    private JLabel profilePic;
 
 
     public LectureDashboard() {
@@ -34,6 +36,7 @@ public class LectureDashboard {
             public void actionPerformed(ActionEvent e) {
                 //frame.dispose();
                  new StdDetails();
+                frame.dispose();
 
             }
         });
@@ -42,18 +45,21 @@ public class LectureDashboard {
             @Override
             public void actionPerformed(ActionEvent e) {
                new ViewAttendance();
+                frame.dispose();
             }
         });
         medicalRecords.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new viewStdMedicales();
+                frame.dispose();
             }
         });
         manage.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new ManageCourseDetails();
+                frame.dispose();
             }
         });
         viewMarks.addActionListener(new ActionListener() {
@@ -68,12 +74,14 @@ public class LectureDashboard {
             @Override
             public void actionPerformed(ActionEvent e) {
                new Lecturernoticepage();
+                frame.dispose();
             }
         });
         editProfile.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                new LectuerEdit();
+                frame.dispose();
             }
         });
         logout.addActionListener(new ActionListener() {
@@ -81,7 +89,7 @@ public class LectureDashboard {
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
                 new loginPage();
-                
+
             }
         });
 
@@ -90,6 +98,7 @@ public class LectureDashboard {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new addMarks();
+                frame.dispose();
             }
         });
         CAELIGIBILITYButton.addActionListener(new ActionListener() {
@@ -102,18 +111,21 @@ public class LectureDashboard {
             @Override
             public void actionPerformed(ActionEvent e) {
                new ViewCAMarks();
+                frame.dispose();
             }
         });
         FINALMARKSButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new viewFinalMarks();
+                frame.dispose();
             }
         });
         CAELIGIBILITYButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new CaEligibility();
+                frame.dispose();
             }
         });
 
@@ -124,8 +136,7 @@ public class LectureDashboard {
     }
 
     public static void main(String[] args) {
-
         new LectureDashboard();
-
     }
+
 }
