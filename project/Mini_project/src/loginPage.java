@@ -52,7 +52,7 @@ public class loginPage {
                         String role = rs.getString("Role").toLowerCase();
 
                         UserSession.getInstance().setUsername(user);
-                        ToUserSession getInstance().setUsername(user);
+                        ToUserSession.getInstance().setUsername(user);
                         conn.close();
 
                         switch (role) {
