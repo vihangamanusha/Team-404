@@ -1,7 +1,10 @@
+package Admin;
+
+import DatabaseConnection.DBConnection;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.*;
 import java.io.File;
 import java.sql.*;
 
